@@ -204,7 +204,7 @@ def blog():
         .options(db.load_only(BlogPost.id, BlogPost.title, BlogPost.excerpt, 
                              BlogPost.slug, BlogPost.created_at, BlogPost.author, 
                              BlogPost.tags, BlogPost.featured_image))\
-        .paginate(page=page, per_page=6, error_out=False)
+        .paginate(page=page, per_page=5, error_out=False)
     
     # Set cache headers for better performance
     response = make_response(render_template('blog.html', posts=posts))

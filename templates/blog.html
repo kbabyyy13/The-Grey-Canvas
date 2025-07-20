@@ -53,12 +53,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-top: 3rem;
+    flex-wrap: wrap;
 }
 
-.pagination a,
-.pagination span {
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--main-accent-pink), #c01e7a);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(224, 33, 138, 0.3);
+}
+
+.pagination-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(224, 33, 138, 0.4);
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-numbers a,
+.pagination-numbers span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,16 +96,47 @@
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-.pagination a:hover {
+.pagination-numbers a:hover {
     background: var(--main-accent-pink);
     border-color: var(--main-accent-pink);
+    transform: translateY(-2px);
 }
 
-.pagination .current {
+.pagination-numbers .current {
     background: var(--main-accent-pink);
     border-color: var(--main-accent-pink);
+    box-shadow: 0 4px 15px rgba(224, 33, 138, 0.4);
+}
+
+.pagination-numbers .ellipsis {
+    background: transparent;
+    border: none;
+    color: #9CA3AF;
+}
+
+.pagination-info {
+    margin-top: 1rem;
+}
+
+/* Mobile responsive pagination */
+@media (max-width: 640px) {
+    .pagination {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .pagination-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .pagination-numbers {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 /* Featured Blog Post Styling */
@@ -281,24 +338,37 @@
         {% if posts.pages > 1 %}
             <div class="pagination">
                 {% if posts.has_prev %}
-                    <a href="{{ url_for('blog', page=posts.prev_num) }}">‹</a>
+                    <a href="{{ url_for('blog', page=posts.prev_num) }}" class="pagination-btn prev">
+                        <span>← Previous</span>
+                    </a>
                 {% endif %}
                 
-                {% for page_num in posts.iter_pages() %}
-                    {% if page_num %}
-                        {% if page_num != posts.page %}
-                            <a href="{{ url_for('blog', page=page_num) }}">{{ page_num }}</a>
+                <div class="pagination-numbers">
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                        {% if page_num %}
+                            {% if page_num != posts.page %}
+                                <a href="{{ url_for('blog', page=page_num) }}">{{ page_num }}</a>
+                            {% else %}
+                                <span class="current">{{ page_num }}</span>
+                            {% endif %}
                         {% else %}
-                            <span class="current">{{ page_num }}</span>
+                            <span class="ellipsis">…</span>
                         {% endif %}
-                    {% else %}
-                        <span>…</span>
-                    {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                </div>
                 
                 {% if posts.has_next %}
-                    <a href="{{ url_for('blog', page=posts.next_num) }}">›</a>
+                    <a href="{{ url_for('blog', page=posts.next_num) }}" class="pagination-btn next">
+                        <span>Next →</span>
+                    </a>
                 {% endif %}
+            </div>
+            
+            <div class="pagination-info">
+                <p class="text-sm text-gray-400 text-center mt-4">
+                    Showing {{ ((posts.page - 1) * 5) + 1 }} - {{ ((posts.page - 1) * 5) + posts.items|length }} 
+                    of {{ posts.total }} posts
+                </p>
             </div>
         {% endif %}
         
