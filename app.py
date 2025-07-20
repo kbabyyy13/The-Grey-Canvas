@@ -21,17 +21,28 @@ db = SQLAlchemy(model_class=Base)
 # Initialize Sentry SDK
 sentry_dsn = os.environ.get('SENTRY_DSN')
 if sentry_dsn:
+    # Determine environment-specific sampling rates
+    environment = os.environ.get('SENTRY_ENVIRONMENT', 'development')
+    if environment == 'production':
+        traces_sample_rate = 0.1  # 10% in production
+        profile_sample_rate = 0.1  # 10% profiling in production
+    else:
+        traces_sample_rate = 1.0   # 100% in development
+        profile_sample_rate = 1.0  # 100% profiling in development
+    
     sentry_sdk.init(
         dsn=sentry_dsn,
         integrations=[
             FlaskIntegration(),
             SqlalchemyIntegration()
         ],
-        traces_sample_rate=0.1,  # Adjust based on your traffic
+        traces_sample_rate=traces_sample_rate,
+        profiles_sample_rate=profile_sample_rate,
         release=os.environ.get('SENTRY_RELEASE', 'development'),
-        environment=os.environ.get('SENTRY_ENVIRONMENT', 'development'),
+        environment=environment,
         attach_stacktrace=True,
-        send_default_pii=False  # Don't send personally identifiable information
+        send_default_pii=False,  # Keep PII protection enabled
+        before_send=lambda event, hint: event if environment != 'production' or not event.get('user', {}).get('ip_address') else {**event, 'user': {k: v for k, v in event.get('user', {}).items() if k != 'ip_address'}}
     )
 
 # Configure logging
