@@ -24,7 +24,7 @@ if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
         integrations=[
-            FlaskIntegration(auto_enabling_integrations=False),
+            FlaskIntegration(),
             SqlalchemyIntegration()
         ],
         traces_sample_rate=0.1,  # Adjust based on your traffic
