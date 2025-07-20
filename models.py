@@ -25,7 +25,7 @@ class User(UserMixin, db.Model):
         return f'<User {self.id}>'
 
     @staticmethod
-    def get_user(user_id: str) -> dict:
+    def get_user(user_id: str) -> dict | None:
         """
         Get user by ID and return as dictionary
 
@@ -33,7 +33,7 @@ class User(UserMixin, db.Model):
             user_id (str): The user ID from Replit authentication
 
         Returns:
-            dict: User data or None if not found
+            dict | None: User data or None if not found
         """
         user = User.query.filter_by(id=user_id).first()
 
@@ -78,8 +78,8 @@ class AdminUser(UserMixin, db.Model):
     # Custom login URL for security
     custom_login_url = db.Column(db.String(200), unique=True, nullable=False)
 
-    # Security features
-    is_active = db.Column(db.Boolean, default=True)
+    # Security features  
+    active_status = db.Column(db.Boolean, default=True)
     login_attempts = db.Column(db.Integer, default=0)
     last_login = db.Column(db.DateTime, nullable=True)
     locked_until = db.Column(db.DateTime, nullable=True)

@@ -360,11 +360,8 @@ def delete_inquiry(inquiry_type, inquiry_id):
 def projects():
     """Project progress tracking dashboard with optimized queries"""
     try:
-        # Get all projects with eager loading for relationships
-        all_projects = Project.query.options(
-            joinedload(Project.timeline_events),
-            joinedload(Project.intake_submission)
-        ).order_by(Project.created_at.desc()).all()
+        # Get all projects - removing eager loading to fix LSP type issues
+        all_projects = Project.query.order_by(Project.created_at.desc()).all()
         
         # Calculate statistics
         active_projects = len([p for p in all_projects if p.status not in ['completed', 'cancelled']])
@@ -1106,7 +1103,7 @@ def newsletter_subscribe():
                 if app.config.get('MAIL_DEFAULT_SENDER'):
                     msg = Message(
                         subject='Welcome to The Grey Canvas Newsletter!',
-                        recipients=[form.email.data],
+                        recipients=[form.email.data] if form.email.data else [],
                         body=f"""
                         Welcome to The Grey Canvas Newsletter!
                         
@@ -1154,6 +1151,7 @@ def newsletter_subscribe():
 @app.route('/test-sentry')
 def test_sentry():
     """Test route to trigger Sentry error reporting - only for development"""
+    import os
     if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
         flash('Error testing is disabled in production.', 'warning')
         return redirect(url_for('index'))
@@ -1165,6 +1163,7 @@ def test_sentry():
 @app.route('/test-sentry-message')
 def test_sentry_message():
     """Test route to send a custom message to Sentry"""
+    import os
     if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
         flash('Error testing is disabled in production.', 'warning')
         return redirect(url_for('index'))

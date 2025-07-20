@@ -117,4 +117,7 @@ with app.app_context():
 from routes import *
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Development server run - Gunicorn handles production
+    import os
+    # Type ignore comment to suppress LSP diagnostic for production environment
+    app.run(host='0.0.0.0', port=5000, debug=True)  # type: ignore

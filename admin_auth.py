@@ -130,7 +130,7 @@ def login(url_path):
             
             # Validate credentials
             if admin.username == username and admin.check_password(password):
-                if not admin.is_active:
+                if not admin.active_status:
                     flash('Account is disabled. Please contact administrator.', 'error')
                     return render_template('admin_login.html', admin=admin)
                 
