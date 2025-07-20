@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="{{ post.meta_description if post.meta_description else (post.excerpt if post.excerpt else post.content[:160]) }}">
+<meta name="keywords" content="{% if post.get_tags_list() %}{% for tag in post.get_tags_list() %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}, web design, Texas small business, DFW">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.meta_description if post.meta_description else (post.excerpt if post.excerpt else post.content[:160]) }}">
+<meta property="og:image" content="{{ post.featured_image if post.featured_image else url_for('static', filename='tgctag.png') }}">
+<meta property="og:url" content="{{ request.url }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
+{% block extra_css %}
+.post-content {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+    color: #9CA3AF;
+}
+
+.post-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(224, 33, 138, 0.2);
+    color: var(--main-accent-pink);
+    border: 1px solid rgba(224, 33, 138, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: "Playfair Display", serif;
+}
+
+.post-content h1 { font-size: 2.5rem; }
+.post-content h2 { font-size: 2rem; }
+.post-content h3 { font-size: 1.5rem; }
+
+.post-content p {
+    color: #D1D5DB;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.post-content ul,
+.post-content ol {
+    color: #D1D5DB;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.post-content li {
+    margin-bottom: 0.5rem;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--main-accent-pink);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #E5E7EB;
+    background: rgba(224, 33, 138, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+}
+
+.post-content code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #F3F4F6;
+}
+
+.post-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.related-posts {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.related-post-card {
+    background: rgba(75, 85, 99, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.related-post-card:hover {
+    background: rgba(75, 85, 99, 0.5);
+    border-color: rgba(224, 33, 138, 0.3);
+    transform: translateY(-2px);
+}
+
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(75, 85, 99, 0.6);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.back-to-blog:hover {
+    background: var(--main-accent-pink);
+    border-color: var(--main-accent-pink);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(75, 85, 99, 0.6);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+    background: var(--main-accent-pink);
+    border-color: var(--main-accent-pink);
+    transform: translateY(-2px);
+}
+
+/* Responsive text sizing for blog post titles */
+@media (max-width: 768px) {
+    .post-content {
+        padding: 1.5rem;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .post-content header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .related-post-card h3 {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-content header h1 {
+        font-size: 1.75rem;
+        line-height: 1.15;
+    }
+    
+    .related-post-card h3 {
+        font-size: 0.9rem;
+        line-height: 1.25;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-4xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <!-- Back to Blog Button -->
+    <a href="{{ url_for('blog') }}" class="back-to-blog">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+        </svg>
+        Back to Blog
+    </a>
+
+    <!-- Blog Post Content -->
+    <article class="post-content">
+        <!-- Featured Image -->
+        {% if post.featured_image %}
+            <div class="mb-6">
+                <img src="{{ post.featured_image }}" alt="{{ post.title }}" 
+                     class="w-full h-64 md:h-80 object-cover rounded-lg">
+            </div>
+        {% endif %}
+
+        <!-- Post Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 font-playfair">
+                {% if post.slug == 'why-small-businesses-need-websites' %}
+                    <span style="color: #7A7A7A;">Why Small Businesses in</span> <span style="color: #E0218A;">Texas</span> <span style="color: #000000;">Need a Professional</span> <span style="color: #FFFFFF;">Website in 2025</span>
+                {% elif post.slug == 'wordpress-squarespace-or-custom-code-choosing-right-platform' %}
+                    <span style="color: #7A7A7A;">WordPress, Squarespace, or</span> <span style="color: #E0218A;">Custom Code?</span> <span style="color: #000000;">Choosing the Right Platform for Your</span> <span style="color: #FFFFFF;">Texas Small Business</span>
+                {% elif post.slug == 'future-of-web-design-2025' %}
+                    <span style="color: #FFFFFF;">Will</span> <span style="color: #E0218A;">AI</span> <span style="color: #FFFFFF;">Take My</span> <span style="color: #E0218A;">Web Designer</span><span style="color: #FFFFFF;">'s Job? A</span> <span style="color: #E0218A;">No</span><span style="color: #FFFFFF;">-Nonsense Guide for</span> <span style="color: #E0218A;">Small</span> <span style="color: #7A7A7A;">Businesses</span>
+                {% else %}
+                    <span style="color: #FFFFFF;">{{ post.title }}</span>
+                {% endif %}
+            </h1>
+            
+            <div class="post-meta">
+                <span>{{ post.format_date() }}</span>
+                <span>•</span>
+                <span>By {{ post.author }}</span>
+                {% if post.get_tags_list() %}
+                    <span>•</span>
+                    <div class="flex flex-wrap">
+                        {% for tag in post.get_tags_list() %}
+                            <span class="post-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="prose prose-lg max-w-none">
+            {{ post.content | safe }}
+        </div>
+
+        <!-- Share Buttons -->
+        <div class="share-buttons">
+            <span class="text-gray-300 self-center mr-2">Share:</span>
+            <a href="https://twitter.com/intent/tweet?text={{ post.title | urlencode }}&url={{ request.url | urlencode }}" 
+               target="_blank" class="share-btn" title="Share on Twitter">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.url | urlencode }}" 
+               target="_blank" class="share-btn" title="Share on LinkedIn">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url | urlencode }}" 
+               target="_blank" class="share-btn" title="Share on Facebook">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    {% if related_posts %}
+        <section class="related-posts mt-8">
+            <h2 class="text-2xl font-bold text-white mb-6 font-playfair">Related Posts</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                {% for related_post in related_posts %}
+                    <article class="related-post-card">
+                        <h3 class="text-lg font-semibold mb-2">
+                            <a href="{{ url_for('blog_post', slug=related_post.slug) }}" 
+                               class="hover:text-pink-400 transition-colors">
+                                {% if related_post.slug == 'why-small-businesses-need-websites' %}
+                                    <span style="color: #7A7A7A;">Why Small Businesses in</span> <span style="color: #E0218A;">Texas</span> <span style="color: #000000;">Need a Professional</span> <span style="color: #FFFFFF;">Website in 2025</span>
+                                {% elif related_post.slug == 'wordpress-squarespace-or-custom-code-choosing-right-platform' %}
+                                    <span style="color: #7A7A7A;">WordPress, Squarespace, or</span> <span style="color: #E0218A;">Custom Code?</span> <span style="color: #000000;">Choosing the Right Platform for Your</span> <span style="color: #FFFFFF;">Texas Small Business</span>
+                                {% elif related_post.slug == 'future-of-web-design-2025' %}
+                                    <span style="color: #FFFFFF;">Will</span> <span style="color: #E0218A;">AI</span> <span style="color: #FFFFFF;">Take My</span> <span style="color: #E0218A;">Web Designer</span><span style="color: #FFFFFF;">'s Job? A</span> <span style="color: #E0218A;">No</span><span style="color: #FFFFFF;">-Nonsense Guide for</span> <span style="color: #E0218A;">Small</span> <span style="color: #7A7A7A;">Businesses</span>
+                                {% else %}
+                                    <span style="color: #FFFFFF;">{{ related_post.title }}</span>
+                                {% endif %}
+                            </a>
+                        </h3>
+                        <p class="text-gray-300 text-sm mb-3">
+                            {{ related_post.excerpt or (related_post.content[:100] + '...') }}
+                        </p>
+                        <div class="text-xs text-gray-400">
+                            {{ related_post.format_date() }}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Call to Action -->
+    <div class="related-posts mt-8 text-center">
+        <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Transform Your Business?</h2>
+        <p class="text-gray-300 mb-6">
+            Let's put these insights into action for your business. Schedule a free consultation to discuss your web design needs.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ url_for('intake') }}" class="back-to-blog">Begin Your Canvas</a>
+            <a href="{{ url_for('contact') }}" class="back-to-blog">Let's Connect!</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

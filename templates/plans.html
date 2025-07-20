@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Maintenance Plans - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Monthly website maintenance plans for Texas businesses. Keep your site secure, updated, and performing at its best. Starting at $95/month.">
+{% endblock %}
+
+{% block extra_css %}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+/* Keep "Optional Add-Ons" titles black in dark mode */
+.addon-title {
+    color: #000000 !important;
+}
+
+/* Modern table styling with glass-morphism effect */
+.plans-table-container {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.70));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.plans-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.plans-table th {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.2), rgba(224, 33, 138, 0.1));
+    color: #ffffff;
+    font-weight: 700;
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(224, 33, 138, 0.3);
+}
+
+.plans-table td {
+    padding: 1.5rem 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plans-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.plan-tier {
+    font-weight: 700 !important;
+    font-size: 1.1rem;
+}
+
+.plan-price {
+    color: #e0218a !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+    <div class="text-center">
+        <div class="mb-8">
+            <a href="{{ url_for('services') }}" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+            </a>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-playfair">
+            <span style="color: #7A7A7A;">Maintenance</span> <span style="color: #000000;">&</span> <span style="color: #e0218a;">Support</span>
+        </h1>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" style="color: var(--signature-grey);">Protect your investment with comprehensive maintenance plans. I ensure your website remains secure, fast, and up-to-date while providing ongoing support and optimization to help your business thrive online.</p>
+    </div>
+
+    <!-- Plans Table -->
+    <div class="mt-16">
+        <h2 class="text-3xl font-bold font-playfair text-center text-deep-black">
+            Support <span style="color: #e0218a;">Plans</span>
+        </h2>
+        <p class="mt-4 text-lg text-center max-w-3xl mx-auto text-white">
+            Choose the right level of ongoing support for your website. Each plan includes proactive maintenance to keep your site secure, fast, and performing at its best.
+        </p>
+        <div class="mt-8 mx-auto max-w-4xl">
+            <div class="plans-table-container">
+                <table class="plans-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Plan Tier</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Core Services</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="plan-tier" style="color: #e0218a;">Essential</td>
+                            <td class="plan-price">$75 / month</td>
+                            <td>
+                                <strong>Monthly services include:</strong><br>
+                                • WordPress core & plugin updates<br>
+                                • Weekly automated backups<br>
+                                • Basic security monitoring<br>
+                                • Monthly performance report<br>
+                                • Email support (48-hour response)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="plan-tier" style="color: #e0218a;">Pro</td>
+                            <td class="plan-price">$150 / month</td>
+                            <td>
+                                <strong>Everything in Essential plus:</strong><br>
+                                • Monthly content updates (up to 3 pages)<br>
+                                • Image optimization & replacement<br>
+                                • Basic SEO monitoring<br>
+                                • Priority support (24-hour response)<br>
+                                • Monthly analytics review<br>
+                                • Contact form optimization
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="plan-tier" style="color: #e0218a;">Elite</td>
+                            <td class="plan-price">$300 / month</td>
+                            <td>
+                                <strong>Everything in Pro plus:</strong><br>
+                                • Advanced SEO monitoring & optimization<br>
+                                • Content strategy & blog post creation<br>
+                                • Monthly competitor analysis<br>
+                                • Conversion rate optimization<br>
+                                • Priority support (same-day response)<br>
+                                • Monthly strategy consultation call
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Add-ons -->
+    <div class="mt-16">
+        <h2 class="text-3xl font-bold font-alice text-center">
+            <span style="color: #FFFFFF;">Optional</span> <span style="color: #7A7A7A;">Add</span><span style="color: #000000;">-</span><span style="color: #e0218a;">Ons</span>
+        </h2>
+        <p class="mt-2 text-center" style="color: var(--signature-grey);">Enhance your project with these one-time services.</p>
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">Logo Design</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$300+</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Custom logo creation with 3 concepts, unlimited revisions, and brand guidelines</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">Copywriting</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$500+</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Professional website copy that converts visitors into customers</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">Branding Style Guide</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$450</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Complete brand guidelines including colors, fonts, and usage rules</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">Email Newsletter Setup</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$250</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Complete email marketing setup with templates and automation</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">Social Media Graphics</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$200</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Custom social media templates and branded graphics package</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h3 class="font-bold addon-title">SEO Audit</h3>
+                <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$300</p>
+                <p class="text-sm mt-2" style="color: #7A7A7A;">Comprehensive SEO analysis with actionable improvement recommendations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

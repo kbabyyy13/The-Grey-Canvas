@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - The Grey Canvas{% endblock %}
+
+{% block extra_css %}
+/* Dashboard styling */
+.dashboard-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.85), rgba(31, 41, 55, 0.80));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(224, 33, 138, 0.10));
+    border: 1px solid rgba(224, 33, 138, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+.inquiry-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.70));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.inquiry-card:hover {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.85), rgba(31, 41, 55, 0.80));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-new {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-pending {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fde68a;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.status-completed {
+    background: rgba(156, 163, 175, 0.2);
+    color: #d1d5db;
+    border: 1px solid rgba(156, 163, 175, 0.3);
+}
+
+.filter-tabs {
+    display: flex;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 8px;
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: #9ca3af;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.filter-tab.active {
+    background: rgba(224, 33, 138, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(224, 33, 138, 0.3);
+}
+
+.filter-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.search-box {
+    background: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: white;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: rgba(224, 33, 138, 0.5);
+    box-shadow: 0 0 0 2px rgba(224, 33, 138, 0.1);
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-view {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.btn-view:hover {
+    background: rgba(59, 130, 246, 0.3);
+    color: #dbeafe;
+}
+
+.btn-mark-complete {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.btn-mark-complete:hover {
+    background: rgba(34, 197, 94, 0.3);
+    color: #dcfce7;
+}
+
+.btn-delete {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: #fee2e2;
+}
+
+.inquiry-type {
+    color: #e0218a;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.priority-high {
+    border-left: 4px solid #ef4444;
+}
+
+.priority-medium {
+    border-left: 4px solid #f59e0b;
+}
+
+.priority-normal {
+    border-left: 4px solid #10b981;
+}
+
+@media (max-width: 768px) {
+    .filter-tabs {
+        flex-direction: column;
+    }
+    
+    .filter-tab {
+        margin-bottom: 0.25rem;
+    }
+    
+    .inquiry-card {
+        padding: 0.75rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-7xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <!-- Header with User Info -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-4">
+            Admin Dashboard
+        </h1>
+        <p class="text-lg text-gray-300 mb-4">
+            Manage inquiries and form submissions
+        </p>
+        
+        <!-- User Authentication Info -->
+        <div class="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-lg max-w-md mx-auto">
+            <div class="flex items-center justify-center space-x-3">
+                {% if current_user.profile_image_url %}
+                <img src="{{ current_user.profile_image_url }}" alt="Profile" class="w-8 h-8 rounded-full">
+                {% endif %}
+                <div class="text-left">
+                    <div class="text-green-200 font-semibold">
+                        {{ current_user.email or current_user.id }}
+                    </div>
+                    <div class="text-xs text-green-300">
+                        {% if current_user.first_name or current_user.last_name %}
+                            {{ current_user.first_name }} {{ current_user.last_name }}
+                        {% endif %}
+                    </div>
+                </div>
+                <a href="{{ url_for('replit_auth.logout') }}" class="text-xs bg-red-500/20 hover:bg-red-500/30 px-3 py-1 rounded border border-red-500/30 text-red-200 transition-colors">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ contact_count + intake_count }}</div>
+            <div class="text-sm text-gray-300">Total Inquiries</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ contact_count }}</div>
+            <div class="text-sm text-gray-300">Contact Forms</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ intake_count }}</div>
+            <div class="text-sm text-gray-300">Project Intakes</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ recent_count }}</div>
+            <div class="text-sm text-gray-300">This Week</div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="dashboard-card mb-8">
+        <h2 class="text-xl font-bold text-white mb-4">Quick Actions</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="{{ url_for('projects') }}" class="action-btn btn-view text-center">
+                Project Tracking
+            </a>
+            <a href="{{ url_for('admin_console') }}" class="action-btn btn-view text-center">
+                Admin Console
+            </a>
+            <a href="{{ url_for('blog') }}" class="action-btn btn-view text-center">
+                Manage Blog
+            </a>
+            <a href="{{ url_for('export_data') }}" class="action-btn btn-view text-center">
+                Export Data
+            </a>
+        </div>
+    </div>
+
+    <!-- Inquiry Management -->
+    <div class="dashboard-card">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <h2 class="text-2xl font-bold text-white mb-4 md:mb-0">Inquiry Management</h2>
+            <div class="text-sm text-gray-400">
+                Total: {{ all_inquiries|length }} inquiries
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterInquiries('all')">
+                All ({{ all_inquiries|length }})
+            </button>
+            <button class="filter-tab" onclick="filterInquiries('contact')">
+                Contact ({{ contact_count }})
+            </button>
+            <button class="filter-tab" onclick="filterInquiries('intake')">
+                Projects ({{ intake_count }})
+            </button>
+            <button class="filter-tab" onclick="filterInquiries('recent')">
+                Recent ({{ recent_count }})
+            </button>
+        </div>
+
+        <!-- Search Box -->
+        <input type="text" 
+               class="search-box" 
+               placeholder="Search inquiries by name, email, or subject..."
+               aria-label="Search inquiries by name, email, or subject"
+               onkeyup="searchInquiries(this.value)">
+
+        <!-- Inquiries List -->
+        <div id="inquiries-container">
+            {% for inquiry in all_inquiries %}
+            <div class="inquiry-card {% if loop.index <= 3 %}priority-high{% elif loop.index <= 6 %}priority-medium{% else %}priority-normal{% endif %}" 
+                 data-type="{{ inquiry.type }}" 
+                 data-text="{{ (inquiry.name or inquiry.business_name or inquiry.contact_name)|lower }} {{ (inquiry.email or '')|lower }} {{ (inquiry.subject or inquiry.project_description or '')|lower }}">
+                
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="flex-1 mb-4 md:mb-0">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="inquiry-type">
+                                {% if inquiry.type == 'contact' %}
+                                    📧 Contact Form
+                                {% else %}
+                                    🚀 Project Intake
+                                {% endif %}
+                            </span>
+                            <span class="status-badge status-new">New</span>
+                            <span class="text-xs text-gray-400">
+                                {{ inquiry.submitted_at.strftime('%b %d, %Y at %I:%M %p') }}
+                            </span>
+                        </div>
+                        
+                        <div class="text-white font-semibold text-lg mb-1">
+                            {{ inquiry.name or inquiry.business_name or inquiry.contact_name }}
+                        </div>
+                        
+                        <div class="text-gray-300 text-sm mb-2">
+                            {{ inquiry.email }}
+                            {% if inquiry.phone %}
+                                • {{ inquiry.phone }}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="text-gray-400 text-sm">
+                            {% if inquiry.type == 'contact' %}
+                                <strong>Subject:</strong> {{ inquiry.subject }}
+                            {% else %}
+                                <strong>Project:</strong> {{ inquiry.website_type|title }} • Budget: {{ inquiry.budget }} • Timeline: {{ inquiry.timeline }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="viewInquiry('{{ inquiry.id }}', '{{ inquiry.type }}')" 
+                                class="action-btn btn-view">
+                            View Details
+                        </button>
+                        {% if inquiry.type == 'intake' %}
+                        <button onclick="createProject('{{ inquiry.id }}')" 
+                                class="action-btn btn-mark-complete">
+                            Create Project
+                        </button>
+                        {% endif %}
+                        <button onclick="markComplete('{{ inquiry.id }}', '{{ inquiry.type }}')" 
+                                class="action-btn btn-mark-complete">
+                            Mark Complete
+                        </button>
+                        <button onclick="deleteInquiry('{{ inquiry.id }}', '{{ inquiry.type }}')" 
+                                class="action-btn btn-delete">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+<!-- Inquiry Detail Modal -->
+<div id="inquiryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 backdrop-blur-sm">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="dashboard-card max-w-2xl w-full max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Inquiry Details</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white" aria-label="Close modal" title="Close dialog">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div id="modalContent" class="text-white">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Filter functionality
+function filterInquiries(type) {
+    // Update active tab
+    document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Filter inquiries
+    const inquiries = document.querySelectorAll('.inquiry-card');
+    inquiries.forEach(inquiry => {
+        const inquiryType = inquiry.dataset.type;
+        const isRecent = inquiry.querySelector('.status-new') !== null;
+        
+        if (type === 'all') {
+            inquiry.style.display = 'block';
+        } else if (type === 'recent' && isRecent) {
+            inquiry.style.display = 'block';
+        } else if (type === inquiryType) {
+            inquiry.style.display = 'block';
+        } else {
+            inquiry.style.display = 'none';
+        }
+    });
+}
+
+// Search functionality
+function searchInquiries(searchTerm) {
+    const inquiries = document.querySelectorAll('.inquiry-card');
+    const term = searchTerm.toLowerCase();
+    
+    inquiries.forEach(inquiry => {
+        const text = inquiry.dataset.text;
+        if (text.includes(term)) {
+            inquiry.style.display = 'block';
+        } else {
+            inquiry.style.display = 'none';
+        }
+    });
+}
+
+// Modal functions
+function viewInquiry(id, type) {
+    // Fetch inquiry details and show in modal
+    fetch(`/admin/inquiry/${type}/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('modalContent').innerHTML = formatInquiryDetails(data);
+            document.getElementById('inquiryModal').classList.remove('hidden');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error loading inquiry details');
+        });
+}
+
+function closeModal() {
+    document.getElementById('inquiryModal').classList.add('hidden');
+}
+
+function formatInquiryDetails(data) {
+    if (data.type === 'contact') {
+        return `
+            <div class="space-y-4">
+                <div><strong>Name:</strong> ${data.name}</div>
+                <div><strong>Email:</strong> ${data.email}</div>
+                <div><strong>Phone:</strong> ${data.phone || 'Not provided'}</div>
+                <div><strong>Subject:</strong> ${data.subject}</div>
+                <div><strong>Message:</strong><br><div class="mt-2 p-3 bg-gray-800 rounded">${data.message}</div></div>
+                <div><strong>Submitted:</strong> ${new Date(data.submitted_at).toLocaleString()}</div>
+            </div>
+        `;
+    } else {
+        return `
+            <div class="space-y-4">
+                <div><strong>Business:</strong> ${data.business_name}</div>
+                <div><strong>Contact:</strong> ${data.contact_name}</div>
+                <div><strong>Email:</strong> ${data.email}</div>
+                <div><strong>Phone:</strong> ${data.phone || 'Not provided'}</div>
+                <div><strong>Website Type:</strong> ${data.website_type}</div>
+                <div><strong>Timeline:</strong> ${data.timeline}</div>
+                <div><strong>Budget:</strong> ${data.budget}</div>
+                <div><strong>Project Description:</strong><br><div class="mt-2 p-3 bg-gray-800 rounded">${data.project_description}</div></div>
+                ${data.additional_notes ? `<div><strong>Additional Notes:</strong><br><div class="mt-2 p-3 bg-gray-800 rounded">${data.additional_notes}</div></div>` : ''}
+                <div><strong>Submitted:</strong> ${new Date(data.submitted_at).toLocaleString()}</div>
+            </div>
+        `;
+    }
+}
+
+function markComplete(id, type) {
+    if (confirm('Mark this inquiry as complete?')) {
+        fetch(`/admin/inquiry/${type}/${id}/complete`, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error marking inquiry as complete');
+                }
+            });
+    }
+}
+
+function deleteInquiry(id, type) {
+    if (confirm('Are you sure you want to delete this inquiry? This action cannot be undone.')) {
+        fetch(`/admin/inquiry/${type}/${id}/delete`, {method: 'DELETE'})
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error deleting inquiry');
+                }
+            });
+    }
+}
+
+function createProject(intakeId) {
+    if (confirm('Create a new project from this intake submission?')) {
+        window.location.href = `/projects/create?intake_id=${intakeId}`;
+    }
+}
+
+// Close modal when clicking outside
+document.getElementById('inquiryModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+</script>
+{% endblock %}

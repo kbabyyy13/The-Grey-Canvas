@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --signature-grey: #7a7a7a;
+        --main-accent-pink: #e0218a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-image: url("https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #000000;
+      }
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+      }
+      .main-content-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1100px;
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .nav-link {
+        color: var(--signature-grey);
+        background: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        transition: color 0.3s, background-color 0.3s;
+        border: 1px solid #eee;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background-color: var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f8f8f8;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus,
+      .contact-form select:focus {
+        outline: none;
+        border-color: var(--main-accent-pink);
+        box-shadow: 0 0 0 2px rgba(224, 33, 138, 0.2);
+      }
+      .contact-form label {
+        text-align: left;
+        font-weight: 600;
+        color: var(--signature-grey);
+        margin-top: 1rem;
+        display: block;
+      }
+      .contact-form button {
+        display: inline-block;
+        padding: 0.8rem 2.5rem;
+        border-radius: 9999px;
+        background-color: var(--main-accent-pink);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: 2px solid var(--main-accent-pink);
+        box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        width: 100%;
+        margin-top: 2rem;
+      }
+      .contact-form button:hover {
+        background-color: #c42079;
+        box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+        transform: scale(1.02);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center p-5 box-border">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <header
+        class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto"
+      >
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+          target="_blank"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+            alt="thelogo"
+        /></a>
+        <nav
+          class="hidden lg:flex items-center space-x-2 text-base font-medium"
+        >
+          <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </nav>
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2"
+      >
+        <a
+          href="thegrey.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >The Grey Canvas Co.</a
+        >
+        <a
+          href="index.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Home</a
+        >
+        <a
+          href="services.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Services</a
+        >
+        <a
+          href="about.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >About</a
+        >
+        <a
+          href="portfolio.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Portfolio</a
+        >
+        <a
+          href="blog.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Blog</a
+        >
+        <a
+          href="contact.html"
+          class="block py-2 px-4 text-sm nav-link active text-center"
+          >Contact</a
+        >
+      </div>
+
+      <!-- Main Content Container -->
+      <main class="main-content-container mx-auto">
+        <h1 class="text-3xl md:text-4xl font-playfair mb-2">
+          <span class="text-black">Your Vision,</span>
+          <span style="color: #e0218a">My Canvas.</span>
+          <span style="color: #7a7a7a">Let's Connect!</span>
+        </h1>
+        <p
+          class="text-lg max-w-3xl mx-auto"
+          style="color: var(--signature-grey)"
+        >
+          Fill out the form below or reach out on social media. I'm here to help
+          bring your vision to life.
+        </p>
+
+        <div class="mt-8 w-full flex justify-center">
+          <!-- Centered Form -->
+          <div class="text-left w-full max-w-lg">
+            <form
+              id="contactForm"
+              class="contact-form"
+              method="post"
+              action="#"
+            >
+              <h2 class="text-xl font-playfair font-bold text-center mb-1">
+                Let’s Build Something That Works!
+              </h2>
+              <p
+                class="text-center text-sm mb-4"
+                style="color: var(--signature-grey)"
+              >
+                I’ll be in touch within 1–2 business days.
+              </p>
+
+              <div class="text-center mb-6">
+                <p
+                  class="font-playfair text-xl"
+                  style="color: var(--signature-grey)"
+                >
+                  Phone: (123) 456-7890
+                </p>
+                <p
+                  class="font-playfair text-xl"
+                  style="color: var(--signature-grey)"
+                >
+                  Email: contact@thegreycanvas.com
+                </p>
+              </div>
+
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required />
+
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required />
+
+              <label for="message">Tell me about your project *</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+              ></textarea>
+
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="w-full mt-24 border-t pt-8 text-center">
+          <h1 class="text-4xl md:text-5xl font-playfair mb-8">
+            Let's <span style="color: #7a7a7a">Get</span>
+            <span style="color: #e0218a">Social</span> !!!
+          </h1>
+          <div class="w-full flex flex-wrap justify-between items-center gap-4">
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/thegreycanvasdfw"
+              target="_blank"
+              class="transform hover:scale-110 transition-transform"
+            >
+              <img
+                src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/2c70e40d-2fda-4703-91d5-4d1e85175ed9.png?width=180&height=180&fit=bounds"
+                alt="fb"
+              />
+            </a>
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/thegreycanvasdfw"
+              target="_blank"
+              class="transform hover:scale-110 transition-transform"
+            >
+              <img
+                src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/6ac3162b-20ac-4a5c-bd09-a5c3e4657af5.png?width=180&height=180&fit=bounds"
+                alt="insta"
+              />
+            </a>
+            <!-- X/Twitter -->
+            <a
+              href="https://x.com/TheGreyCanvas_"
+              target="_blank"
+              class="transform hover:scale-110 transition-transform"
+            >
+              <img
+                src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/082fe351-2b41-4a0f-9797-949d26064a20.png?width=180&height=180&fit=bounds"
+                alt="x"
+              />
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer
+        class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto"
+      >
+        <p class="font-bold text-black">
+          Copyright &copy; 2025 The Grey Canvas. All rights reserved.
+        </p>
+      </footer>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --signature-grey: #7A7A7A;
+            --main-accent-pink: #E0218A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #000000;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-alice { font-family: 'Alice', serif; }
+
+        .main-content-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .nav-link {
+            color: var(--signature-grey);
+            background: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: color 0.3s, background-color 0.3s;
+            border: 1px solid #eee;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: var(--main-accent-pink);
+            border-color: var(--main-accent-pink);
+        }
+        .btn-begin-canvas {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 9999px;
+            background-color: transparent;
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.25rem;
+            border: 2px solid var(--main-accent-pink);
+            box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+        .btn-begin-canvas:hover {
+            background-color: rgba(224, 33, 138, 0.1);
+            box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+            transform: scale(1.02);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #000000;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #000000;
+        }
+        .btn-back:hover span {
+            color: white;
+        }
+        .btn-back:hover svg {
+            stroke: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5 box-border">
+
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto">
+            <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" alt="thelogo"/></a>
+            <nav class="hidden lg:flex items-center space-x-2 text-base font-medium">
+                <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+         <div id="mobile-menu" class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2">
+            <a href="thegrey.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">The Grey Canvas Co.</a>
+            <a href="index.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm nav-link active text-center mb-2">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">About</a>
+            <a href="portfolio.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Portfolio</a>
+            <a href="blog.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Blog</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm nav-link text-center">Contact</a>
+        </div>
+
+        <!-- Main Content -->
+        <main class="w-full max-w-4xl main-content-container p-10 md:p-16 my-5 mx-auto">
+            <div class="text-center">
+                <div class="mb-8">
+                    <a href="services.html" class="btn-back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+                    </a>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-playfair" style="color: #000000;">
+                    The <span style="color: #7A7A7A;">Overview</span> of <span style="color: #e0218a;">Services</span>
+                </h1>
+                <p class="mt-4 text-2xl font-playfair max-w-3xl mx-auto">
+                    <span class="text-black">Web.</span> <span style="color:#e0218a;">Design.</span> <span style="color:#7A7A7A;">Thrive.</span>
+                </p>
+            </div>
+
+            <div class="mt-12 border-t pt-8 text-left">
+                <h2 class="text-2xl font-bold font-alice">
+                    <span style="color: #000000;">What</span> 
+                    <span style="color: #000000;">The</span> 
+                    <span style="color: #7A7A7A;">Grey</span> 
+                    <span style="color: #e0218a;">Canvas</span> 
+                    <span style="color: #000000;">Offers:</span>
+                </h2>
+                <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4 text-base" style="color: var(--signature-grey);">
+                    <p><strong class="text-gray-800">Custom Web Design & Development</strong></p>
+                    <p><strong class="text-gray-800">E-Commerce Website Setup</strong></p>
+                    <p><strong class="text-gray-800">Brand-aligned Visuals & CMS</strong></p>
+                    <p><strong class="text-gray-800">Website Maintenance & Updates</strong></p>
+                    <p><strong class="text-gray-800">Custom Web Applications</strong></p>
+                    <p><strong class="text-gray-800">Digital Consulting & SEO</strong></p>
+                </div>
+            </div>
+
+            <div class="mt-12 border-t pt-8 text-left">
+                 <h2 class="text-2xl font-bold font-alice">Payment Terms</h2>
+                 <ul class="mt-4 space-y-3 list-disc list-inside" style="color: var(--signature-grey);">
+                    <li><strong style="color: #e0218a;">Standard:</strong> 50% upfront to begin work, with the remaining 50% due upon project launch.</li>
+                    <li><strong style="color: #e0218a;">Flexible Plans:</strong> Payment plans are available for small businesses or non-profits.</li>
+                    <li><strong style="color: #e0218a;">Secure Contracts:</strong> All projects are secured with a clear contract signed via e-signature.</li>
+                 </ul>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="intake.html" class="btn-begin-canvas">Begin Your Canvas</a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto">
+            <p class="font-bold text-black">Copyright &copy; 2025 The Grey Canvas. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

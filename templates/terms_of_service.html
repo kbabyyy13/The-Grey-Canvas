@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Read The Grey Canvas terms of service. Understand our service agreements, payment terms, and policies for professional web design projects in Texas.">
+{% endblock %}
+
+{% block extra_css %}
+/* Enhanced Legal Document Styling */
+.legal-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
+    line-height: 1.7;
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.95), rgba(31, 41, 55, 0.90));
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.legal-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--main-accent-pink), #c01e7a);
+    border-radius: 24px 24px 0 0;
+}
+
+.legal-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--main-accent-pink);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.legal-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--main-accent-pink);
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--main-accent-pink);
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(90deg, rgba(224, 33, 138, 0.1), transparent);
+    border-radius: 0 8px 8px 0;
+}
+
+.legal-section p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.legal-section p:first-of-type {
+    text-align: center;
+    font-weight: 600;
+}
+
+.legal-section ul {
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
+    padding-left: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 1rem 1rem 1rem 2rem;
+    border-left: 2px solid rgba(224, 33, 138, 0.3);
+}
+
+.legal-section li {
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.legal-section li::before {
+    content: '▸';
+    color: var(--main-accent-pink);
+    font-weight: bold;
+    position: absolute;
+    left: -1.2rem;
+}
+
+.legal-section a {
+    color: var(--main-accent-pink);
+    text-decoration: none;
+}
+
+.legal-section a:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--main-accent-pink);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid var(--main-accent-pink);
+}
+
+.back-button:hover {
+    background-color: transparent;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(193, 24, 94, 0.4);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+    .legal-section {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+        max-width: 95%;
+    }
+    
+    .legal-section h1 {
+        font-size: 2.2rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.4rem;
+        margin-top: 2rem;
+    }
+    
+    .legal-section ul {
+        padding-left: 1.5rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-section {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+    
+    .legal-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.2rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <section class="legal-section">
+        <h1>Terms of Service</h1>
+        <p><strong>Effective Date:</strong> July 2, 2025</p>
+
+        <h2>1. Use of Content</h2>
+        <p>All content is owned by Krysta McAlister unless noted. You may:</p>
+        <ul>
+            <li>Share with credit and a link back</li>
+            <li>Use code snippets for personal/educational use</li>
+        </ul>
+        <p>You may not:</p>
+        <ul>
+            <li>Republish without permission</li>
+            <li>Use content commercially without a license</li>
+        </ul>
+
+        <h2>2. User Conduct</h2>
+        <p>You agree not to use the site unlawfully or attempt unauthorized access.</p>
+
+        <h2>3. External Links</h2>
+        <p>We link to third-party sites but aren't responsible for their content or privacy practices.</p>
+
+        <h2>4. Service Agreements</h2>
+        <p>When you engage The Grey Canvas for web design services:</p>
+        <ul>
+            <li><strong>Project Scope:</strong> All work will be defined in a separate project agreement</li>
+            <li><strong>Payment Terms:</strong> Payment schedules will be outlined in individual contracts</li>
+            <li><strong>Intellectual Property:</strong> Rights and ownership will be specified per project</li>
+            <li><strong>Revisions:</strong> Amendment processes will be detailed in service contracts</li>
+        </ul>
+
+        <h2>5. Disclaimer</h2>
+        <p>This website and its content are provided "as is" without warranties of any kind, either express or implied. While we strive for accuracy, we make no guarantees about the completeness, reliability, or suitability of the information provided.</p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, The Grey Canvas and Krysta McAlister shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities, arising from your use of this website or services.</p>
+
+        <h2>7. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless The Grey Canvas from any claims, damages, or expenses arising from your use of the website or violation of these terms.</p>
+
+        <h2>8. Governing Law</h2>
+        <p>These terms shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions.</p>
+
+        <h2>9. Contact Information</h2>
+        <p>For questions about these terms of service, please contact:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:krystamcalister@thegreycanvas.co" aria-label="Email for terms of service questions">krystamcalister@thegreycanvas.co</a></li>
+            <li><strong>Subject Line:</strong> "Terms of Service Inquiry"</li>
+        </ul>
+
+        <h2>10. Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. Material changes will be posted on this page with an updated effective date. Your continued use of the website after such modifications constitutes acceptance of the updated terms.</p>
+        
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-button">Back to Home</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

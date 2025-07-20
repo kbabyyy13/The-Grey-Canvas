@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="We're experiencing a temporary issue. The Grey Canvas team is working to resolve it quickly. Please try again shortly.">
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.error-page {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
+                 1px 1px 2px rgba(0, 0, 0, 0.9),
+                 0 0 20px rgba(224, 33, 138, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.error-subtext {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.error-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    margin: 2rem auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 800px;
+}
+
+.error-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: bold;
+    color: #E0218A;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    line-height: 1;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .error-headline {
+        font-size: 2rem;
+    }
+    
+    .error-subtext {
+        font-size: 1.125rem;
+    }
+    
+    .error-number {
+        font-size: 6rem;
+    }
+    
+    .error-container {
+        padding: 3rem 2rem;
+        margin: 1rem;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .read-more-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-headline {
+        font-size: 1.75rem;
+    }
+    
+    .error-subtext {
+        font-size: 1rem;
+    }
+    
+    .error-number {
+        font-size: 4rem;
+    }
+    
+    .error-container {
+        padding: 2rem 1.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-container">
+        <div class="error-number">500</div>
+        <h1 class="error-headline">Oops! Our Canvas Needs a Quick Touch-Up.</h1>
+        <p class="error-subtext">
+            We're experiencing a temporary issue on our end. Our team is working to fix it quickly. Please try refreshing the page or come back in a few minutes.
+        </p>
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="read-more-btn" style="font-family: 'Times New Roman', serif;">Back to Home</a>
+            <a href="{{ url_for('contact') }}" class="read-more-btn" style="font-family: 'Times New Roman', serif;">Contact Support</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

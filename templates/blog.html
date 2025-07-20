@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Web wisdom for Texas entrepreneurs. Explore DIY website tips, small business SEO strategies, and digital growth guides from a DFW web design expert.">
+{% endblock %}
+
+{% block extra_css %}
+/* Optimized blog card styling with hardware acceleration */
+.blog-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(224, 33, 138, 0.3);
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #9CA3AF;
+}
+
+.blog-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(224, 33, 138, 0.2);
+    color: var(--main-accent-pink);
+    border: 1px solid rgba(224, 33, 138, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
+
+.pagination a,
+.pagination span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(75, 85, 99, 0.6);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background: var(--main-accent-pink);
+    border-color: var(--main-accent-pink);
+}
+
+.pagination .current {
+    background: var(--main-accent-pink);
+    border-color: var(--main-accent-pink);
+}
+
+/* Featured Blog Post Styling */
+.featured-blog-card {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(55, 65, 81, 0.75));
+    border: 2px solid rgba(224, 33, 138, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #E0218A, #7A7A7A, #E0218A);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.featured-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.featured-star {
+    color: #E0218A;
+    font-size: 1.2rem;
+    animation: twinkle 2s infinite alternate;
+}
+
+.featured-star:nth-child(1) { animation-delay: 0s; }
+.featured-star:nth-child(2) { animation-delay: 0.2s; }
+.featured-star:nth-child(3) { animation-delay: 0.4s; }
+.featured-star:nth-child(4) { animation-delay: 0.6s; }
+.featured-star:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes twinkle {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+.featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #E0218A, #C1185E);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(224, 33, 138, 0.4);
+}
+
+.read-more-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--main-accent-pink), #c01e7a);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.read-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(224, 33, 138, 0.4);
+}
+
+/* Responsive text sizing for blog titles */
+@media (max-width: 768px) {
+    .blog-card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .blog-card h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+    
+    .blog-card h3 a {
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-card h3 {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-4">
+            <span class="text-white">Web</span> <span style="color: #e0218a;">Wisdom</span> <span class="text-white">for</span> <span style="color: #7A7A7A;">Small</span> <span style="color: #e0218a;">Business</span> <span style="color: #7A7A7A;">Owners</span>
+        </h1>
+        <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+            Explore DIY website tips, SEO strategies, and digital growth guides—curated by a freelance web designer in DFW who understands the grind.
+        </p>
+    </div>
+
+    {% if posts and posts.items %}
+        <!-- Blog Posts Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {% for post in posts.items %}
+                <article class="blog-card {% if post.slug == 'future-of-web-design-2025' %}featured-blog-card{% endif %}">
+                    {% if post.slug == 'future-of-web-design-2025' %}
+                        <div class="featured-badge">Featured</div>
+                        <div class="featured-stars">
+                            <span class="featured-star">★</span>
+                            <span class="featured-star">★</span>
+                            <span class="featured-star">★</span>
+                            <span class="featured-star">★</span>
+                            <span class="featured-star">★</span>
+                        </div>
+                    {% endif %}
+                    {% if post.featured_image %}
+                        <div class="mb-4">
+                            {% if post.slug == 'future-of-web-design-2025' %}
+                                <a href="{{ post.featured_image }}" target="_blank" class="block">
+                                    <img src="{{ post.featured_image }}" 
+                                         alt="AI-powered web design workspace showcasing futuristic design tools and interfaces" 
+                                         class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg hover:opacity-90 transition-opacity duration-300 shadow-lg border border-gray-600">
+                                </a>
+                            {% else %}
+                                <img src="{{ post.featured_image }}" alt="Featured image for {{ post.title|striptags }}" 
+                                     class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg shadow-lg border border-gray-600">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="blog-meta">
+                        <span>{{ post.format_date() }}</span>
+                        <span>•</span>
+                        <span>By {{ post.author }}</span>
+                    </div>
+                    
+                    <h2 class="text-xl font-bold mb-3 font-playfair">
+                        <a href="{{ url_for('blog_post', slug=post.slug) }}" 
+                           class="hover:text-pink-400 transition-colors">
+                            {% if post.slug == 'future-of-web-design-2025' %}
+                                <span style="color: #FFFFFF;">Will</span> <span style="color: #E0218A;">AI</span> <span style="color: #FFFFFF;">Take My</span> <span style="color: #E0218A;">Web Designer</span><span style="color: #FFFFFF;">'s Job? A</span> <span style="color: #E0218A;">No</span><span style="color: #FFFFFF;">-Nonsense Guide for</span> <span style="color: #E0218A;">Small</span> <span style="color: #7A7A7A;">Businesses</span>
+                            {% elif post.slug == 'why-small-businesses-need-websites' %}
+                                <span style="color: #7A7A7A;">Why Small Businesses in</span> <span style="color: #E0218A;">Texas</span> <span style="color: #000000;">Need a Professional</span> <span style="color: #FFFFFF;">Website in 2025</span>
+                            {% elif post.slug == 'wordpress-squarespace-or-custom-code-choosing-right-platform' %}
+                                <span style="color: #7A7A7A;">WordPress, Squarespace, or</span> <span style="color: #E0218A;">Custom Code?</span> <span style="color: #000000;">Choosing the Right Platform for Your</span> <span style="color: #FFFFFF;">Texas Small Business</span>
+                            {% elif post.slug == 'more-than-code-the-story-behind-the-grey-canvas' %}
+                                <span style="color: #E0218A;">More Than Code:</span> <span style="color: #7A7A7A;">The Story Behind</span> <span style="color: #FFFFFF;">The Grey Canvas</span>
+                            {% else %}
+                                <span style="color: #FFFFFF;">{{ post.title }}</span>
+                            {% endif %}
+                        </a>
+                    </h2>
+                    
+                    {% if post.excerpt %}
+                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                            {{ post.excerpt }}
+                        </p>
+                    {% else %}
+                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                            {{ post.content[:150] }}{% if post.content|length > 150 %}...{% endif %}
+                        </p>
+                    {% endif %}
+                    
+                    {% if post.get_tags_list() %}
+                        <div class="mb-4">
+                            {% for tag in post.get_tags_list() %}
+                                <span class="blog-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('blog_post', slug=post.slug) }}" class="read-more-btn">
+                        Read More →
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if posts.pages > 1 %}
+            <div class="pagination">
+                {% if posts.has_prev %}
+                    <a href="{{ url_for('blog', page=posts.prev_num) }}">‹</a>
+                {% endif %}
+                
+                {% for page_num in posts.iter_pages() %}
+                    {% if page_num %}
+                        {% if page_num != posts.page %}
+                            <a href="{{ url_for('blog', page=page_num) }}">{{ page_num }}</a>
+                        {% else %}
+                            <span class="current">{{ page_num }}</span>
+                        {% endif %}
+                    {% else %}
+                        <span>…</span>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if posts.has_next %}
+                    <a href="{{ url_for('blog', page=posts.next_num) }}">›</a>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+    {% else %}
+        <!-- No Posts Message -->
+        <div class="blog-card text-center py-12">
+            <div class="mb-6">
+                <svg class="w-16 h-16 mx-auto text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 2v10h8V6H6z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Content Coming Soon!</h2>
+            <p class="text-gray-300 max-w-md mx-auto">
+                I'm working on creating valuable content to help you succeed online. Blog articles, tutorials, and industry-specific tips will be added here as they're published.
+            </p>
+        </div>
+    {% endif %}
+
+    <!-- Stay Updated Section -->
+    <div class="mt-12 pt-8">
+        <div class="blog-card text-center">
+            <h2 class="text-3xl font-bold font-playfair text-white mb-4">
+                Stay <span style="color: #e0218a;">Updated</span>
+            </h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Be the first to know when I publish new content. Subscribe to my newsletter for web design tips, industry insights, and exclusive offers for Texas small businesses.
+            </p>
+            
+            <div class="max-w-md mx-auto">
+                <form action="{{ url_for('newsletter_subscribe') }}" method="POST" class="flex gap-2 mb-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <label for="blog-newsletter-email" class="sr-only">Enter your email address for newsletter subscription</label>
+                    <input 
+                        type="email" 
+                        id="blog-newsletter-email"
+                        name="email"
+                        placeholder="Enter your email address" 
+                        aria-label="Enter your email address for newsletter subscription"
+                        class="flex-1 px-4 py-3 border border-gray-600 rounded-lg focus:outline-none focus:border-pink-500 text-white bg-gray-700 placeholder-gray-400"
+                        required
+                    />
+                    <button 
+                        type="submit" 
+                        class="read-more-btn px-6 py-3 whitespace-nowrap"
+                    >
+                        Subscribe
+                    </button>
+                </form>
+                <p class="text-xs text-gray-400">
+                    I respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h2>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Website Packages - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Find the perfect website package for your business. From starter sites to e-commerce solutions, The Grey Canvas offers clear, value-driven pricing for DFW startups.">
+{% endblock %}
+
+{% block extra_css %}
+.package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+/* Keep "What's Included" titles black in dark mode */
+.whats-included-title {
+    color: #000000 !important;
+}
+/* Pink button text for Get Started buttons */
+.btn-begin-canvas {
+    color: #e0218a !important;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+    <div class="text-center">
+        <div class="mb-8">
+            <a href="{{ url_for('services') }}" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+            </a>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-playfair">
+            The <span style="color: #7A7A7A;">Creator's</span> <span style="color: #e0218a;">Suite</span>
+        </h1>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" style="color: var(--signature-grey);">
+            Choose the perfect website package for your business needs. Each package includes everything you need to establish a professional online presence.
+        </p>
+    </div>
+
+    <!-- Package Grid -->
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Essential Package -->
+        <div class="package-card bg-white p-8 rounded-xl text-center">
+            <h2 class="text-2xl font-bold font-alice mb-4">
+                <span style="color: #e0218a;">Essential</span>
+            </h2>
+            <div class="text-4xl font-bold mb-4" style="color: #000000;">$1,500</div>
+            <p class="text-sm mb-6" style="color: var(--signature-grey);">Perfect for new businesses</p>
+            <ul class="text-left space-y-3 mb-8" style="color: #000000;">
+                <li>✓ 3-5 Page Website</li>
+                <li>✓ Mobile Responsive Design</li>
+                <li>✓ Basic SEO Setup</li>
+                <li>✓ Contact Form</li>
+                <li>✓ 30 Days Support</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn-begin-canvas">Get Started</a>
+        </div>
+
+        <!-- Professional Package -->
+        <div class="package-card bg-white p-8 rounded-xl text-center border-2" style="border-color: #e0218a;">
+            <div class="text-sm font-bold mb-2 text-white bg-pink-500 px-3 py-1 rounded-full" style="background-color: #e0218a;">Most Popular</div>
+            <h2 class="text-2xl font-bold font-alice mb-4">
+                <span style="color: #e0218a;">Professional</span>
+            </h2>
+            <div class="text-4xl font-bold mb-4" style="color: #000000;">$2,500</div>
+            <p class="text-sm mb-6" style="color: var(--signature-grey);">For growing businesses</p>
+            <ul class="text-left space-y-3 mb-8" style="color: #000000;">
+                <li>✓ 5-8 Page Website</li>
+                <li>✓ Advanced SEO</li>
+                <li>✓ Content Management System</li>
+                <li>✓ Social Media Integration</li>
+                <li>✓ Analytics Setup</li>
+                <li>✓ 60 Days Support</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn-begin-canvas">Get Started</a>
+        </div>
+
+        <!-- Premium Package -->
+        <div class="package-card bg-white p-8 rounded-xl text-center">
+            <h2 class="text-2xl font-bold font-alice mb-4">
+                <span style="color: #e0218a;">Premium</span>
+            </h2>
+            <div class="text-4xl font-bold mb-4" style="color: #000000;">$4,500</div>
+            <p class="text-sm mb-6" style="color: var(--signature-grey);">For established businesses</p>
+            <ul class="text-left space-y-3 mb-8" style="color: #000000;">
+                <li>✓ 8+ Page Website</li>
+                <li>✓ E-commerce Functionality</li>
+                <li>✓ Custom Features</li>
+                <li>✓ Advanced Analytics</li>
+                <li>✓ Speed Optimization</li>
+                <li>✓ 90 Days Support</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn-begin-canvas">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="mt-16 text-center">
+        <h2 class="text-3xl font-bold font-alice mb-8">
+            What's <span style="color: #e0218a;">Included</span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h4 class="font-bold mb-2 whats-included-title">Custom Design</h4>
+                <p class="text-sm" style="color: var(--signature-grey);">Unique design tailored to your brand</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h4 class="font-bold mb-2 whats-included-title">Mobile Ready</h4>
+                <p class="text-sm" style="color: var(--signature-grey);">Optimized for all devices</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h4 class="font-bold mb-2 whats-included-title">SEO Optimized</h4>
+                <p class="text-sm" style="color: var(--signature-grey);">Built for search engines</p>
+            </div>
+            <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                <h4 class="font-bold mb-2 whats-included-title">Support</h4>
+                <p class="text-sm" style="color: var(--signature-grey);">Ongoing support included</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mt-16 text-center border-t pt-8">
+        <h2 class="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+        <p class="text-lg mb-8" style="color: var(--signature-grey);">
+            Schedule a free consultation or begin your project intake today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ url_for('schedule') }}" class="btn-begin-canvas">Schedule Consultation</a>
+            <a href="{{ url_for('intake') }}" class="btn-begin-canvas">Begin Your Canvas</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

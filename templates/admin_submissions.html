@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Form Submissions - The Grey Canvas{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <h1 class="text-4xl md:text-5xl font-playfair mb-8">
+        Form <span style="color: #e0218a">Submissions</span>
+    </h1>
+    
+    <!-- Contact Submissions -->
+    <div class="mb-12">
+        <h2 class="text-3xl font-bold font-playfair mb-6">
+            Contact <span style="color: #e0218a">Form Submissions</span> ({{ contact_submissions|length }})
+        </h2>
+        
+        {% if contact_submissions %}
+            <div class="space-y-6">
+                {% for submission in contact_submissions %}
+                <div class="border rounded-lg p-6" style="background-color: #f8f8f8; border-color: #e0e0e0;">
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <strong>Name:</strong> {{ submission.name }}
+                        </div>
+                        <div>
+                            <strong>Email:</strong> {{ submission.email }}
+                        </div>
+                        <div>
+                            <strong>Phone:</strong> {{ submission.phone or 'Not provided' }}
+                        </div>
+                        <div>
+                            <strong>Submitted:</strong> {{ submission.submitted_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Subject:</strong> {{ submission.subject }}
+                    </div>
+                    <div>
+                        <strong>Message:</strong>
+                        <div class="mt-2 p-3 bg-white rounded" style="white-space: pre-wrap;">{{ submission.message }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">No contact form submissions yet.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Intake Submissions -->
+    <div class="border-t pt-12">
+        <h2 class="text-3xl font-bold font-playfair mb-6">
+            Client <span style="color: #e0218a">Intake Submissions</span> ({{ intake_submissions|length }})
+        </h2>
+        
+        {% if intake_submissions %}
+            <div class="space-y-6">
+                {% for submission in intake_submissions %}
+                <div class="border rounded-lg p-6" style="background-color: #f8f8f8; border-color: #e0e0e0;">
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <strong>Business Name:</strong> {{ submission.business_name }}
+                        </div>
+                        <div>
+                            <strong>Contact Name:</strong> {{ submission.contact_name }}
+                        </div>
+                        <div>
+                            <strong>Email:</strong> {{ submission.email }}
+                        </div>
+                        <div>
+                            <strong>Phone:</strong> {{ submission.phone or 'Not provided' }}
+                        </div>
+                        <div>
+                            <strong>Website Type:</strong> {{ submission.website_type }}
+                        </div>
+                        <div>
+                            <strong>Timeline:</strong> {{ submission.timeline }}
+                        </div>
+                        <div>
+                            <strong>Budget:</strong> {{ submission.budget }}
+                        </div>
+                        <div>
+                            <strong>Submitted:</strong> {{ submission.submitted_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Project Description:</strong>
+                        <div class="mt-2 p-3 bg-white rounded" style="white-space: pre-wrap;">{{ submission.project_description }}</div>
+                    </div>
+                    {% if submission.additional_notes %}
+                    <div>
+                        <strong>Additional Notes:</strong>
+                        <div class="mt-2 p-3 bg-white rounded" style="white-space: pre-wrap;">{{ submission.additional_notes }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">No intake form submissions yet.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

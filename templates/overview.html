@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Services Overview - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Complete overview of web design services, add-ons, and transparent pricing. Professional development made accessible for Texas small businesses.">
+{% endblock %}
+
+{% block extra_css %}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <div class="mb-8">
+        <a href="{{ url_for('services') }}" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+        </a>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-playfair mb-4">
+        Services <span style="color: #e0218a">Overview</span>
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto mb-8" style="color: var(--signature-grey)">
+        A comprehensive look at how The Grey Canvas helps small businesses succeed online.
+    </p>
+
+    <div class="text-left max-w-4xl mx-auto space-y-8">
+        <!-- Web Design & Development -->
+        <div class="border-l-4 pl-6" style="border-color: #e0218a;">
+            <h2 class="text-2xl font-bold font-playfair mb-3">Web Design & Development</h2>
+            <p class="mb-4" style="color: #000000;">
+                Custom websites built from the ground up with your business goals in mind. I focus on creating beautiful, functional, and conversion-optimized sites that represent your brand perfectly.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm" style="color: var(--signature-grey);">
+                <li>Responsive design for all devices</li>
+                <li>Custom branding and visual identity</li>
+                <li>User experience (UX) optimization</li>
+                <li>Content management systems</li>
+                <li>E-commerce functionality</li>
+                <li>Performance optimization</li>
+            </ul>
+        </div>
+
+        <!-- SEO & Digital Marketing -->
+        <div class="border-l-4 pl-6" style="border-color: #7A7A7A;">
+            <h2 class="text-2xl font-bold font-playfair mb-3">SEO & Digital Marketing</h2>
+            <p class="mb-4" style="color: #000000;">
+                Get found online with strategic SEO implementation and digital marketing solutions that I provide to drive real results for your business.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm" style="color: var(--signature-grey);">
+                <li>On-page SEO optimization</li>
+                <li>Local SEO for geographic targeting</li>
+                <li>Content strategy and creation</li>
+                <li>Analytics setup and monitoring</li>
+                <li>Social media integration</li>
+                <li>Conversion tracking</li>
+            </ul>
+        </div>
+
+        <!-- Maintenance & Support -->
+        <div class="border-l-4 pl-6" style="border-color: #e0218a;">
+            <h2 class="text-2xl font-bold font-playfair mb-3">Maintenance & Support</h2>
+            <p class="mb-4" style="color: #000000;">
+                Keep your website secure, updated, and performing at its best with my comprehensive maintenance plans and ongoing support.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm" style="color: var(--signature-grey);">
+                <li>Regular security updates</li>
+                <li>Automated backups</li>
+                <li>Performance monitoring</li>
+                <li>Content updates</li>
+                <li>Technical support</li>
+                <li>Emergency assistance</li>
+            </ul>
+        </div>
+
+        <!-- Branding & Creative Services -->
+        <div class="border-l-4 pl-6" style="border-color: #7A7A7A;">
+            <h2 class="text-2xl font-bold font-playfair mb-3">Branding & Creative Services</h2>
+            <p class="mb-4" style="color: #000000;">
+                Complete your brand identity with my professional design services that make your business stand out from the competition.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm" style="color: var(--signature-grey);">
+                <li>Logo design and brand identity</li>
+                <li>Brand style guides</li>
+                <li>Marketing materials</li>
+                <li>Social media graphics</li>
+                <li>Print design</li>
+                <li>Photography direction</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="mt-16 border-t pt-8">
+        <h2 class="text-3xl font-bold font-playfair text-center mb-8">
+            My <span style="color: #e0218a">Process</span>
+        </h2>
+        <div class="grid md:grid-cols-4 gap-6 text-center">
+            <div class="p-6">
+                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4" style="background-color: #e0218a;">1</div>
+                <h3 class="font-bold mb-2">Discovery</h3>
+                <p class="text-sm" style="color: var(--signature-grey);">I learn about your business, goals, and target audience</p>
+            </div>
+            <div class="p-6">
+                <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4" style="background-color: #7a7a7a;">2</div>
+                <h3 class="font-bold mb-2">Strategy</h3>
+                <p class="text-sm" style="color: var(--signature-grey);">I create a custom plan tailored to your needs</p>
+            </div>
+            <div class="p-6">
+                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4" style="background-color: #e0218a;">3</div>
+                <h3 class="font-bold mb-2">Design & Build</h3>
+                <p class="text-sm" style="color: var(--signature-grey);">I craft your website with attention to every detail</p>
+            </div>
+            <div class="p-6">
+                <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4" style="background-color: #7a7a7a;">4</div>
+                <h3 class="font-bold mb-2">Launch & Support</h3>
+                <p class="text-sm" style="color: var(--signature-grey);">I launch your site and provide ongoing support</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Terms Section -->
+    <div class="mt-16 border-t pt-8">
+        <h2 class="text-3xl font-bold font-playfair text-center mb-8">
+            <span style="color: #E0218A;">Payment</span> <span style="color: #FFFFFF;">Terms</span><span style="color: #7A7A7A;">:</span>
+        </h2>
+        <div class="text-left max-w-4xl mx-auto space-y-6">
+            <p class="text-lg font-times-new-roman">
+                <span style="color: #E0218A;" class="font-bold">Hourly Rates</span><span style="color: #7A7A7A;">:</span> <span style="color: #FFFFFF;">Can range from</span> <span style="color: #E0218A;">$</span><span style="color: #FFFFFF;">35 to</span> <span style="color: #E0218A;">$</span><span style="color: #FFFFFF;">125 per hour. This for projects with open-ended scopes.</span>
+            </p>
+            
+            <p class="text-lg font-times-new-roman">
+                <span style="color: #FFFFFF;" class="font-bold">Flat-Fee Packages</span><span style="color: #7A7A7A;">:</span> <span style="color: #FFFFFF;">For projects with a well-defined scope.</span>
+            </p>
+            
+            <p class="text-lg font-times-new-roman">
+                <span style="color: #E0218A;" class="font-bold">Monthly Retainers</span><span style="color: #7A7A7A;">:</span> <span style="color: #FFFFFF;">For projects wanting me to provide ongoing support, updates, and small tweaks for a recurring monthly fee.</span>
+            </p>
+            
+            <div class="mt-8">
+                <p class="text-3xl mb-4 text-center font-bold font-playfair">
+                    <span style="color: #E0218A;">Payment</span> <span style="color: #7A7A7A;">Terms</span> <span style="color: #FFFFFF;">include</span><span style="color: #000000;">:</span>
+                </p>
+                
+                <div class="ml-6 space-y-3">
+                    <p class="text-lg font-times-new-roman">
+                        <span style="color: #FFFFFF;" class="font-bold">Deposit</span><span style="color: #E0218A;">:</span> <span style="color: #FFFFFF;">Typically 25-50% upfront to secure cash flow.</span>
+                    </p>
+                    
+                    <p class="text-lg font-times-new-roman">
+                        <span style="color: #E0218A;" class="font-bold">Milestone Payments</span><span style="color: #7A7A7A;">:</span> <span style="color: #FFFFFF;">Payments tied to specific project deliverables.</span>
+                    </p>
+                    
+                    <p class="text-lg font-times-new-roman">
+                        <span style="color: #FFFFFF;" class="font-bold">Late Fees</span><span style="color: #E0218A;">:</span> <span style="color: #FFFFFF;">A penalty for overdue invoices, 1.5% monthly.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

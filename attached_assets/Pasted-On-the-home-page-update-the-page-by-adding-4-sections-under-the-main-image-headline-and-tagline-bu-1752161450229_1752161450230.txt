@@ -1,0 +1,19 @@
+On the home page update the page by adding 4 sections under the main image, headline, and tagline but first add this headline and tagline under the image: Font in Times New Roman, and the text that is not within brackets make font color #000000- 
+Where [#3E0218A Brilliant] Brands Begin on a [#7A7A7ABlank] [#FFFFFFCanvas].
+Web[#7A7A7A .] [#E0218A Design]. [#7A7A7A Thrive][#E0218A .]
+Under the tagline is the first section;
+The first section will have the title/headline “From Blank Canvas to Brilliant Brand: The Grey Canvas Services “
+Then add this message under the head line but make the words go from left to right of page not taking up to much space by making the sections width longer than height and the text that are in the brackets make the font bold- “[The Grey Canvas] provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My offerings are broken down into four main categories:
+[Web Design & Development:] I build custom, responsive websites from scratch, focusing on beautiful design, user experience (UX), and performance. This includes everything from basic informational sites to full e-commerce solutions.
+[SEO & Digital Marketing:] To ensure your website gets found by the right customers, I offer strategic SEO services, including on-page optimization, local SEO for geographic targeting, and content strategy.
+[Maintenance & Support:] I provide ongoing maintenance plans to keep your website secure, updated, and running smoothly, so you can focus on your business.
+[Branding & Creative Services:] To create a cohesive brand identity, I offer logo design, brand style guides, and other creative materials that make your business stand out.
+My process is collaborative and structured, beginning with a [Discovery] phase to understand your goals, followed by [Strategy, Design & Build,] and finally, a successful [Launch] with ongoing support.”
+In the second section make the title/headline “The Gallery: From a Blank Canvas to a Brilliant Brand“
+Then add this message under the head line but make the words go from left to right of page not taking up to much space by making the sections width longer than height and the text that are in the brackets make the font bold- “Your business [needs a] website that converts, [not] just a pretty template. I'm a [DFW freelance developer] who builds custom sites that actually work with your design in mind.”
+Under the message add three placeholders cards going vertically for 3 project showcases.
+
+The third section make the title/headline “Client Showcase: Real Results for Texas Businesses“
+Then add this message under the head line but make the words go from left to right of page not taking up to much space by making the sections width longer than height and the text that are in the brackets make the font bold- “Each project you see in [The Grey Canvas Portfolio] started as a simple idea and was [brought to life] with a blend of [creative design], [purposeful code], and a [whole lot of heart]. From hardworking Texas trades to ambitious DFW startups, these are more than just websites—they're success stories. Let’s see what we can [build together!]” 
+
+The fourth section is where the call-to-action buttons will be place and the footer after the call-to-action sections

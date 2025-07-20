@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Plans - The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --signature-grey: #7A7A7A;
+            --main-accent-pink: #E0218A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #000000;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        .main-content-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-alice { font-family: 'Alice', serif; }
+        
+        .nav-link {
+            color: var(--signature-grey);
+            background: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: color 0.3s, background-color 0.3s;
+            border: 1px solid #eee;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: var(--main-accent-pink);
+            border-color: var(--main-accent-pink);
+        }
+        .btn-begin-canvas {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 9999px;
+            background-color: transparent;
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.25rem;
+            border: 2px solid var(--main-accent-pink);
+            box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+        .btn-begin-canvas:hover {
+            background-color: rgba(224, 33, 138, 0.1);
+            box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+            transform: scale(1.02);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #000000;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #000000;
+        }
+        .btn-back:hover span {
+            color: white;
+        }
+        .btn-back:hover svg {
+            stroke: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5 box-border">
+
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto">
+            <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" alt="thelogo"/></a>
+            <nav class="hidden lg:flex items-center space-x-2 text-base font-medium">
+                <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+         <div id="mobile-menu" class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2">
+            <a href="thegrey.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">The Grey Canvas Co.</a>
+            <a href="index.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm nav-link active text-center mb-2">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">About</a>
+            <a href="portfolio.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Portfolio</a>
+            <a href="blog.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Blog</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm nav-link text-center">Contact</a>
+        </div>
+
+        <!-- Main Content -->
+        <main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+            <div class="text-center">
+                <div class="mb-8">
+                    <a href="services.html" class="btn-back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+                    </a>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-playfair">
+                    <span style="color: #7A7A7A;">Maintenance</span> <span style="color: #000000;">&</span> <span style="color: #e0218a;">Support</span>
+                </h1>
+                <p class="mt-4 text-lg max-w-3xl mx-auto" style="color: var(--signature-grey);">Protect your investment. Our support plans ensure your website remains secure, fast, and up-to-date, so you can focus on your business.</p>
+            </div>
+
+            <!-- Plans Table -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold font-alice text-center">
+                    Support <span style="color: #e0218a;">Plans</span>
+                </h2>
+                <div class="mt-8 flow-root">
+                    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                            <table class="min-w-full divide-y divide-gray-300 border border-gray-300">
+                                <thead class="bg-gray-50">
+                                    <tr class="divide-x divide-gray-200">
+                                        <th scope="col" class="py-3.5 px-4 text-left text-sm font-bold sm:pl-4">Plan Tier</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-bold">Price</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-bold">Core Services</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 bg-white">
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium sm:pl-4">
+                                            <strong style="color: #e0218a;">Essential</strong>
+                                        </td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">$75 / month</td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">Updates, backups, & plug-in checks</td>
+                                    </tr>
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium sm:pl-4">
+                                            <strong style="color: #e0218a;">Pro</strong>
+                                        </td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">$150 / month</td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">Everything in Essential + small monthly edits</td>
+                                    </tr>
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium sm:pl-4">
+                                             <strong style="color: #e0218a;">Elite</strong>
+                                        </td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">$300 / month</td>
+                                        <td class="whitespace-nowrap p-4 text-sm" style="color: var(--signature-grey);">Ongoing SEO monitoring & content edits</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Add-ons -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold font-alice text-center">
+                    <span style="color: #000000;">Optional</span> <span style="color: #7A7A7A;">Add</span><span style="color: #000000;">-</span><span style="color: #e0218a;">Ons</span>
+                </h2>
+                <p class="mt-2 text-center" style="color: var(--signature-grey);">Enhance your project with these one-time services.</p>
+                <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                        <h3 class="font-bold">Logo Design</h3>
+                        <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$300+</p>
+                    </div>
+                    <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                        <h3 class="font-bold">Copywriting</h3>
+                        <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$500+</p>
+                    </div>
+                    <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                        <h3 class="font-bold">Branding Style Guide</h3>
+                        <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$450</p>
+                    </div>
+                     <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                        <h3 class="font-bold">Email Newsletter Setup</h3>
+                        <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">$250</p>
+                    </div>
+                     <div class="p-6 rounded-lg" style="background-color: #F8F8F8;">
+                        <h3 class="font-bold">Bilingual Website</h3>
+                        <p class="mt-2 font-bold text-lg" style="color: var(--main-accent-pink);">+$400</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="intake.html" class="btn-begin-canvas">Discuss Your Project</a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto">
+            <p class="font-bold text-black">Copyright &copy; 2025 The Grey Canvas. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

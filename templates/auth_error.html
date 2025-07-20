@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Authentication Error - The Grey Canvas{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto text-center">
+    <div class="max-w-md mx-auto">
+        <h1 class="text-4xl font-playfair mb-6 text-white">
+            Authentication Error
+        </h1>
+        
+        <div class="bg-red-500/20 border border-red-500/30 rounded-lg p-6 mb-8">
+            <p class="text-red-200 mb-4">
+                There was an error during the authentication process.
+            </p>
+            <p class="text-gray-300 text-sm">
+                Please try logging in again. If the problem persists, please contact support.
+            </p>
+        </div>
+        
+        <div class="space-y-4">
+            <a href="{{ url_for('replit_auth.login') }}" class="btn-begin-canvas block">
+                Try Again
+            </a>
+            <a href="{{ url_for('index') }}" class="text-gray-300 hover:text-white transition-colors">
+                Return to Home
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}

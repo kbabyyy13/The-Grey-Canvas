@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}About - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Meet Krysta, the founder of The Grey Canvas. Discover the story behind our DFW web design studio and our passion for helping small businesses succeed online.">
+{% endblock %}
+
+{% block extra_css %}
+/* Service card styling for hover effects */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    background-color: var(--container-bg);
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode service card border */
+[data-theme="dark"] .service-card {
+    border-color: var(--border-color);
+}
+
+/* Non-clickable card styling */
+.info-card {
+    border: 1px solid var(--border-color);
+    background-color: var(--container-bg);
+}
+
+/* Dark mode info card border */
+[data-theme="dark"] .info-card {
+    border-color: var(--border-color);
+}
+
+/* Button container for two buttons */
+.button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Ensure buttons work on mobile */
+@media (max-width: 640px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-begin-canvas {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-playfair text-deep-black">
+            Where <span style="color: #7A7A7A;">Code</span> Meets <span style="color: #e0218a;">Craft</span>
+        </h1>
+        <p class="mt-4 text-lg max-w-3xl mx-auto font-times-new-roman text-deep-black">
+            Tailored Web Design for Texas Small Businesses. Helping construction companies, real estate pros, and creative freelancers in DFW build scalable, custom websites that actually work.
+        </p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-10">
+        <!-- About: The Grey Canvas -->
+        <a href="{{ url_for('company') }}" class="service-card p-8 rounded-xl text-center block">
+            <div class="mx-auto flex items-center justify-center h-32 w-32">
+                <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/037b9ea8-4c1d-4353-a531-5b333aaed421.png?width=180&height=180&fit=bounds" alt="thecanvas" class="h-full w-full object-contain"/>
+            </div>
+            <h2 class="mt-6 text-2xl font-bold font-playfair">
+                <span style="color: #000000;">About:</span> <span class="text-deep-black">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #e0218a;">Canvas</span>
+            </h2>
+            <p class="mt-2 font-times-new-roman text-deep-black">A solo web design and development studio based in the Dallas/Fort Worth area, specializing in affordable, powerful websites for service-based small businesses.</p>
+            <span class="mt-4 inline-block font-semibold" style="color: var(--main-accent-pink);">Learn My Story &rarr;</span>
+        </a>
+
+        <!-- About: The Owner -->
+        <a href="{{ url_for('owner') }}" class="service-card p-8 rounded-xl text-center block">
+            <div class="mx-auto flex items-center justify-center h-32 w-32">
+                 <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/44739ae6-f6e4-4439-9fc9-9f51bd519449.png?width=180&height=180&fit=bounds" alt="owner" class="h-full w-full object-contain"/>
+            </div>
+            <h2 class="mt-6 text-2xl font-bold font-playfair">
+                <span style="color: #000000;">About:</span> <span class="text-deep-black">The</span> <span style="color: #e0218a;">Owner</span>
+            </h2>
+            <p class="mt-2 font-times-new-roman text-deep-black">Meet Krysta McAlister, the resilient heart behind The Grey Canvas. A freelance web designer bringing grit, empathy, and an unshakable work ethic.</p>
+            <span class="mt-4 inline-block font-semibold" style="color: var(--main-accent-pink);">Meet The Founder &rarr;</span>
+        </a>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

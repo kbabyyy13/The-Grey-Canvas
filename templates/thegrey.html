@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}The Grey Canvas Co. | Mission, Vision, Values{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Built with heart, coded with purpose. Discover the mission, vision, and values that drive The Grey Canvas. Your trusted digital partner in DFW.">
+{% endblock %}
+
+{% block extra_css %}
+/* Button container for two buttons */
+.button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Ensure buttons work on mobile */
+@media (max-width: 640px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-begin-canvas {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Enhanced text styling for mission, vision, and values */
+.mission-vision-text {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+.values-text {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.values-highlight {
+    color: #e0218a !important;
+    font-weight: 700;
+}
+
+.mission-vision-header {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <!-- Image Section -->
+    <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/1fb256ab-2333-4702-bd12-d05ae8ab843c.png" target="_blank" class="block mb-8" aria-label="View full-size heart image representing our core values">
+        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/1fb256ab-2333-4702-bd12-d05ae8ab843c.png" alt="HEART - The core symbol representing The Grey Canvas values and mission" class="mx-auto w-auto h-80 object-contain"/>
+    </a>
+
+    <!-- Headline -->
+    <h1 class="text-4xl md:text-5xl font-playfair text-deep-black mb-4 leading-tight">
+        Built with
+        <strong class="font-playfair" style="color: #e0218a">Heart</strong>,
+        <strong class="font-playfair" style="color: #7a7a7a">Coded</strong>
+        with
+        <strong class="font-playfair" style="color: #000000">Purpose</strong>
+    </h1>
+
+    <!-- Tagline -->
+    <p class="text-2xl md:text-3xl font-playfair font-normal mb-4">
+        My Mission, Vision & Values
+    </p>
+
+    <!-- Divider -->
+    <div class="w-full max-w-sm flex items-center justify-center my-4">
+        <div class="flex-grow h-px bg-black"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#e0218a" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-4">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <div class="flex-grow h-px bg-black"></div>
+    </div>
+
+    <!-- Mission & Vision Columns -->
+    <div class="w-full grid md:grid-cols-2 gap-12 text-left my-12 pt-12">
+        <div>
+            <h2 class="font-playfair text-3xl font-bold mb-4 mission-vision-header">
+                <span style="color: #ffffff">My</span>
+                <i style="color: #e0218a">Mission</i>
+            </h2>
+            <p class="font-alice text-lg mission-vision-text">
+                To empower small businesses, startups, and independent
+                professionals by crafting <span style="color: #e0218a; font-weight: 700;">stunning digital experiences</span> that blend
+                visually compelling design, backend development, and personalized
+                digital experiences that simplify technology, boost visibility,
+                and drive <span style="color: #e0218a; font-weight: 700;">measurable results.</span> —Helping businesses grow from the
+                ground up.
+            </p>
+        </div>
+        <div>
+            <h2 class="font-playfair text-3xl font-bold mb-4 mission-vision-header">
+                <span style="color: #ffffff">My</span>
+                <i style="color: #e0218a">Vision</i>
+            </h2>
+            <p class="font-alice text-lg mission-vision-text">
+                To become the <span style="color: #e0218a; font-weight: 700;">trusted digital partner</span> for small business owners
+                and freelancers across <span style="color: #e0218a; font-weight: 700;">DFW</span>—building websites that grow with them,
+                from humble beginnings to <span style="color: #e0218a; font-weight: 700;">sustainable success.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="w-full text-center my-12 border-t pt-12">
+        <h2 class="font-playfair text-3xl font-bold italic mb-8">
+            <i style="color: #7a7a7a">The Grey Canvas</i>
+            <i style="color: #000000">Core</i>
+            <i style="color: #e0218a">Values</i>
+        </h2>
+        <div class="w-full grid md:grid-cols-2 gap-x-12 gap-y-6 text-left font-alice text-base">
+            <p class="values-text">
+                <strong class="values-highlight">Collaboration:</strong> Every project is a partnership
+                built on trust and open communication.
+            </p>
+            <p class="values-text">
+                <strong class="values-highlight">Accessibility:</strong> Making technology and digital
+                success approachable and affordable.
+            </p>
+            <p class="values-text">
+                <strong class="values-highlight">Creativity:</strong> Beautiful, on-brand design is at the
+                heart of every solution.
+            </p>
+            <p class="values-text">
+                <strong class="values-highlight">Growth-Oriented:</strong> Every website is designed to
+                evolve with your business.
+            </p>
+            <p class="values-text">
+                <strong class="values-highlight">Technical Excellence:</strong> Clean, secure, and scalable
+                code backs every visual.
+            </p>
+            <p class="values-text">
+                <strong class="values-highlight">Integrity:</strong> Honest, transparent, and client-first
+                in every step of the process.
+            </p>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+    <p class="text-sm" style="color: var(--signature-grey)">
+        -Krysta McAlister Owner & Founder of The Grey Canvas
+    </p>
+</main>
+{% endblock %}

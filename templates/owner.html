@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}About The Owner - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="From single mom to certified developer, Krysta McAlister brings grit, empathy, and technical skill to every project. Discover the heart behind The Grey Canvas.">
+{% endblock %}
+
+{% block extra_css %}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+/* Enhanced text styling for owner page */
+.owner-text {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    line-height: 1.7;
+}
+.owner-highlight {
+    color: #e0218a !important;
+    font-weight: 700;
+}
+.owner-quote {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-style: italic;
+    font-weight: 600;
+}
+
+.mission-statement {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(122, 122, 122, 0.15));
+    border: 2px solid rgba(224, 33, 138, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(224, 33, 138, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-statement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(224, 33, 138, 0.05), rgba(122, 122, 122, 0.05));
+    z-index: -1;
+}
+
+.mission-statement .quote-text {
+    color: #ffffff !important;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.mission-statement .highlight-word {
+    color: #e0218a !important;
+    font-weight: 800;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.mission-statement .quote-marks {
+    font-size: 3rem;
+    color: rgba(224, 33, 138, 0.6);
+    line-height: 1;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mission-statement {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .mission-statement .quote-text {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    
+    .mission-statement .quote-marks {
+        font-size: 2.5rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <div class="mb-8">
+        <a href="{{ url_for('about') }}" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span class="font-alice text-lg" style="color: #7A7A7A;">Back to About</span>
+        </a>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-playfair mb-8">
+        The <span style="color: #7A7A7A;">Owner</span>: <span style="color: #e0218a;">Krysta</span> McAlister
+    </h1>
+    <div class="mb-8">
+        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/51cd0663-0088-4ecb-bbc7-0e1108738885.png?width=960&height=720&fit=bounds" alt="Krysta McAlister - Owner of The Grey Canvas" class="w-80 h-auto mx-auto rounded-lg shadow-lg"/>
+    </div>
+    <div class="text-left max-w-2xl mx-auto space-y-4">
+        <p class="owner-text">Krysta McAlister is the resilient heart behind The Grey Canvas. A <strong class="owner-highlight">freelance web designer based in DFW,</strong> Krysta brings not just skill, but grit, empathy, and an unshakable work ethic shaped by real-life challenges. As a single mom of three with a background in education, Krysta transitioned into tech after teaching herself to code—motivated by a desire to build a better future for her kids and honor the legacy of her late father, who was her greatest support.</p>
+        <p class="owner-text">After earning her Meta Back-End Developer certification and an AAS in Software Development from Collin College, she began designing custom websites that empower other small business owners—especially those in construction, real estate, trades, and freelance services—to take control of their online presence.</p>
+        <p class="owner-text">Krysta's journey from paraprofessional to <strong class="owner-highlight">junior developer in Dallas</strong> proves that skill can be learned—but passion and perseverance can't be taught. Her previous role as Director of Digital and Business Development at K.W. Plumbing in Argyle, TX, gave her hands-on experience building an entire digital infrastructure from scratch. She knows the grind of launching a business and uses that understanding to deliver websites that are not only beautiful and mobile-friendly but also deeply functional, search-optimized, and easy to manage.</p>
+        <p class="owner-text">Whether you need an <strong class="owner-highlight">affordable web design in Denton TX,</strong> an <strong class="owner-highlight">e-commerce developer for a small business,</strong> or someone who understands how to build websites for electricians, real estate agents, or freelancers, Krysta's lived experience and technical expertise make her the ideal partner.</p>
+        <div class="mission-statement">
+            <span class="quote-marks">"</span>
+            <p class="quote-text">
+                The Grey Canvas is more than a <span class="highlight-word">business</span>—it's a <span class="highlight-word">mission</span> to show her kids that no obstacle is too big, and that a mom with a <span class="highlight-word">dream</span> (and a laptop) can change the game.
+            </p>
+            <span class="quote-marks" style="text-align: right; display: block;">"</span>
+        </div>
+    </div>
+    
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h2>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

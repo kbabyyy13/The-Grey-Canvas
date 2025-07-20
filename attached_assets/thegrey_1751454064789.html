@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Grey Canvas Co. | Mission, Vision, Values</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Alice&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --signature-grey: #7a7a7a;
+        --main-accent-pink: #e0218a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-image: url("https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #000000;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .main-content-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 900px;
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .font-alice {
+        font-family: "Alice", sans-serif;
+      }
+
+      .nav-link {
+        color: var(--signature-grey);
+        background: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        transition: color 0.3s, background-color 0.3s;
+        border: 1px solid #eee;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background-color: var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+
+      .btn-begin-canvas {
+        display: inline-block;
+        padding: 1rem 3rem;
+        border-radius: 9999px;
+        background-color: transparent;
+        color: #000000;
+        font-weight: 600;
+        font-size: 1.5rem;
+        border: 2px solid #e0218a;
+        box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+      }
+      .btn-begin-canvas:hover {
+        background-color: rgba(224, 33, 138, 0.1);
+        box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+        transform: scale(1.02);
+      }
+    </style>
+  </head>
+  <body class="p-0">
+    <div class="content-wrapper p-5">
+      <!-- Header/Navigation Bar -->
+      <header class="w-full max-w-5xl flex justify-between items-center py-4">
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+          target="_blank"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+            alt="thelogo"
+        /></a>
+        <nav>
+          <ul class="flex items-center space-x-2 text-base font-medium">
+            <li>
+              <a href="thegrey.html" class="nav-link active"
+                >The Grey Canvas Co.</a
+              >
+            </li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+            <li><a href="blog.html" class="nav-link">Blog</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main Content Container -->
+      <main class="main-content-container">
+        <!-- Image Section -->
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/d7c6faea-f534-40e9-9d4b-099c18c9674c.jpeg?width=590&height=370&fit=bounds"
+          target="_blank"
+          class="block mb-8"
+        >
+          <img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/d7c6faea-f534-40e9-9d4b-099c18c9674c.jpeg?width=590&height=370&fit=bounds"
+            alt="HEART"
+            class="mx-auto w-auto h-48 object-contain"
+          />
+        </a>
+
+        <!-- Headline -->
+        <h1
+          class="text-4xl md:text-5xl font-playfair text-deep-black mb-4 leading-tight"
+        >
+          Built with
+          <strong class="font-playfair" style="color: #e0218a">Heart</strong>,
+          <strong class="font-playfair" style="color: #7a7a7a">Coded</strong>
+          with
+          <strong class="font-playfair" style="color: #000000">Purpose</strong>
+        </h1>
+
+        <!-- Tagline -->
+        <p class="text-2xl md:text-3xl font-playfair font-normal mb-4">
+          My Mission, Vision & Values
+        </p>
+
+        <!-- Divider -->
+        <div class="w-full max-w-sm flex items-center justify-center my-4">
+          <div class="flex-grow h-px bg-black"></div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#e0218a"
+            stroke="#e0218a"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mx-4"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            ></path>
+          </svg>
+          <div class="flex-grow h-px bg-black"></div>
+        </div>
+
+        <!-- Mission & Vision Columns -->
+        <div class="w-full grid md:grid-cols-2 gap-12 text-left my-12 pt-12">
+          <div>
+            <h2 class="font-playfair text-3xl font-bold mb-4">
+              <span style="color: #000000">My</span>
+              <i style="color: #7a7a7a">Mission</i>
+            </h2>
+            <p class="font-alice text-lg" style="color: #000000">
+              To empower small businesses, startups, and independent
+              professionals by crafting stunning digital experiences that blend
+              visually compelling design, backend development, and personalized
+              digital experiences that simplify technology, boost visibility,
+              and drive measurable results. —Helping businesses grow from the
+              ground up.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-playfair text-3xl font-bold mb-4">
+              <span style="color: #000000">My</span>
+              <i style="color: #e0218a">Vision</i>
+            </h2>
+            <p class="font-alice text-lg" style="color: #000000">
+              To become the trusted digital partner for small business owners
+              and freelancers across DFW—building websites that grow with them,
+              from humble beginnings to sustainable success.
+            </p>
+          </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="w-full text-center my-12 border-t pt-12">
+          <h2 class="font-playfair text-3xl font-bold italic mb-8">
+            <i style="color: #7a7a7a">Core</i>
+            <i style="color: #000000">Canvas</i>
+            <i style="color: #e0218a">Values</i>
+          </h2>
+          <div
+            class="w-full grid md:grid-cols-2 gap-x-12 gap-y-6 text-left font-alice text-base"
+            style="color: #000000"
+          >
+            <p>
+              <strong>Collaboration:</strong> Every project is a partnership
+              built on trust and open communication.
+            </p>
+            <p>
+              <strong>Accessibility:</strong> Making technology and digital
+              success approachable and affordable.
+            </p>
+            <p>
+              <strong>Creativity:</strong> Beautiful, on-brand design is at the
+              heart of every solution.
+            </p>
+            <p>
+              <strong>Growth-Oriented:</strong> Every website is designed to
+              evolve with your business.
+            </p>
+            <p>
+              <strong>Technical Excellence:</strong> Clean, secure, and scalable
+              code backs every visual.
+            </p>
+            <p>
+              <strong>Integrity:</strong> Honest, transparent, and client-first
+              in every step of the process.
+            </p>
+          </div>
+        </div>
+
+        <!-- Call to Action Button -->
+        <a href="schedule.html" class="btn-begin-canvas font-playfair mb-4">
+          Begin Your Canvas
+        </a>
+        <p class="text-sm" style="color: var(--signature-grey)">
+          -Krysta McAlister Owner & Founder of The Grey Canvas
+        </p>
+      </main>
+
+      <!-- Footer -->
+      <footer class="w-full max-w-5xl flex flex-col items-center py-6 mx-auto">
+        <p class="font-bold text-black">
+          Copyright &copy; 2025 The Grey Canvas. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

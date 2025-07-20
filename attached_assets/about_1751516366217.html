@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - The Grey Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Times+New+Roman&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --signature-grey: #7A7A7A;
+            --main-accent-pink: #E0218A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #000000;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-alice { font-family: 'Alice', serif; }
+        .font-times-new-roman { font-family: 'Times New Roman', serif; }
+        
+        .main-content-container {
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        .nav-link {
+            color: var(--signature-grey);
+            background: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: color 0.3s, background-color 0.3s;
+            border: 1px solid #eee;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: var(--main-accent-pink);
+            border-color: var(--main-accent-pink);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5 box-border">
+
+    <div class="content-wrapper">
+        <!-- Header -->
+    <header class="w-full max-w-5xl flex justify-between items-center py-4">
+             <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" alt="thelogo"/></a>
+            <nav>
+                <ul class="flex items-center space-x-2 text-base font-medium">
+                    <li><a href="thegrey.html" class="nav-link active">The Grey Canvas Co.</a></li>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-playfair" style="color: #000000;">
+                    Where <span style="color: #7A7A7A;">Code</span> Meets <span style="color: #e0218a;">Craft</span>
+                </h1>
+                <p class="mt-4 text-lg max-w-3xl mx-auto font-times-new-roman" style="color: #000000;">
+                    Tailored Web Design for Texas Small Businesses. Helping construction companies, real estate pros, and creative freelancers in DFW build scalable, custom websites that actually work.
+                </p>
+            </div>
+
+            <div class="mt-16 grid md:grid-cols-2 gap-10">
+                <!-- About: The Grey Canvas -->
+                <a href="company.html" class="service-card bg-white p-8 rounded-xl text-center block">
+                    <div class="mx-auto flex items-center justify-center h-24 w-24">
+                        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/0ba67b7e-fb64-483b-9b1e-656802a993e6.png?width=180&height=180&fit=bounds" alt="tgctag" class="h-full w-full object-contain"/>
+                    </div>
+                    <h2 class="mt-6 text-2xl font-bold font-playfair">
+                        <span style="color: #7A7A7A;">About:</span> <span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #e0218a;">Canvas</span>
+                    </h2>
+                    <p class="mt-2 font-times-new-roman" style="color: #000000;">A solo web design and development studio based in the Dallas/Fort Worth area, specializing in affordable, powerful websites for service-based small businesses.</p>
+                    <span class="mt-4 inline-block font-semibold" style="color: var(--main-accent-pink);">Learn Our Story &rarr;</span>
+                </a>
+
+                <!-- About: The Owner -->
+                <a href="owner.html" class="service-card bg-white p-8 rounded-xl text-center block">
+                    <div class="mx-auto flex items-center justify-center h-24 w-24">
+                         <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/a2f10898-7bb8-4503-aa97-2cd8e51a2c7a.png?width=180&height=180&fit=bounds" alt="klm" class="h-full w-full object-contain"/>
+                    </div>
+                    <h2 class="mt-6 text-2xl font-bold font-playfair">
+                        <span style="color: #000000;">About: The</span> <span style="color: #e0218a;">Owner</span>
+                    </h2>
+                    <p class="mt-2 font-times-new-roman" style="color: #000000;">Meet Krysta McAlister, the resilient heart behind The Grey Canvas. A freelance web designer bringing grit, empathy, and an unshakable work ethic.</p>
+                    <span class="mt-4 inline-block font-semibold" style="color: var(--main-accent-pink);">Meet The Founder &rarr;</span>
+                </a>
+            </div>
+            
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto">
+            <p class="font-bold text-black">Copyright &copy; 2025 The Grey Canvas. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

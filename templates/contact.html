@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Ready to start your project? Connect with The Grey Canvas today. Fill out our contact form or find us on social media to begin building your vision.">
+{% endblock %}
+
+{% block extra_css %}
+/* Portfolio statement styling for contact page */
+.portfolio-statement {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(122, 122, 122, 0.15));
+    border: 2px solid rgba(224, 33, 138, 0.3);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    margin: 2rem 0;
+}
+
+/* Responsive Google Maps iframe */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid rgba(224, 33, 138, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    transition: opacity 0.3s ease;
+}
+
+.map-container:hover iframe {
+    opacity: 0.95;
+}
+
+.map-container:hover {
+    border-color: rgba(224, 33, 138, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile-specific map adjustments */
+@media (max-width: 768px) {
+    .map-container {
+        padding-bottom: 75%; /* Slightly taller on mobile for better visibility */
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        padding-bottom: 80%; /* Even taller on small screens */
+        border-radius: 6px;
+        border-width: 1px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-statement {
+        padding: 2rem 1.5rem;
+    }
+}
+.contact-form input, .contact-form textarea, .contact-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+    outline: none;
+    border-color: var(--main-accent-pink);
+    box-shadow: 0 0 0 2px rgba(224, 33, 138, 0.2);
+}
+.contact-form label {
+    text-align: left;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-top: 1rem;
+    display: block;
+}
+.contact-form button {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    border-radius: 9999px;
+    background-color: var(--main-accent-pink);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 2px solid var(--main-accent-pink);
+    box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    width: 100%;
+    margin-top: 2rem;
+}
+.contact-form button:hover {
+    background-color: #c42079;
+    box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+    transform: scale(1.02);
+}
+.contact-info-white {
+    color: #FFFFFF !important;
+}
+[data-theme="dark"] .contact-info-white {
+    color: #FFFFFF !important;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <h1 class="text-3xl md:text-4xl font-playfair mb-2">
+        <span class="text-deep-black">Your Vision,</span> <span style="color:#e0218a;">My Canvas.</span> <span style="color:#7A7A7A;">Let's Connect!</span>
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto" style="color: var(--signature-grey);">
+        Fill out the form below or reach out on social media. I'm here to help bring your vision to life.
+    </p>
+    
+    <div class="mt-8 w-full flex justify-center">
+        <!-- Centered Form -->
+        <div class="text-left w-full max-w-lg">
+            <form method="POST" class="contact-form">
+                {{ form.hidden_tag() }}
+                
+                <h2 class="text-xl font-playfair font-bold text-center mb-1" style="color: #FFFFFF;">
+                    Let's <span style="color: #E0218A;">Build</span> Something That <span style="color: #E0218A;">Works</span>!
+                </h2>
+                <p class="text-center text-sm mb-4" style="color: #FFFFFF;">I'll be in touch within 1–2 business days.</p>
+
+                <div class="text-center mb-6">
+                    <p class="font-playfair text-xl" style="color: #FFFFFF;">
+                        <span style="color: #E0218A;">Phone</span>: <span style="color: #E0218A;">(</span> 682 <span style="color: #E0218A;">)</span> 403 <span style="color: #E0218A;">-</span> 1904
+                    </p>
+                    <p class="font-playfair text-xl" style="color: #FFFFFF;">
+                        <span style="color: #E0218A;">Email</span>: krystamcalister<span style="color: #E0218A;">@</span>thegreycanvas<span style="color: #E0218A;">.</span>co
+                    </p>
+                </div>
+
+                <label for="name" style="color: #FFFFFF !important;">Full Name *</label>
+                {{ form.name(id="name", required=True) }}
+                {% if form.name.errors %}
+                    <ul class="text-red-500 text-sm mt-1">
+                        {% for error in form.name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <label for="email" style="color: #FFFFFF !important;">Email Address *</label>
+                {{ form.email(id="email", required=True) }}
+                {% if form.email.errors %}
+                    <ul class="text-red-500 text-sm mt-1">
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <label for="phone" style="color: #FFFFFF !important;">Phone Number (Optional)</label>
+                {{ form.phone(id="phone") }}
+                {% if form.phone.errors %}
+                    <ul class="text-red-500 text-sm mt-1">
+                        {% for error in form.phone.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <label for="subject" style="color: #FFFFFF !important;">Subject *</label>
+                {{ form.subject(id="subject", required=True) }}
+                {% if form.subject.errors %}
+                    <ul class="text-red-500 text-sm mt-1">
+                        {% for error in form.subject.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <label for="message" style="color: #FFFFFF !important;">Tell me about your project *</label>
+                {{ form.message(id="message", rows="4", required=True) }}
+                {% if form.message.errors %}
+                    <ul class="text-red-500 text-sm mt-1">
+                        {% for error in form.message.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="w-full mt-24 border-t pt-8 text-center" style="border-color: var(--border-color);">
+        <h2 class="text-4xl md:text-5xl font-playfair mb-8"> 
+            Let's <span style="color: #7A7A7A;">Get</span> <span style="color: #e0218a;">Social</span> !!!
+        </h2>
+        <div class="flex justify-center gap-6">
+            <a href="https://www.facebook.com/thegreycanvasdfw" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-pink-600 transition-colors" style="color: var(--main-accent-pink);" title="Facebook" aria-label="Visit our Facebook page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span class="sr-only">Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/thegreycanvasdfw" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-pink-600 transition-colors" style="color: var(--main-accent-pink);" title="Instagram" aria-label="Visit our Instagram page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span class="sr-only">Instagram</span>
+            </a>
+            <a href="https://www.linkedin.com/company/thegreycanvas" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-pink-600 transition-colors" style="color: var(--main-accent-pink);" title="LinkedIn" aria-label="Visit our LinkedIn page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+            </a>
+            <a href="https://x.com/TheGreyCanvas_" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-pink-600 transition-colors" style="color: var(--main-accent-pink);" title="X (Twitter)" aria-label="Visit our X (Twitter) page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span class="sr-only">X (Twitter)</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Business Hours, Location & Map Section -->
+    <div class="w-full mt-24 border-t pt-8" style="border-color: var(--border-color);">
+        <div class="portfolio-statement">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Business Hours Column -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6" style="font-family: 'Times New Roman', serif; color: #7A7A7A;">
+                        <strong>Business</strong> <span style="color: #E0218A;"><strong>Hours</strong></span><span style="color: #FFFFFF;">:</span>
+                    </h3>
+                    
+                    <div class="mb-4" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                        <span>(On </span><span style="color: #E0218A;">Lunch Break</span><span> </span><strong>Mon</strong><span style="color: #E0218A;">-</span><strong>Fri</strong><span>: 1:00PM-2:00PM)</span>
+                    </div>
+                    
+                    <div class="space-y-2" style="font-family: 'Times New Roman', serif;">
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;"><strong>Sunday</strong></span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-12</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;">Monday</span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-6</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;">Tuesday</span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-6</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;">Wednesday</span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-6</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;">Thursday</span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-6</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;">Friday</span><span style="color: #FFFFFF;">: 10</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00AM-6</span><span style="color: #E0218A;">:</span><span style="color: #FFFFFF;">00PM</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;"><strong>Saturday</strong></span><span style="color: #FFFFFF;">: </span><span style="color: #E0218A;"><strong>Closed</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Location Column -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6" style="font-family: 'Times New Roman', serif; color: #7A7A7A;">
+                        <strong>Business</strong> <span style="color: #E0218A;"><strong>Location</strong></span><span style="color: #FFFFFF;"><strong>:</strong></span>
+                    </h3>
+                    
+                    <div class="space-y-2 mb-6" style="font-family: 'Times New Roman', serif;">
+                        <div style="color: #FFFFFF;">
+                            <span style="color: #E0218A;"><strong>No</strong></span><span> </span><strong>Physical Location</strong>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            <span>Based out of</span><span style="color: #FFFFFF;">:</span>
+                        </div>
+                        <div style="color: #FFFFFF;">
+                            Dallas/Fort Worth,<br>
+                            Texas, USA
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive DFW Area Map -->
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31910.22474653694!2d-96.80107046084298!3d32.788302993114634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1752773079393!5m2!1sen!2sus" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Interactive map showing Dallas-Fort Worth area where The Grey Canvas provides web design services"
+                                aria-label="Google Maps showing the Dallas-Fort Worth metropolitan area service region">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

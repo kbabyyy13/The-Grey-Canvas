@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Website Packages - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Professional web design services for Texas small businesses. Custom websites, SEO optimization, and digital solutions that drive results.">
+{% endblock %}
+
+{% block extra_css %}
+.package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+/* Keep "What's Included" titles black in dark mode */
+.whats-included-title {
+    color: #000000 !important;
+}
+/* Pink button text for Get Started buttons */
+.btn-begin-canvas {
+    color: #e0218a !important;
+}
+
+/* Blog card styling for sections */
+.blog-card {
+    background: rgba(55, 65, 81, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Read more button styling */
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(224, 33, 138, 0.9);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 2px solid rgba(224, 33, 138, 0.9);
+}
+
+.read-more-btn:hover {
+    background: rgba(224, 33, 138, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(224, 33, 138, 0.4);
+}
+
+
+
+
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-6">
+            The <span style="color: #7A7A7A;">Grey</span> <span style="color: #e0218a;">Canvas</span> <span class="text-white">Services</span>
+        </h1>
+        <p class="mt-4 text-lg max-w-4xl mx-auto text-gray-300">
+            Comprehensive web design and development services tailored for Texas small businesses. From custom websites to ongoing maintenance, I provide everything you need to establish and maintain a powerful online presence.
+        </p>
+    </div>
+
+    <!-- Services Overview Section -->
+    <div class="mb-16">
+        <div class="blog-card">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <!-- Left Side: Title and Image -->
+                <div class="flex-1 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold mb-6 font-playfair">
+                        <span style="color: #000000;">Services</span> <span style="color: #7A7A7A;">Over</span><span style="color: #e0218a;">view</span>
+                    </h2>
+                    <div class="flex justify-center lg:justify-start">
+                        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/2d27d781-d925-4c6c-82ea-2df0bcf5879f.png?width=180&height=180&fit=bounds" alt="Services Overview" class="w-32 h-32 lg:w-40 lg:h-40 object-contain" />
+                    </div>
+                </div>
+                
+                <!-- Center: Description Text -->
+                <div class="flex-2 text-center">
+                    <p class="text-white text-lg max-w-md mx-auto leading-relaxed">
+                        Explore services from The Grey Canvas designed to fuel small business success
+                    </p>
+                </div>
+                
+                <!-- Right Side: Button -->
+                <div class="flex-1 text-center">
+                    <a href="{{ url_for('overview') }}" class="read-more-btn inline-flex items-center gap-2 justify-center">
+                        View Services 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Creator's Suite Section -->
+    <div class="mb-16">
+        <div class="blog-card">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <!-- Left Side: Title and Image -->
+                <div class="flex-1 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold mb-6 font-playfair">
+                        <span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Creator's</span> <span style="color: #e0218a;">Suite</span>
+                    </h2>
+                    <div class="flex justify-center lg:justify-start">
+                        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/cc14f086-7025-45aa-9029-9b92172ccacf.png?width=180&height=180&fit=bounds" alt="Creator's Suite" class="w-32 h-32 lg:w-40 lg:h-40 object-contain" />
+                    </div>
+                </div>
+                
+                <!-- Center: Description Text -->
+                <div class="flex-2 text-center">
+                    <p class="text-white text-lg max-w-md mx-auto leading-relaxed">
+                        Core website design packages tailored for different stages of business growth. From starter sites to full online stores.
+                    </p>
+                </div>
+                
+                <!-- Right Side: Button -->
+                <div class="flex-1 text-center">
+                    <a href="{{ url_for('packages') }}" class="read-more-btn inline-flex items-center gap-2 justify-center">
+                        View Packages 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance & Support Section -->
+    <div class="mb-16">
+        <div class="blog-card">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <!-- Left Side: Title and Image -->
+                <div class="flex-1 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold mb-6 font-playfair">
+                        <span style="color: #000000;">Maintenance</span> <span style="color: #7A7A7A;">&</span> <span style="color: #e0218a;">Support</span>
+                    </h2>
+                    <div class="flex justify-center lg:justify-start">
+                        <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/4a7a2a69-f50d-4cfa-8dc0-597a0d15c3c6.png?width=180&height=180&fit=bounds" alt="Maintenance & Support" class="w-32 h-32 lg:w-40 lg:h-40 object-contain" />
+                    </div>
+                </div>
+                
+                <!-- Center: Description Text -->
+                <div class="flex-2 text-center">
+                    <p class="text-white text-lg max-w-md mx-auto leading-relaxed">
+                        Keep your website secure, updated, and performing at its best with The Grey Canvas's monthly care plans and optional add-ons.
+                    </p>
+                </div>
+                
+                <!-- Right Side: Button -->
+                <div class="flex-1 text-center">
+                    <a href="{{ url_for('plans') }}" class="read-more-btn inline-flex items-center gap-2 justify-center">
+                        View Plans 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

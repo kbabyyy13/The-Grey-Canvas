@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The Grey Canvas - Creative scheduling and contact platform." />
+    <meta property="og:title" content="The Grey Canvas" />
+    <meta property="og:description" content="Creative scheduling and contact platform." />
+    <meta property="og:type" content="website" />
+    <title>The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Playfair Display, Times New Roman, Inter (for general fallback) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Times+New+Roman&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --signature-grey: #7a7a7a;
+        --main-accent-pink: #e0218a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-image: url("https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #000000;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Container for main content */
+      .main-content-container {
+        flex-grow: 1; /* Allows content to take available space */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 900px;
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        margin-top: 20px; /* Space from header */
+        margin-bottom: 20px; /* Space from footer */
+      }
+
+      /* Specific font and color classes */
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .font-times-new-roman {
+        font-family: "Times New Roman", serif;
+      }
+      .text-signature-grey {
+        color: var(--signature-grey);
+      }
+      .text-main-pink {
+        color: var(--main-accent-pink);
+      }
+      .text-deep-black {
+        color: #000000;
+      }
+      .nav-link {
+        color: var(--signature-grey);
+        background: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        transition: color 0.3s, background-color 0.3s;
+        border: 1px solid #eee;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background-color: var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+
+      /* Button styling to match image - rounded with subtle pink glow */
+      .btn-begin-canvas {
+        display: inline-block;
+        padding: 1rem 3rem; /* Larger padding for a prominent button */
+        border-radius: 9999px; /* Fully rounded */
+        background-color: transparent;
+        color: #000000; /* Text color */
+        font-weight: 600; /* Semi-bold */
+        font-size: 1.5rem; /* Larger font size */
+        border: 2px solid #e0218a; /* Pink border */
+        box-shadow: 0 0 15px rgba(224, 33, 138, 0.4); /* Pink glow */
+        transition: all 0.3s ease-in-out;
+        text-decoration: none; /* Remove underline */
+      }
+      .btn-begin-canvas:hover {
+        background-color: rgba(
+          224,
+          33,
+          138,
+          0.1
+        ); /* Slight pink background on hover */
+        box-shadow: 0 0 25px rgba(224, 33, 138, 0.7); /* Enhanced glow on hover */
+        transform: scale(1.02); /* Slight scale for interaction */
+      }
+    </style>
+  </head>
+  <body class="p-0">
+    <div class="content-wrapper p-5">
+      <!-- Header/Navigation Bar -->
+      <header class="w-full max-w-5xl flex justify-between items-center py-4">
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+          target="_blank"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+            alt="thelogo"
+        /></a>
+        <nav
+          class="hidden lg:flex items-center space-x-2 text-base font-medium"
+        >
+          <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2"
+      >
+        <a
+          href="thegrey.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >The Grey Canvas Co.</a
+        >
+        <a
+          href="index.html"
+          class="block py-2 px-4 text-sm nav-link active text-center mb-2"
+          >Home</a
+        >
+        <a
+          href="services.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Services</a
+        >
+        <a
+          href="about.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >About</a
+        >
+        <a
+          href="portfolio.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Portfolio</a
+        >
+        <a
+          href="blog.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Blog</a
+        >
+        <a
+          href="contact.html"
+          class="block py-2 px-4 text-sm nav-link text-center"
+          >Contact</a
+        >
+      </div>
+
+      <!-- Main Content Container -->
+      <main class="main-content-container">
+        <!-- Image Section -->
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/0ba67b7e-fb64-483b-9b1e-656802a993e6.png?width=960&height=720&fit=bounds"
+          target="_blank"
+          class="block mb-8"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/0ba67b7e-fb64-483b-9b1e-656802a993e6.png?width=960&height=720&fit=bounds"
+            alt="tgctag"
+            class="mx-auto w-auto h-96 object-contain"
+        /></a>
+
+        <!-- Headline -->
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-playfair text-deep-black mb-4 leading-tight"
+        >
+          “Where Brilliant Brands Begin on a Blank Canvas.”
+        </h1>
+
+        <!-- Tagline -->
+        <p
+          class="text-2xl md:text-3xl lg:text-4xl font-times-new-roman font-normal mb-8"
+        >
+          <span class="text-deep-black">Web.</span>
+          <span class="text-main-pink">Design.</span>
+          <span class="text-signature-grey">Thrive.</span>
+        </p>
+
+        <!-- Call to Action Button -->
+        <a href="schedule.html" class="btn-begin-canvas"> Begin Your Canvas </a>
+
+        <!-- The Grey Canvas: Designing & Developing Your Digital Presence. -->
+        <div class="leading-relaxed max-w-3xl mt-12">
+          <p>
+            <span
+              class="font-playfair text-main-pink text-lg md:text-xl lg:text-2xl"
+              >Designing
+              <span
+                class="font-playfair text-deep-black text-lg md:text-xl lg:text-2xl"
+                >&
+                <span
+                  class="font-playfair text-main-pink text-lg md:text-xl lg:text-2xl"
+                  >Developing
+                  <span
+                    class="font-playfair text-deep-black text-lg md:text-xl lg:text-2xl"
+                    >Your Digital Presence.</span
+                  ></span
+                ></span
+              ></span
+            >
+          </p>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="w-full max-w-5xl flex flex-col items-center py-6 mx-auto">
+        <p class="font-bold text-black">
+          Copyright &copy; 2025 The Grey Canvas. All rights reserved.
+        </p>
+      </footer>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

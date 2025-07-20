@@ -1,0 +1,288 @@
+/* Custom styles for precise control over fonts and colors */
+body {
+    font-family: 'Inter', sans-serif; /* Default font */
+    background-color: #F8F8F8; /* Light background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Pushes header/footer to edges */
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Needed for absolute positioning of stars on schedule.html */
+    overflow-x: hidden; /* Prevent horizontal scroll from stars on schedule.html */
+}
+
+/* Container for main content on index.html */
+.main-content-container {
+    flex-grow: 1; /* Allows content to take available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    margin-top: 20px; /* Space from header */
+    margin-bottom: 20px; /* Space from footer */
+}
+
+/* Specific font and color classes */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-times-new-roman { font-family: 'Times New Roman', serif; }
+.font-inter { font-family: 'Inter', sans-serif; } /* Used as Gtham fallback */
+.font-dancing-script { font-family: 'Dancing Script', cursive; } /* Used as Margurite fallback */
+.font-alike { font-family: 'Alike', serif; } /* Font for paragraph text on schedule.html */
+
+
+.text-signature-grey { color: #7A7A7A; }
+.text-main-pink { color: #E0218A; }
+.text-deep-black { color: #000000; }
+
+/* Button styling to match image - rounded with subtle pink glow (index.html) */
+.btn-begin-canvas {
+    display: inline-block;
+    padding: 1rem 3rem; /* Larger padding for a prominent button */
+    border-radius: 9999px; /* Fully rounded */
+    background-color: transparent;
+    color: #000000; /* Text color */
+    font-weight: 600; /* Semi-bold */
+    font-size: 1.5rem; /* Larger font size */
+    border: 2px solid #E0218A; /* Pink border */
+    box-shadow: 0 0 15px rgba(224, 33, 138, 0.4); /* Pink glow */
+    transition: all 0.3s ease-in-out;
+    text-decoration: none; /* Remove underline */
+}
+.btn-begin-canvas:hover {
+    background-color: rgba(224, 33, 138, 0.1); /* Slight pink background on hover */
+    box-shadow: 0 0 25px rgba(224, 33, 138, 0.7); /* Enhanced glow on hover */
+    transform: scale(1.02); /* Slight scale for interaction */
+}
+
+/* Main content area styling (schedule.html) */
+.content-area {
+    display: flex;
+    flex-direction: row; /* Default to row for larger screens */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1200px; /* Wider max-width for content */
+    width: 100%;
+    padding: 40px 20px;
+    margin-top: 20px; /* Space from header */
+    flex-grow: 1;
+}
+
+.image-section {
+    flex: 1;
+    min-width: 300px; /* Minimum width for image section */
+    padding-right: 30px; /* Space between image and text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For "Click Here" overlay */
+}
+
+.text-section {
+    flex: 1;
+    min-width: 300px; /* Minimum width for text section */
+    padding-left: 30px; /* Space between image and text */
+    text-align: left;
+}
+
+.tablet-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.click-here-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent; /* Make background transparent */
+    color: transparent; /* Make text transparent */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    /* Remove box-shadow or make it transparent if desired */
+    box-shadow: none; 
+    transition: all 0.3s ease-in-out;
+    z-index: 10; /* Ensure button is above the image */
+}
+
+.click-here-button:hover {
+    /* You can add a subtle visual feedback on hover if needed, e.g., a faint overlay */
+    background-color: rgba(224, 33, 138, 0.1); /* Slight pink overlay on hover */
+    color: rgba(255, 255, 255, 0.5); /* Faint white text on hover */
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 10px rgba(224, 33, 138, 0.3); /* Subtle glow on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .content-area {
+        flex-direction: column; /* Stack columns on smaller screens */
+        text-align: center;
+    }
+    .image-section, .text-section {
+        padding: 0; /* Remove padding between sections */
+        padding-bottom: 30px; /* Add space when stacked */
+        min-width: unset; /* Remove min-width constraints */
+        width: 100%;
+    }
+    .text-section {
+        text-align: center;
+    }
+    .text-3xl { font-size: 2rem; }
+    .text-xl { font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+    .text-6xl { font-size: 3rem; } /* Adjust headline for tablets */
+    .text-4xl { font-size: 2rem; } /* Adjust tagline for tablets */
+    .text-2xl { font-size: 1.25rem; } /* Adjust lower text */
+    .btn-begin-canvas {
+        padding: 0.8rem 2rem;
+        font-size: 1.25rem;
+    }
+    .main-content-container {
+        padding: 25px;
+    }
+    nav ul li {
+        margin: 0 8px; /* Adjust spacing for nav items */
+    }
+}
+
+@media (max-width: 640px) {
+    body { padding: 15px; }
+    .text-6xl { font-size: 2.5rem; } /* Smaller headline on mobile */
+    .text-4xl { font-size: 1.8rem; } /* Smaller tagline on mobile */
+    .text-2xl { font-size: 1rem; } /* Smaller lower text */
+    .btn-begin-canvas {
+        padding: 0.7rem 1.8rem;
+        font-size: 1.1rem;
+    }
+    .main-content-container {
+        padding: 20px;
+    }
+    /* Adjust navbar for mobile if needed, e.g., stacked or hamburger menu */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+    .nav-logo {
+        margin-bottom: 15px; /* Space between logo and nav links */
+    }
+}
+
+/* Star styling (background elements - schedule.html) */
+.star {
+    position: absolute;
+    background-color: #E0218A; /* Main Pink */
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: twinkle 3s infinite ease-in-out alternate;
+}
+.star-small { width: 8px; height: 8px; }
+.star-medium { width: 12px; height: 12px; }
+.star-large { width: 16px; height: 16px; }
+
+.star:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.star:nth-child(2) { top: 40%; right: 5%; animation-delay: 0.5s; }
+.star:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 1s; }
+.star:nth-child(4) { top: 5%; right: 30%; animation-delay: 1.5s; }
+.star:nth-child(5) { bottom: 10%; right: 15%; animation-delay: 2s; }
+
+@keyframes twinkle {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* =======================
+   Contact Form Styling
+   The Grey Canvas
+   ======================= */
+
+.contact-form {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contact-form h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.contact-form label {
+  display: block;
+  margin: 1.2rem 0 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #999;
+  outline: none;
+  background-color: #fff;
+}
+
+.contact-form select[multiple] {
+  height: 120px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  margin-top: 2rem;
+  padding: 0.9rem 1.8rem;
+  background-color: #3a3a3a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+}

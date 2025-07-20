@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Login - The Grey Canvas{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-md main-content-container p-8 my-10 mx-auto">
+    <div class="blog-card">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white mb-4 font-playfair">
+                <span style="color: #7A7A7A;">Admin</span> <span style="color: #e0218a;">Login</span>
+            </h1>
+            <p class="text-gray-300">
+                Secure access to your website's admin panel.
+            </p>
+        </div>
+
+        <form method="POST" class="space-y-6">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <!-- Username Field -->
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-300 mb-2">
+                    Username
+                </label>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       required 
+                       class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                       placeholder="Enter your username">
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
+                    Password
+                </label>
+                <input type="password" 
+                       id="password" 
+                       name="password" 
+                       required 
+                       class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                       placeholder="Enter your password">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+                <button type="submit" 
+                        class="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+                    Sign In
+                </button>
+            </div>
+        </form>
+
+        <!-- Account Status Info -->
+        {% if get_flashed_messages(category_filter=['error']) %}
+        <div class="mt-6 p-4 bg-red-900 border border-red-600 rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    {% for message in get_flashed_messages(category_filter=['error']) %}
+                    <p class="text-red-200 font-medium">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Security Notice -->
+        <div class="mt-6 p-4 bg-gray-800 border border-gray-600 rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                <div>
+                    <p class="text-gray-300 text-sm">
+                        This is a secure admin area. Unauthorized access attempts are logged and may result in IP blocking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

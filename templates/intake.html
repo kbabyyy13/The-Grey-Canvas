@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}Client Intake Form - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Begin your journey with The Grey Canvas. Fill out our project intake form to provide the details we need to craft a personalized and effective proposal for you.">
+{% endblock %}
+
+{% block extra_css %}
+.intake-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    font-family: 'Inter', sans-serif;
+}
+
+.intake-form h2 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.intake-form p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.intake-form label {
+    display: block;
+    margin: 1.2rem 0 0.5rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.intake-form input,
+.intake-form select,
+.intake-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #000000;
+    transition: border 0.3s ease;
+}
+
+.intake-form input:focus,
+.intake-form select:focus,
+.intake-form textarea:focus {
+    border-color: #e0218a;
+    outline: none;
+    background-color: #fff;
+}
+
+.intake-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.intake-form button {
+    margin-top: 2rem;
+    padding: 0.9rem 1.8rem;
+    background-color: #e0218a;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.intake-form button:hover {
+    background-color: #c91e7a;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <h1 class="text-4xl md:text-5xl font-playfair mb-4">
+        Client <span style="color: #e0218a">Intake</span> Form
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto mb-8" style="color: var(--signature-grey)">
+        Tell me about your project! This form helps me understand your needs and provide you with the best possible service.
+    </p>
+
+    <div class="intake-form">
+        <h2>Project Details</h2>
+        <p>Please provide as much detail as possible about your project requirements.</p>
+        
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <!-- Business Information -->
+            <div class="form-row">
+                <div>
+                    <label for="business_name">Business Name *</label>
+                    {{ form.business_name(id='business_name') }}
+                    {% if form.business_name.errors %}
+                        {% for error in form.business_name.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="contact_name">Contact Name *</label>
+                    {{ form.contact_name(id='contact_name') }}
+                    {% if form.contact_name.errors %}
+                        {% for error in form.contact_name.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-row">
+                <div>
+                    <label for="email">Email *</label>
+                    {{ form.email(id='email') }}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="phone">Phone</label>
+                    {{ form.phone(id='phone') }}
+                    {% if form.phone.errors %}
+                        {% for error in form.phone.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Project Details -->
+            <label for="website_type">Website Type *</label>
+            {{ form.website_type(id='website_type') }}
+            {% if form.website_type.errors %}
+                {% for error in form.website_type.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="form-row">
+                <div>
+                    <label for="timeline">Project Timeline *</label>
+                    {{ form.timeline(id='timeline') }}
+                    {% if form.timeline.errors %}
+                        {% for error in form.timeline.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="budget">Budget Range *</label>
+                    {{ form.budget(id='budget') }}
+                    {% if form.budget.errors %}
+                        {% for error in form.budget.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <label for="project_description">Project Description *</label>
+            {{ form.project_description(id='project_description', placeholder='Tell me about your project goals, target audience, and any specific features you need...') }}
+            {% if form.project_description.errors %}
+                {% for error in form.project_description.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <label for="additional_notes">Additional Notes</label>
+            {{ form.additional_notes(id='additional_notes', placeholder='Any additional information, questions, or specific requests...') }}
+            {% if form.additional_notes.errors %}
+                {% for error in form.additional_notes.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <button type="submit">Submit Intake Form</button>
+        </form>
+    </div>
+
+    <div class="mt-12 text-center">
+        <p class="text-lg mb-8" style="color: var(--signature-grey)">
+            Prefer to talk first? Schedule a free consultation call.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn-begin-canvas">Schedule Call</a>
+    </div>
+</main>
+{% endblock %}

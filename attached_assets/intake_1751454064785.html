@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Grey Canvas - Client Intake Form</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --signature-grey: #7a7a7a;
+        --pure-white: #ffffff;
+        --deep-black: #000000;
+        --main-accent-pink: #e0218a;
+        --rich-rose-pink: #c42079;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--deep-black);
+        background-image: url("https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .font-alice {
+        font-family: "Alice", serif;
+      }
+      .font-raleway-light {
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
+      }
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+
+      .main-content-container {
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-link {
+        color: var(--signature-grey);
+        background: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        transition: color 0.3s, background-color 0.3s;
+        border: 1px solid #eee;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background-color: var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-checkbox:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+
+      .form-checkbox {
+        color: var(--main-accent-pink);
+      }
+
+      .btn-submit,
+      .toggle-btn-active {
+        background-color: var(--main-accent-pink);
+        color: var(--pure-white);
+        transition: background-color 0.3s ease;
+      }
+      .btn-submit:hover,
+      .toggle-btn-active:hover {
+        background-color: var(--rich-rose-pink);
+      }
+
+      .toggle-btn-inactive {
+        background-color: #e5e7eb;
+        color: #374151;
+        transition: background-color 0.3s ease;
+      }
+      .toggle-btn-inactive:hover {
+        background-color: #d1d5db;
+      }
+    </style>
+  </head>
+  <body class="p-0">
+    <div class="content-wrapper p-5">
+      <!-- Header -->
+      <header
+        class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto"
+      >
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+          target="_blank"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+            alt="thelogo"
+        /></a>
+        <nav
+          class="hidden lg:flex items-center space-x-2 text-base font-medium"
+        >
+          <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2"
+      >
+        <a
+          href="thegrey.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >The Grey Canvas Co.</a
+        >
+        <a
+          href="index.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Home</a
+        >
+        <a
+          href="services.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Services</a
+        >
+        <a
+          href="about.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >About</a
+        >
+        <a
+          href="portfolio.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Portfolio</a
+        >
+        <a
+          href="blog.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Blog</a
+        >
+        <a
+          href="contact.html"
+          class="block py-2 px-4 text-sm nav-link text-center"
+          >Contact</a
+        >
+      </div>
+
+      <div
+        id="app"
+        class="main-content-container w-full max-w-4xl p-4 sm:p-6 lg:p-8 my-5"
+      >
+        <div class="text-center mb-8">
+          <h1 class="text-4xl sm:text-5xl font-bold">
+            <span class="font-alice" style="color: #000000">The</span>
+            <span class="font-raleway-light" style="color: #7a7a7a">Grey</span>
+            <span
+              class="font-playfair text-5xl sm:text-6xl"
+              style="color: #e0218a"
+              >Canvas</span
+            >
+          </h1>
+          <p class="mt-2 text-lg font-alice">
+            Let's
+            <span class="font-bold" style="color: #000000">Create</span>
+            <span style="color: #7a7a7a">Something</span>
+            <span style="color: #e0218a">Beautiful</span>
+            Together
+          </p>
+          <div
+            id="auth-status"
+            class="mt-4 text-xs"
+            style="color: var(--signature-grey)"
+          >
+            <p>
+              Your Unique ID (for session):
+              <span id="userId" class="font-mono">loading...</span>
+            </p>
+            <p>Status: <span id="auth-state">Initializing...</span></p>
+          </div>
+        </div>
+
+        <!-- View Toggle Buttons -->
+        <div class="flex justify-center mb-6">
+          <button
+            id="show-form-btn"
+            class="px-4 py-2 rounded-l-md font-semibold focus:outline-none toggle-btn-active"
+          >
+            Client Form
+          </button>
+          <button
+            id="show-admin-btn"
+            class="px-4 py-2 rounded-r-md font-semibold focus:outline-none toggle-btn-inactive"
+          >
+            Admin View
+          </button>
+        </div>
+
+        <!-- Client Intake Form -->
+        <div id="intake-form-container">
+          <form id="client-intake-form" class="space-y-6">
+            <h2
+              class="text-2xl font-semibold border-b pb-3 font-alice"
+              style="color: #000000"
+            >
+              Project Intake
+            </h2>
+
+            <!-- Contact Information -->
+            <fieldset class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <legend
+                class="text-lg font-medium mb-2"
+                style="color: var(--signature-grey)"
+              >
+                1. Your Contact Information
+              </legend>
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Full Name *</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="Jane Doe"
+                />
+              </div>
+              <div>
+                <label
+                  for="company"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Company Name</label
+                >
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="Acme Inc."
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Email Address *</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="jane.doe@example.com"
+                />
+              </div>
+              <div>
+                <label
+                  for="phone"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                />
+              </div>
+            </fieldset>
+
+            <!-- Project Details -->
+            <fieldset class="space-y-4">
+              <legend
+                class="text-lg font-medium mb-2 pt-4 border-t"
+                style="color: var(--signature-grey)"
+              >
+                2. Project Details
+              </legend>
+              <div>
+                <label
+                  for="package"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Which website package are you interested in?</label
+                >
+                <select
+                  id="package"
+                  name="package"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-select"
+                >
+                  <option value="">Select a package...</option>
+                  <option value="sketch">The Sketch (Starter Site)</option>
+                  <option value="design">The Design (Business Growth)</option>
+                  <option value="showcase">The Showcase (E-Commerce)</option>
+                  <option value="blank-canvas">
+                    The Blank Canvas (Custom Project)
+                  </option>
+                  <option value="none">
+                    None (Interested in other services)
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="maintenance"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Maintenance & Support Plan</label
+                >
+                <select
+                  id="maintenance"
+                  name="maintenance"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-select"
+                >
+                  <option value="">No, not at this time</option>
+                  <option value="Essential">Essential</option>
+                  <option value="Pro">Pro</option>
+                  <option value="Elite">Elite</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="project-description"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Tell us about your project *</label
+                >
+                <textarea
+                  id="project-description"
+                  name="project-description"
+                  rows="4"
+                  required
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="Describe your business, your goals for the website, and any specific features you need."
+                ></textarea>
+              </div>
+              <div>
+                <label
+                  for="inspiration"
+                  class="block text-sm font-medium mb-1"
+                  style="color: var(--signature-grey)"
+                  >Inspiration (Optional)</label
+                >
+                <input
+                  type="text"
+                  id="inspiration"
+                  name="inspiration"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="e.g., a competitor's website, a site you admire"
+                />
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="budget"
+                    class="block text-sm font-medium mb-1"
+                    style="color: var(--signature-grey)"
+                    >Estimated Budget</label
+                  >
+                  <select
+                    id="budget"
+                    name="budget"
+                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-select"
+                  >
+                    <option value="">Select a range...</option>
+                    <option value="<2000">&lt; $2,000</option>
+                    <option value="2000-5000">$2,000 - $5,000</option>
+                    <option value="5000-10000">$5,000 - $10,000</option>
+                    <option value="10000+">$10,000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    for="timeline"
+                    class="block text-sm font-medium mb-1"
+                    style="color: var(--signature-grey)"
+                    >Ideal Launch Timeline</label
+                  >
+                  <input
+                    type="text"
+                    id="timeline"
+                    name="timeline"
+                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                    placeholder="e.g., 1-2 months, by end of Q4"
+                  />
+                </div>
+              </div>
+
+              <!-- Optional Add-Ons -->
+              <div class="pt-4 border-t">
+                <legend
+                  class="text-md font-medium"
+                  style="color: var(--signature-grey)"
+                >
+                  Optional Add-Ons
+                </legend>
+                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="relative flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="addon-logo"
+                        name="addons"
+                        value="Logo Design ($300+)"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 form-checkbox"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label for="addon-logo" class="font-medium text-gray-900"
+                        >Logo Design:
+                        <span class="font-light">$300+</span></label
+                      >
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="addon-copy"
+                        name="addons"
+                        value="Copywriting ($500+)"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 form-checkbox"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label for="addon-copy" class="font-medium text-gray-900"
+                        >Copywriting:
+                        <span class="font-light">$500+</span></label
+                      >
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="addon-branding"
+                        name="addons"
+                        value="Branding Guide ($450)"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 form-checkbox"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label
+                        for="addon-branding"
+                        class="font-medium text-gray-900"
+                        >Branding Style Guide:
+                        <span class="font-light">$450</span></label
+                      >
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="addon-newsletter"
+                        name="addons"
+                        value="Newsletter Setup ($250)"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 form-checkbox"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label
+                        for="addon-newsletter"
+                        class="font-medium text-gray-900"
+                        >Email Newsletter Setup:
+                        <span class="font-light">$250</span></label
+                      >
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="addon-bilingual"
+                        name="addons"
+                        value="Bilingual Site (+$400)"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 form-checkbox"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label
+                        for="addon-bilingual"
+                        class="font-medium text-gray-900"
+                        >Website in Spanish:
+                        <span class="font-light">+$400</span></label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Final Questions -->
+            <fieldset>
+              <legend
+                class="text-lg font-medium mb-2 pt-4 border-t"
+                style="color: var(--signature-grey)"
+              >
+                3. How did you find us?
+              </legend>
+              <div>
+                <input
+                  type="text"
+                  id="referral"
+                  name="referral"
+                  class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-transparent transition form-input"
+                  placeholder="e.g., Google, a friend, social media"
+                />
+              </div>
+            </fieldset>
+
+            <!-- Submission -->
+            <div class="pt-6 border-t">
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full btn-submit text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center space-x-2"
+              >
+                <span>Submit Project Inquiry</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-send-horizontal"
+                >
+                  <path d="m3 3 3 9-3 9 19-9Z" />
+                  <path d="M6 12h16" />
+                </svg>
+              </button>
+              <p
+                class="text-xs mt-4 text-center"
+                style="color: var(--signature-grey)"
+              >
+                Thank you for your interest! We'll review your submission and
+                get back to you within 1-2 business days to schedule a
+                consultation.
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Admin View -->
+        <div id="admin-view-container" class="hidden p-6 sm:p-8">
+          <h2
+            class="text-2xl font-semibold border-b pb-3 mb-6"
+            style="color: var(--deep-ocean-blue)"
+          >
+            Client Submissions
+          </h2>
+          <div id="submissions-list" class="space-y-6">
+            <!-- Submissions will be loaded here -->
+            <p style="color: var(--signature-grey)">No submissions yet.</p>
+          </div>
+          <button
+            id="refresh-btn"
+            class="mt-6 w-full text-gray-700 font-bold py-2 px-4 rounded-lg bg-gray-200 hover:bg-gray-300 transition-colors duration-300"
+          >
+            Refresh Submissions
+          </button>
+        </div>
+
+        <!-- Success/Error Modal -->
+        <div
+          id="modal"
+          class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4"
+        >
+          <div
+            class="bg-white rounded-lg shadow-xl p-8 max-w-sm mx-auto text-center"
+          >
+            <div id="modal-icon" class="mx-auto mb-4 w-16 h-16"></div>
+            <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+            <p id="modal-message" style="color: var(--signature-grey)"></p>
+            <button
+              id="modal-close"
+              class="mt-6 btn-submit text-white font-bold py-2 px-6 rounded-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto"
+      >
+        <p class="font-bold text-black">
+          Copyright &copy; 2025 The Grey Canvas. All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <script type="module">
+      // Firebase Imports
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import {
+        getAuth,
+        signInAnonymously,
+        onAuthStateChanged,
+        signInWithCustomToken,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        query,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+      // --- Firebase Configuration ---
+      const firebaseConfig =
+        typeof __firebase_config !== "undefined"
+          ? JSON.parse(__firebase_config)
+          : { apiKey: "DEMO", authDomain: "DEMO", projectId: "DEMO" };
+      const appId =
+        typeof __app_id !== "undefined" ? __app_id : "default-intake-form";
+
+      // --- Initialize Firebase ---
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // --- Global State ---
+      let currentUserId = null;
+      let isAuthReady = false;
+
+      // --- DOM Elements ---
+      const form = document.getElementById("client-intake-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const userIdEl = document.getElementById("userId");
+      const authStateEl = document.getElementById("auth-state");
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalMessage = document.getElementById("modal-message");
+      const modalIcon = document.getElementById("modal-icon");
+      const modalCloseBtn = document.getElementById("modal-close");
+
+      const showFormBtn = document.getElementById("show-form-btn");
+      const showAdminBtn = document.getElementById("show-admin-btn");
+      const intakeFormContainer = document.getElementById(
+        "intake-form-container"
+      );
+      const adminViewContainer = document.getElementById(
+        "admin-view-container"
+      );
+      const submissionsList = document.getElementById("submissions-list");
+      const refreshBtn = document.getElementById("refresh-btn");
+
+      // Color Variables from CSS
+      const colors = {
+        success: "#5CB85C", // Fresh Spring Green
+        error: "#d9534f", // A generic red for error
+      };
+
+      // --- Modal Logic ---
+      function showModal(type, title, message) {
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modalTitle.style.color =
+          type === "success" ? colors.success : colors.error;
+
+        if (type === "success") {
+          modalIcon.innerHTML = `<svg class="w-16 h-16" style="color: ${colors.success};" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+        } else {
+          modalIcon.innerHTML = `<svg class="w-16 h-16" style="color: ${colors.error};" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2 2m2-2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+        }
+
+        modal.classList.remove("hidden");
+      }
+
+      modalCloseBtn.addEventListener("click", () =>
+        modal.classList.add("hidden")
+      );
+
+      // --- Authentication ---
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          currentUserId = user.uid;
+          userIdEl.textContent = currentUserId;
+          authStateEl.textContent = "Authenticated";
+          isAuthReady = true;
+          console.log("Authenticated with UID:", currentUserId);
+          loadSubmissions();
+        } else {
+          authStateEl.textContent = "Not Authenticated. Trying to sign in...";
+          currentUserId = null;
+          isAuthReady = false;
+          try {
+            if (
+              typeof __initial_auth_token !== "undefined" &&
+              __initial_auth_token
+            ) {
+              await signInWithCustomToken(auth, __initial_auth_token);
+              console.log("Signed in with custom token.");
+            } else {
+              await signInAnonymously(auth);
+              console.log("Signed in anonymously.");
+            }
+          } catch (error) {
+            console.error("Authentication failed:", error);
+            authStateEl.textContent = "Authentication Failed";
+            showModal(
+              "error",
+              "Authentication Error",
+              "Could not establish a secure session. Please refresh the page."
+            );
+          }
+        }
+      });
+
+      // --- Firestore Logic ---
+      const submissionsCollectionPath = `/artifacts/${appId}/public/data/submissions`;
+
+      async function saveSubmission(data) {
+        if (!isAuthReady || !currentUserId) {
+          showModal(
+            "error",
+            "Not Ready",
+            "Please wait for authentication to complete before submitting."
+          );
+          return;
+        }
+        try {
+          const docRef = await addDoc(
+            collection(db, submissionsCollectionPath),
+            {
+              ...data,
+              submittedAt: new Date().toISOString(),
+              submitterId: currentUserId,
+            }
+          );
+          console.log("Document written with ID: ", docRef.id);
+          showModal(
+            "success",
+            "Inquiry Sent!",
+            "Thank you for reaching out. We will get back to you shortly."
+          );
+          form.reset();
+        } catch (error) {
+          console.error("Error adding document: ", error);
+          showModal(
+            "error",
+            "Submission Failed",
+            "There was an error saving your inquiry. Please try again."
+          );
+        }
+      }
+
+      async function loadSubmissions() {
+        if (!isAuthReady) {
+          console.log("Auth not ready, skipping submission load.");
+          return;
+        }
+        console.log("Loading submissions from:", submissionsCollectionPath);
+
+        try {
+          const q = query(collection(db, submissionsCollectionPath));
+          const querySnapshot = await getDocs(q);
+
+          submissionsList.innerHTML = "";
+
+          if (querySnapshot.empty) {
+            submissionsList.innerHTML = `<p style="color: var(--signature-grey);">No submissions yet.</p>`;
+            return;
+          }
+
+          const sortedDocs = querySnapshot.docs.sort(
+            (a, b) =>
+              new Date(b.data().submittedAt) - new Date(a.data().submittedAt)
+          );
+
+          sortedDocs.forEach((doc) => {
+            const submission = doc.data();
+            const submissionEl = document.createElement("div");
+            submissionEl.className = "p-4 border rounded-lg bg-gray-50";
+            submissionEl.innerHTML = `
+                        <div class="flex justify-between items-start">
+                           <h3 class="font-bold text-lg" style="color:var(--deep-ocean-blue);">${
+                             submission.name
+                           } <span class="text-sm font-normal" style="color:var(--signature-grey);">- ${
+              submission.company || "N/A"
+            }</span></h3>
+                           <span class="text-xs font-mono" style="color:var(--signature-grey);">${new Date(
+                             submission.submittedAt
+                           ).toLocaleString()}</span>
+                        </div>
+                        <p class="text-sm" style="color:var(--main-accent-pink);">${
+                          submission.email
+                        }</p>
+                        <div class="mt-4 pt-4 border-t space-y-2 text-sm">
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Package:</strong> ${
+                             submission.package || "N/A"
+                           }</p>
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Maintenance:</strong> ${
+                             submission.maintenance || "None"
+                           }</p>
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Add-ons:</strong> ${
+                             submission.addons && submission.addons.length
+                               ? submission.addons.join(", ")
+                               : "None"
+                           }</p>
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Description:</strong> ${
+                             submission.projectDescription || "N/A"
+                           }</p>
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Budget:</strong> ${
+                             submission.budget || "N/A"
+                           }</p>
+                           <p><strong class="font-medium" style="color:var(--signature-grey);">Submitter ID:</strong> <span class="font-mono text-xs">${
+                             submission.submitterId
+                           }</span></p>
+                        </div>
+                    `;
+            submissionsList.appendChild(submissionEl);
+          });
+        } catch (error) {
+          console.error("Error loading submissions:", error);
+          submissionsList.innerHTML =
+            '<p class="text-red-500">Error loading submissions. Check console for details.</p>';
+        }
+      }
+
+      // --- Event Listeners ---
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get("name"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          package: formData.get("package"),
+          maintenance: formData.get("maintenance"),
+          addons: formData.getAll("addons"),
+          projectDescription: formData.get("project-description"),
+          inspiration: formData.get("inspiration"),
+          budget: formData.get("budget"),
+          timeline: formData.get("timeline"),
+          referral: formData.get("referral"),
+        };
+
+        await saveSubmission(data);
+
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      });
+
+      // View toggling logic
+      showFormBtn.addEventListener("click", () => {
+        intakeFormContainer.classList.remove("hidden");
+        adminViewContainer.classList.add("hidden");
+        showFormBtn.className =
+          "px-4 py-2 rounded-l-md font-semibold focus:outline-none toggle-btn-active";
+        showAdminBtn.className =
+          "px-4 py-2 rounded-r-md font-semibold focus:outline-none toggle-btn-inactive";
+      });
+
+      showAdminBtn.addEventListener("click", () => {
+        adminViewContainer.classList.remove("hidden");
+        intakeFormContainer.classList.add("hidden");
+        showAdminBtn.className =
+          "px-4 py-2 rounded-r-md font-semibold focus:outline-none toggle-btn-active";
+        showFormBtn.className =
+          "px-4 py-2 rounded-l-md font-semibold focus-outline-none toggle-btn-inactive";
+        loadSubmissions();
+      });
+
+      refreshBtn.addEventListener("click", loadSubmissions);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --signature-grey: #7a7a7a;
+        --main-accent-pink: #e0218a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-image: url("https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #000000;
+      }
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+      }
+      .main-content-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 900px;
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .nav-link {
+        color: var(--signature-grey);
+        background: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        transition: color 0.3s, background-color 0.3s;
+        border: 1px solid #eee;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background-color: var(--main-accent-pink);
+        border-color: var(--main-accent-pink);
+      }
+      .btn-begin-canvas {
+        display: inline-block;
+        padding: 1rem 3rem;
+        border-radius: 9999px;
+        background-color: transparent;
+        color: #000000;
+        font-weight: 600;
+        font-size: 1.5rem;
+        border: 2px solid var(--main-accent-pink);
+        box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+      }
+      .btn-begin-canvas:hover {
+        background-color: rgba(224, 33, 138, 0.1);
+        box-shadow: 0 0 25px rgba(224, 33, 138, 0.7);
+        transform: scale(1.02);
+      }
+      .portfolio-item {
+        background-color: #f8f8f8;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center p-5 box-border">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <header
+        class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto"
+      >
+        <a
+          href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+          target="_blank"
+          ><img
+            src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds"
+            alt="thelogo"
+        /></a>
+        <nav
+          class="hidden lg:flex items-center space-x-2 text-base font-medium"
+        >
+          <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2"
+      >
+        <a
+          href="thegrey.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >The Grey Canvas Co.</a
+        >
+        <a
+          href="index.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Home</a
+        >
+        <a
+          href="services.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Services</a
+        >
+        <a
+          href="about.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >About</a
+        >
+        <a
+          href="portfolio.html"
+          class="block py-2 px-4 text-sm nav-link active text-center mb-2"
+          >Portfolio</a
+        >
+        <a
+          href="blog.html"
+          class="block py-2 px-4 text-sm nav-link text-center mb-2"
+          >Blog</a
+        >
+        <a
+          href="contact.html"
+          class="block py-2 px-4 text-sm nav-link text-center"
+          >Contact</a
+        >
+      </div>
+
+      <!-- Main Content Container -->
+      <main class="main-content-container mx-auto">
+        <h1 class="text-4xl md:text-5xl font-playfair mb-4">
+          The <span style="color: #7a7a7a">Grey</span>
+          <span style="color: #e0218a">Canvas</span> Portfolio
+        </h1>
+        <p
+          class="text-lg max-w-3xl mx-auto"
+          style="color: var(--signature-grey)"
+        >
+          Explore a growing portfolio of custom websites and digital solutions
+          built by a freelance web designer in DFW—each crafted with your goals
+          and industry in mind.
+        </p>
+
+        <div class="mt-12 border-t pt-8 w-full">
+          <h2 class="text-2xl font-playfair font-bold">Project Highlights</h2>
+          <div
+            class="mt-6 text-center p-8 rounded-lg"
+            style="background-color: #f8f8f8"
+          >
+            <h3 class="text-xl font-semibold">Content Coming Soon!</h3>
+            <p class="mt-2" style="color: var(--signature-grey)">
+              This section will soon feature before-and-after shots, live links,
+              and case studies.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 text-left max-w-3xl mx-auto space-y-4"
+          style="color: #000000"
+        >
+          <p>
+            From contractors and real estate agents to freelancers and creative
+            entrepreneurs, The Grey Canvas helps small businesses across Texas
+            establish a strong, mobile-friendly, and conversion-driven web
+            presence. As a solo
+            <strong style="color: #e0218a"
+              >freelance web designer based in DFW,</strong
+            >
+            Krysta McAlister specializes in building websites that look
+            professional, perform beautifully, and are easy for you to manage.
+          </p>
+          <p>
+            Whether you're in need of a
+            <strong style="color: #e0218a"
+              >custom junior developer in Dallas,</strong
+            >
+            an
+            <strong style="color: #e0218a"
+              >affordable website design in the DFW, Denton,</strong
+            >
+            and <strong style="color: #e0218a">Greenville areas,</strong> or
+            someone who understands the unique needs of your trade, this
+            portfolio will soon showcase real examples of websites tailored to
+            industries like:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pl-4 text-black">
+            <li>Construction and Contracting</li>
+            <li>Real Estate</li>
+            <li>Mechanics and Automotive Services</li>
+            <li>Electricians and Skilled Trades</li>
+            <li>Creative Freelancers and Startups</li>
+          </ul>
+          <p>
+            All projects reflect Krysta’s commitment to clean code, SEO best
+            practices, and user-friendly design—optimized for search engines and
+            built with heart.
+          </p>
+        </div>
+
+        <div class="mt-12 w-full border-t pt-8">
+          <p class="font-playfair text-xl italic mb-6">
+            <span style="color: #000000">Real</span>
+            <span style="color: #7a7a7a">Projects</span>.
+            <span style="color: #000000">Real </span
+            ><span style="color: #e0218a">Results</span>.
+            <span style="color: #000000">Custom</span>
+            <span style="color: #7a7a7a">Web Design</span>
+            <span style="color: #000000">Built for</span>
+            <span style="color: #e0218a">Texas Small Businesses</span>.
+          </p>
+          <p class="text-lg mb-8" style="color: var(--signature-grey)">
+            Ready to start your own project? Let’s build a site your business
+            can grow with.
+          </p>
+          <a href="intake.html" class="btn-begin-canvas">Begin Your Canvas</a>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer
+        class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto"
+      >
+        <p class="font-bold text-black">
+          Copyright &copy; 2025 The Grey Canvas. All rights reserved.
+        </p>
+      </footer>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,532 @@
+{% extends "base.html" %}
+
+{% block title %}Project Progress Tracking - The Grey Canvas{% endblock %}
+
+{% block extra_css %}
+/* Project Progress Tracking Styles */
+.progress-container {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.85), rgba(31, 41, 55, 0.80));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.70));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-card:hover {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.85), rgba(31, 41, 55, 0.80));
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-inquiry { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+.status-planning { background: rgba(251, 191, 36, 0.2); color: #fde68a; border: 1px solid rgba(251, 191, 36, 0.3); }
+.status-development { background: rgba(147, 51, 234, 0.2); color: #c4b5fd; border: 1px solid rgba(147, 51, 234, 0.3); }
+.status-review { background: rgba(249, 115, 22, 0.2); color: #fed7aa; border: 1px solid rgba(249, 115, 22, 0.3); }
+.status-completed { background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
+.status-cancelled { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(31, 41, 55, 0.8);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e0218a, #f472b6);
+    border-radius: 6px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.timeline-container {
+    background: rgba(31, 41, 55, 0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.timeline-event {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-event:last-child {
+    border-bottom: none;
+}
+
+.timeline-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba(224, 33, 138, 0.2);
+    border: 2px solid rgba(224, 33, 138, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-description {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-date {
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.project-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(224, 33, 138, 0.10));
+    border: 1px solid rgba(224, 33, 138, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: rgba(224, 33, 138, 0.2);
+    color: #e0218a;
+    border: 1px solid rgba(224, 33, 138, 0.3);
+}
+
+.btn-primary:hover {
+    background: rgba(224, 33, 138, 0.3);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.3);
+    color: #ffffff;
+}
+
+.overdue-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.filter-tabs {
+    display: flex;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 8px;
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: #9ca3af;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.filter-tab.active {
+    background: rgba(224, 33, 138, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(224, 33, 138, 0.3);
+}
+
+.filter-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .project-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .project-actions {
+        justify-content: center;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-7xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-4">
+            Project Progress Tracking
+        </h1>
+        <p class="text-lg text-gray-300 mb-6">
+            Visual timeline and progress monitoring for client projects
+        </p>
+    </div>
+
+    <!-- Project Statistics -->
+    <div class="project-stats">
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ projects|length }}</div>
+            <div class="text-sm text-gray-300">Total Projects</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ active_projects }}</div>
+            <div class="text-sm text-gray-300">Active Projects</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ completed_projects }}</div>
+            <div class="text-sm text-gray-300">Completed</div>
+        </div>
+        <div class="stat-card">
+            <div class="text-3xl font-bold text-white mb-2">{{ overdue_projects }}</div>
+            <div class="text-sm text-gray-300">Overdue</div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="progress-container mb-8">
+        <h2 class="text-xl font-bold text-white mb-4">Quick Actions</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#" onclick="showCreateProjectModal()" class="btn-action btn-primary text-center">
+                Create Project
+            </a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn-action btn-secondary text-center">
+                Manage Inquiries
+            </a>
+            <a href="{{ url_for('admin_console') }}" class="btn-action btn-secondary text-center">
+                Admin Console
+            </a>
+            <a href="#" onclick="exportProjects()" class="btn-action btn-secondary text-center">
+                Export Data
+            </a>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterProjects('all')">
+            All ({{ projects|length }})
+        </button>
+        <button class="filter-tab" onclick="filterProjects('active')">
+            Active ({{ active_projects }})
+        </button>
+        <button class="filter-tab" onclick="filterProjects('completed')">
+            Completed ({{ completed_projects }})
+        </button>
+        <button class="filter-tab" onclick="filterProjects('overdue')">
+            Overdue ({{ overdue_projects }})
+        </button>
+    </div>
+
+    <!-- Projects List -->
+    <div id="projects-container">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="project-card" data-status="{{ project.status }}" data-overdue="{{ project.is_overdue() }}">
+                {% if project.is_overdue() %}
+                <div class="overdue-badge">Overdue</div>
+                {% endif %}
+                
+                <div class="project-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1">{{ project.project_name }}</h3>
+                        <p class="text-gray-300 mb-2">{{ project.client_name }}</p>
+                        <p class="text-sm text-gray-400">{{ project.get_status_display() }}</p>
+                    </div>
+                    <div class="status-badge status-{{ project.status }}">
+                        {{ project.get_status_display() }}
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ project.progress_percentage }}%"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-400 mb-4">
+                    <span>Progress: {{ project.progress_percentage }}%</span>
+                    <span>{{ project.days_since_inquiry() }} days since inquiry</span>
+                </div>
+
+                <!-- Project Details -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <div class="text-sm text-gray-400 mb-1">Project Type</div>
+                        <div class="text-white">{{ project.project_type|title }}</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-400 mb-1">Timeline</div>
+                        <div class="text-white">{{ project.timeline or 'Not specified' }}</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-400 mb-1">Budget</div>
+                        <div class="text-white">{{ project.budget or 'Not specified' }}</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-400 mb-1">Current Phase</div>
+                        <div class="text-white">{{ project.current_phase or 'Not set' }}</div>
+                    </div>
+                </div>
+
+                {% if project.next_milestone %}
+                <div class="mb-4">
+                    <div class="text-sm text-gray-400 mb-1">Next Milestone</div>
+                    <div class="text-pink-300">{{ project.next_milestone }}</div>
+                </div>
+                {% endif %}
+
+                <!-- Recent Timeline Events -->
+                {% set recent_events = project.timeline_events.order_by(project.timeline_events.property.mapper.class_.event_date.desc()).limit(3).all() %}
+                {% if recent_events %}
+                <div class="timeline-container">
+                    <h3 class="text-white font-semibold mb-3">Recent Activity</h3>
+                    {% for event in recent_events %}
+                    <div class="timeline-event">
+                        <div class="timeline-icon">{{ event.get_event_icon() }}</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">{{ event.title }}</div>
+                            {% if event.description %}
+                            <div class="timeline-description">{{ event.description }}</div>
+                            {% endif %}
+                            <div class="timeline-date">{{ event.format_date() }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Project Actions -->
+                <div class="project-actions">
+                    <a href="#" onclick="viewProjectTimeline({{ project.id }})" class="btn-action btn-primary">
+                        View Timeline
+                    </a>
+                    <a href="#" onclick="updateProjectStatus({{ project.id }})" class="btn-action btn-secondary">
+                        Update Status
+                    </a>
+                    <a href="#" onclick="addTimelineEvent({{ project.id }})" class="btn-action btn-secondary">
+                        Add Event
+                    </a>
+                    {% if project.website_url %}
+                    <a href="{{ project.website_url }}" target="_blank" class="btn-action btn-secondary">
+                        Visit Site
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-gray-400 mb-2">No Projects Yet</h3>
+            <p class="text-gray-500 mb-4">Create your first project to start tracking progress</p>
+            <button onclick="showCreateProjectModal()" class="btn-action btn-primary">
+                Create Project
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+<!-- Project Modal will be added via JavaScript -->
+<div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 backdrop-blur-sm">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="progress-container max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Project Details</h3>
+                <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="projectModalContent" class="text-white">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Filter functionality
+function filterProjects(type) {
+    // Update active tab
+    document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Filter projects
+    const projects = document.querySelectorAll('.project-card');
+    projects.forEach(project => {
+        const status = project.dataset.status;
+        const isOverdue = project.dataset.overdue === 'True';
+        
+        if (type === 'all') {
+            project.style.display = 'block';
+        } else if (type === 'active' && !['completed', 'cancelled'].includes(status)) {
+            project.style.display = 'block';
+        } else if (type === 'completed' && status === 'completed') {
+            project.style.display = 'block';
+        } else if (type === 'overdue' && isOverdue) {
+            project.style.display = 'block';
+        } else {
+            project.style.display = 'none';
+        }
+    });
+}
+
+// Modal functions
+function viewProjectTimeline(projectId) {
+    // Implementation will be added with backend routes
+    console.log('View timeline for project:', projectId);
+}
+
+function updateProjectStatus(projectId) {
+    // Implementation will be added with backend routes
+    console.log('Update status for project:', projectId);
+}
+
+function addTimelineEvent(projectId) {
+    // Implementation will be added with backend routes
+    console.log('Add event for project:', projectId);
+}
+
+function showCreateProjectModal() {
+    // Implementation will be added with backend routes
+    console.log('Show create project modal');
+}
+
+function closeProjectModal() {
+    document.getElementById('projectModal').classList.add('hidden');
+}
+
+function exportProjects() {
+    // Implementation will be added with backend routes
+    console.log('Export projects');
+}
+
+// Close modal when clicking outside
+document.getElementById('projectModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeProjectModal();
+    }
+});
+</script>
+{% endblock %}

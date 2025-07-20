@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}About The Grey Canvas Co. - Company Story{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Learn about The Grey Canvas, a DFW-based web design studio creating custom websites for Texas small businesses. Founded on passion and results.">
+{% endblock %}
+
+{% block extra_css %}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+/* Home page specific styles */
+.home-section {
+    margin-bottom: 4rem;
+}
+
+.home-headline {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
+                 1px 1px 2px rgba(0, 0, 0, 0.9),
+                 0 0 20px rgba(224, 33, 138, 0.3);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.home-tagline {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
+                 1px 1px 2px rgba(0, 0, 0, 0.9),
+                 0 0 20px rgba(224, 33, 138, 0.3);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.section-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-text {
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <!-- Back to About Button -->
+    <div class="mb-8">
+        <a href="{{ url_for('about') }}" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span class="font-alice text-lg" style="color: #7A7A7A;">Back to About</span>
+        </a>
+    </div>
+
+    <!-- Header matching owner page style -->
+    <h1 class="text-4xl md:text-5xl font-playfair mb-8">
+        The <span style="color: #7A7A7A;">Grey</span> <span style="color: #e0218a;">Canvas</span>: Company Story
+    </h1>
+    
+    <!-- Image Section matching owner page style -->
+    <div class="mb-8">
+        <img src="{{ url_for('static', filename='designer.png') }}" alt="The Grey Canvas Company Story" class="w-80 h-auto mx-auto rounded-lg shadow-lg"/>
+    </div>
+
+    <!-- Company Story Section -->
+    <div class="home-section">
+        <div class="section-content">
+            <h2 class="section-title" style="font-family: 'Playfair Display', serif;">The <span style="color: #e0218a;">Story</span></h2>
+            <p class="section-text" style="font-family: 'Times New Roman', serif;">
+                The Grey Canvas was founded with a simple yet powerful vision: every small business deserves a professional, beautiful website that helps them grow. Based in the heart of the Dallas-Fort Worth area, I specialize in creating custom digital solutions that bridge the gap between stunning design and powerful functionality.
+            </p>
+            <p class="section-text" style="font-family: 'Times New Roman', serif;">
+                I believe that great websites aren't just about beautiful design—they're about understanding your business, your goals, and your customers. Every project begins with listening. I take the time to understand what makes your business unique, what challenges you face, and what success looks like for you.
+            </p>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

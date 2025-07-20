@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",                       // Good: Modern JS output
+        "module": "commonjs",                     // Good for Node.js; use "ESNext" for ESM projects
+        "lib": [
+            "DOM",
+            "ES2020"
+        ],                                        // Good: Covers browser and modern JS features
+        "strict": true,                           // Excellent: Enables all strict type checks
+        "esModuleInterop": true,                  // Good: Allows default imports from CommonJS
+        "skipLibCheck": true,                     // Good: Faster builds, but may hide type issues in dependencies
+        "forceConsistentCasingInFileNames": true, // Good: Prevents case-related bugs
+        "outDir": "dist",                         // Good: Keeps build output separate
+        "rootDir": "src"                          // Good: Keeps source organized
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

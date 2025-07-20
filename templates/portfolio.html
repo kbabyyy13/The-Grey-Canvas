@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="View the portfolio of a freelance web designer in DFW. See custom websites built for construction, real estate, and other Texas small businesses.">
+{% endblock %}
+
+{% block extra_css %}
+/* Modern table styling with glass-morphism effect */
+.portfolio-table-container {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.70));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.portfolio-table th {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.2), rgba(224, 33, 138, 0.1));
+    color: #ffffff;
+    font-weight: 700;
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(224, 33, 138, 0.3);
+}
+
+.portfolio-table td {
+    padding: 1.5rem 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.project-type {
+    font-weight: 700 !important;
+    font-size: 1.1rem;
+}
+
+.project-status {
+    color: #e0218a !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem;
+}
+
+/* Enhanced text styling for portfolio page */
+.portfolio-text {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+.portfolio-highlight {
+    color: #e0218a !important;
+    font-weight: 700;
+}
+
+.portfolio-statement {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.15), rgba(122, 122, 122, 0.15));
+    border: 2px solid rgba(224, 33, 138, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(224, 33, 138, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.portfolio-statement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(224, 33, 138, 0.05), rgba(122, 122, 122, 0.05));
+    z-index: -1;
+}
+
+.portfolio-statement .statement-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    line-height: 1.4;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    font-family: 'Playfair Display', serif;
+}
+
+.portfolio-statement .highlight-word {
+    font-weight: 900;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 768px) {
+    .portfolio-statement {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .portfolio-statement .statement-text {
+        font-size: 1.25rem;
+        line-height: 1.3;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Container -->
+<main class="main-content-container mx-auto">
+    <h1 class="text-4xl md:text-5xl font-playfair mb-4">
+        The <span style="color: #7a7a7a">Grey</span>
+        <span style="color: #e0218a">Canvas</span> Portfolio
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto" style="color: var(--signature-grey)">
+        Explore a growing portfolio of custom websites and digital solutions
+        built by a freelance web designer in DFW—each crafted with your goals
+        and industry in mind.
+    </p>
+
+    <!-- Project Highlights Table -->
+    <div class="mt-16">
+        <h2 class="text-3xl font-bold font-playfair text-center text-deep-black">
+            Project <span style="color: #e0218a;">Highlights</span>
+        </h2>
+        <div class="mt-8 mx-auto max-w-4xl">
+            <div class="portfolio-table-container">
+                <table class="portfolio-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Industry</th>
+                            <th scope="col">Project Type</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="project-type" style="color: #e0218a;">Construction</td>
+                            <td>Custom Business Website</td>
+                            <td class="project-status">Coming Soon</td>
+                        </tr>
+                        <tr>
+                            <td class="project-type" style="color: #e0218a;">Real Estate</td>
+                            <td>Portfolio & Lead Generation Site</td>
+                            <td class="project-status">In Development</td>
+                        </tr>
+                        <tr>
+                            <td class="project-type" style="color: #e0218a;">Automotive</td>
+                            <td>Service Booking Platform</td>
+                            <td class="project-status">Planning Phase</td>
+                        </tr>
+                        <tr>
+                            <td class="project-type" style="color: #e0218a;">Creative Services</td>
+                            <td>Portfolio & E-commerce</td>
+                            <td class="project-status">Case Study Ready</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-12 text-left max-w-3xl mx-auto space-y-4">
+        <p class="portfolio-text">
+            From contractors and real estate agents to freelancers and creative
+            entrepreneurs, The Grey Canvas helps small businesses across Texas
+            establish a strong, mobile-friendly, and conversion-driven web
+            presence. As a solo
+            <strong class="portfolio-highlight">freelance web designer based in DFW,</strong>
+            Krysta McAlister specializes in building websites that look
+            professional, perform beautifully, and are easy for you to manage.
+        </p>
+        <p class="portfolio-text">
+            Whether you're in need of a
+            <strong class="portfolio-highlight">custom junior developer in Dallas,</strong>
+            an
+            <strong class="portfolio-highlight">affordable website design in the DFW, Denton,</strong>
+            and <strong class="portfolio-highlight">Greenville areas,</strong> or
+            someone who understands the unique needs of your trade, this
+            portfolio will soon showcase real examples of websites tailored to
+            industries like:
+        </p>
+        <ul class="list-disc list-inside space-y-2 pl-4 portfolio-text">
+            <li><span class="portfolio-highlight">Construction and Contracting</span></li>
+            <li><span class="portfolio-highlight">Real Estate</span></li>
+            <li><span class="portfolio-highlight">Mechanics and Automotive Services</span></li>
+            <li><span class="portfolio-highlight">Electricians and Skilled Trades</span></li>
+            <li><span class="portfolio-highlight">Creative Freelancers and Startups</span></li>
+        </ul>
+        <p class="portfolio-text">
+            All projects reflect Krysta's commitment to <span class="portfolio-highlight">clean code, SEO best
+            practices,</span> and user-friendly design—optimized for search engines and
+            built with heart.
+        </p>
+    </div>
+
+    <div class="mt-12 w-full border-t pt-8">
+        <div class="portfolio-statement">
+            <p class="statement-text">
+                <span style="color: #ffffff;" class="highlight-word">Real</span>
+                <span style="color: #7a7a7a;" class="highlight-word">Projects</span>.
+                <span style="color: #ffffff;" class="highlight-word">Real</span> <span style="color: #e0218a;" class="highlight-word">Results</span>.
+                <span style="color: #ffffff;" class="highlight-word">Custom</span>
+                <span style="color: #7a7a7a;" class="highlight-word">Web Design</span>
+                <span style="color: #ffffff;" class="highlight-word">Built for</span>
+                <span style="color: #e0218a;" class="highlight-word">Texas Small Businesses</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

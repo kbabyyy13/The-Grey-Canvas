@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Consultation - The Grey Canvas</title>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --signature-grey: #7A7A7A;
+            --main-accent-pink: #E0218A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7790f35d-707a-415f-9fa1-97402990b0df.png?width=1920&height=1080&fit=bounds');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #000000;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        .main-content-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .nav-link {
+            color: var(--signature-grey);
+            background: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: color 0.3s, background-color 0.3s;
+            border: 1px solid #eee;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: var(--main-accent-pink);
+            border-color: var(--main-accent-pink);
+        }
+        .calendly-inline-widget {
+             min-width: 320px;
+             height: 700px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5 box-border">
+
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="w-full max-w-5xl flex justify-between items-center py-4 mx-auto">
+            <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/7e649dde-956f-4303-8c53-136d3f7fe233.png?width=180&height=180&fit=bounds" alt="thelogo"/></a>
+            <nav class="hidden lg:flex items-center space-x-2 text-base font-medium">
+                <a href="thegrey.html" class="nav-link">The Grey Canvas Co.</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+         <div id="mobile-menu" class="hidden lg:hidden bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl mx-auto mt-2">
+            <a href="thegrey.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">The Grey Canvas Co.</a>
+            <a href="index.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">About</a>
+            <a href="portfolio.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Portfolio</a>
+            <a href="blog.html" class="block py-2 px-4 text-sm nav-link text-center mb-2">Blog</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm nav-link text-center">Contact</a>
+        </div>
+
+        <!-- Main Content Container -->
+        <main class="main-content-container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-playfair mb-4">
+                Schedule Your <span style="color: #e0218a;">Free</span> <span style="color: #7A7A7A;">Consultation</span>
+            </h1>
+            <p class="text-lg max-w-3xl mx-auto" style="color: var(--signature-grey);">
+                Let's discuss your project! Use the calendar below to book a free 30-minute discovery call. We'll talk about your goals, ideas, and how The Grey Canvas can help.
+            </p>
+
+            <div class="mt-8 w-full">
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/d/cv2v-tv7-zfk/30-minute-meeting" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+                <p class="text-xs mt-2" style="color: var(--signature-grey);">Remember to replace "your-username" in the data-url with your actual Calendly link.</p>
+            </div>
+            
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-5xl flex flex-col items-center py-6 text-sm mx-auto">
+            <p class="font-bold text-black">Copyright &copy; 2025 The Grey Canvas. All rights reserved.</p>
+        </footer>
+    </div>
+     <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

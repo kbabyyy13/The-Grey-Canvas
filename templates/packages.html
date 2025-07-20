@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Website Packages - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Professional website packages for Texas small businesses. Essential, Professional, and Premium options starting at $1,500. DFW web developer.">
+{% endblock %}
+
+{% block extra_css %}
+.blog-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(224, 33, 138, 0.3);
+}
+
+.package-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(224, 33, 138, 0.2);
+    color: var(--main-accent-pink);
+    border: 1px solid rgba(224, 33, 138, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.read-more-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--main-accent-pink), #c01e7a);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.read-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(224, 33, 138, 0.4);
+}
+
+.package-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--main-accent-pink);
+    margin-bottom: 1rem;
+}
+
+.package-timeline {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Back button styling */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .blog-card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-4">
+            <span style="color: #7A7A7A;">Website</span> <span style="color: #e0218a;">Packages</span> <span class="text-white">for</span> <span style="color: #7A7A7A;">Texas</span> <span style="color: #e0218a;">Small</span> <span class="text-white">Businesses</span>
+        </h1>
+        <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+            Choose the perfect website package for your business needs. Each package includes detailed planning, custom design, professional development, and comprehensive support to ensure your online success.
+        </p>
+    </div>
+
+    <!-- Back to Services Button -->
+    <div class="text-center mb-8">
+        <a href="{{ url_for('services') }}" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e0218a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-all">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span class="font-alice text-lg" style="color: #7A7A7A;">Back to Services</span>
+        </a>
+    </div>
+
+    <!-- Package Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Essential Package -->
+        <article class="blog-card">
+            <div class="package-timeline">
+                <span>Timeline: 2-4 Weeks</span>
+                <span>•</span>
+                <span>Starting at</span>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-3 font-playfair">
+                <span style="color: #e0218a;">Essential</span> <span style="color: #FFFFFF;">Package</span>
+            </h2>
+            
+            <div class="package-price">$1,500</div>
+            
+            <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                Perfect for new businesses establishing their online presence with a professional, mobile-ready website.
+            </p>
+            
+            <div class="mb-4">
+                <span class="package-tag">3-5 Pages</span>
+                <span class="package-tag">SEO Ready</span>
+                <span class="package-tag">Mobile Responsive</span>
+            </div>
+            
+            <a href="{{ url_for('intake') }}" class="read-more-btn">
+                Get Started →
+            </a>
+        </article>
+
+        <!-- Professional Package -->
+        <article class="blog-card" style="border-color: rgba(224, 33, 138, 0.5);">
+            <div class="package-timeline">
+                <span>Timeline: 3-4 Weeks</span>
+                <span>•</span>
+                <span>Most Popular</span>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-3 font-playfair">
+                <span style="color: #e0218a;">Professional</span> <span style="color: #FFFFFF;">Package</span>
+            </h2>
+            
+            <div class="package-price">$2,500</div>
+            
+            <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                For growing businesses ready to scale online with advanced features and comprehensive optimization.
+            </p>
+            
+            <div class="mb-4">
+                <span class="package-tag">5-8 Pages</span>
+                <span class="package-tag">Blog Setup</span>
+                <span class="package-tag">Advanced SEO</span>
+                <span class="package-tag">Social Integration</span>
+            </div>
+            
+            <a href="{{ url_for('intake') }}" class="read-more-btn">
+                Get Started →
+            </a>
+        </article>
+
+        <!-- Premium Package -->
+        <article class="blog-card">
+            <div class="package-timeline">
+                <span>Timeline: 4-6 Weeks</span>
+                <span>•</span>
+                <span>Custom Solutions</span>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-3 font-playfair">
+                <span style="color: #e0218a;">Premium</span> <span style="color: #FFFFFF;">Package</span>
+            </h2>
+            
+            <div class="package-price">$3,000-$5,000</div>
+            
+            <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                For established businesses seeking advanced functionality, e-commerce, and custom integrations.
+            </p>
+            
+            <div class="mb-4">
+                <span class="package-tag">8+ Pages</span>
+                <span class="package-tag">E-commerce</span>
+                <span class="package-tag">Custom Features</span>
+                <span class="package-tag">Training Included</span>
+            </div>
+            
+            <a href="{{ url_for('intake') }}" class="read-more-btn">
+                Get Started →
+            </a>
+        </article>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h2>
+            <p class="text-gray-300 mb-6">
+                Choose your perfect package or schedule a free consultation to discuss your project needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

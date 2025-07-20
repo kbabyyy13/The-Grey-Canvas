@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Website Packages - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Find the perfect website package for your business. From starter sites to e-commerce solutions, The Grey Canvas offers clear, value-driven pricing for DFW startups.">
+{% endblock %}
+
+{% block extra_css %}
+.package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-back:hover {
+    background-color: #000000;
+}
+.btn-back:hover span {
+    color: white;
+}
+.btn-back:hover svg {
+    stroke: white;
+}
+/* Keep "What's Included" titles black in dark mode */
+.whats-included-title {
+    color: #000000 !important;
+}
+/* Pink button text for Get Started buttons */
+.btn-begin-canvas {
+    color: #e0218a !important;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="w-full max-w-5xl main-content-container p-10 md:p-16 my-5 mx-auto">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-playfair text-white mb-6">
+            The <span style="color: #7A7A7A;">Grey</span> <span style="color: #e0218a;">Canvas</span> <span class="text-white">Services</span>
+        </h1>
+        <p class="mt-4 text-lg max-w-4xl mx-auto text-gray-300">
+            The Grey Canvas helps small businesses launch, grow, and thrive online through a perfect blend of stunning design, robust development, and collaborative partnership — at a price that makes sense.
+        </p>
+    </div>
+
+    <!-- The Creator's Suite Section -->
+    <div class="mb-16">
+        <div class="blog-card text-center">
+            <h2 class="text-3xl font-bold text-white mb-4 font-playfair">The Creator's Suite</h2>
+            <p class="text-gray-300 mb-6 max-w-3xl mx-auto">
+                Core website design packages tailored for different stages of business growth. From starter sites to full online stores.
+            </p>
+            <div class="flex justify-center">
+                <a href="{{ url_for('contact') }}" class="read-more-btn inline-flex items-center gap-2">
+                    View Packages 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance & Support Section -->
+    <div class="mb-16">
+        <div class="blog-card text-center">
+            <h2 class="text-3xl font-bold text-white mb-4 font-playfair">Maintenance & Support</h2>
+            <p class="text-gray-300 mb-6 max-w-3xl mx-auto">
+                Keep your website secure, updated, and performing at its best with The Grey Canvas's monthly care plans and optional add-ons.
+            </p>
+            <div class="flex justify-center">
+                <a href="{{ url_for('plans') }}" class="read-more-btn inline-flex items-center gap-2">
+                    View Plans 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Overview Section -->
+    <div class="mb-16">
+        <div class="blog-card text-center">
+            <h2 class="text-3xl font-bold text-white mb-4 font-playfair">Services Overview</h2>
+            <p class="text-gray-300 mb-6 max-w-3xl mx-auto">
+                Explore services from The Grey Canvas designed to fuel small business success
+            </p>
+            <div class="flex justify-center">
+                <a href="{{ url_for('services') }}" class="read-more-btn inline-flex items-center gap-2">
+                    View Services 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="mt-12">
+        <div class="blog-card text-center">
+            <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+            <p class="text-gray-300 mb-6">
+                Need help implementing what you read? Let's bring your site to life—book your free consult today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
