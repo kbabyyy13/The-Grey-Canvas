@@ -1151,6 +1151,29 @@ def newsletter_subscribe():
     # Redirect back to the page they came from or home (safely)
     return safe_redirect(request.referrer, 'index')
 
+@app.route('/test-sentry')
+def test_sentry():
+    """Test route to trigger Sentry error reporting - only for development"""
+    if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
+        flash('Error testing is disabled in production.', 'warning')
+        return redirect(url_for('index'))
+    
+    # This will trigger a Sentry error report
+    division_by_zero = 1 / 0
+    return "<p>This should never be reached</p>"
+
+@app.route('/test-sentry-message')
+def test_sentry_message():
+    """Test route to send a custom message to Sentry"""
+    if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
+        flash('Error testing is disabled in production.', 'warning')
+        return redirect(url_for('index'))
+    
+    import sentry_sdk
+    sentry_sdk.capture_message("Test message from The Grey Canvas", level="info")
+    flash('Test message sent to Sentry successfully!', 'success')
+    return redirect(url_for('index'))
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
