@@ -3,6 +3,12 @@ import logging
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+
+# Simple Sentry test configuration (commented out - use environment-based config below)
+# sentry_sdk.init(
+#     dsn="https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400",
+#     traces_sample_rate=1.0,
+# )
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
