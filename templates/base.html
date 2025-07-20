@@ -96,6 +96,19 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     
+    <!-- Hotjar User Identification Script -->
+    <script>
+        var userId = null; // Set to null for anonymous users, can be customized per user
+        window.hj('identify', userId, {
+            // Custom attributes for The Grey Canvas visitors
+            'Website Type': 'Business Website',
+            'Industry': 'Web Design Services',
+            'Location': 'Dallas-Fort Worth, Texas',
+            'Visit Date': new Date().toISOString(),
+            'Page Type': '{{ request.endpoint or "unknown" }}'
+        });
+    </script>
+    
     <!-- Enhanced Favicon - Bigger and more visually noticeable -->
     <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon.png') }}">
