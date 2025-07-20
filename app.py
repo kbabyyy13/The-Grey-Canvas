@@ -1,5 +1,8 @@
 import os
 import logging
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
@@ -14,6 +17,22 @@ class Base(DeclarativeBase):
 
 
 db = SQLAlchemy(model_class=Base)
+
+# Initialize Sentry SDK
+sentry_dsn = os.environ.get('SENTRY_DSN')
+if sentry_dsn:
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        integrations=[
+            FlaskIntegration(auto_enabling_integrations=False),
+            SqlalchemyIntegration()
+        ],
+        traces_sample_rate=0.1,  # Adjust based on your traffic
+        release=os.environ.get('SENTRY_RELEASE', 'development'),
+        environment=os.environ.get('SENTRY_ENVIRONMENT', 'development'),
+        attach_stacktrace=True,
+        send_default_pii=False  # Don't send personally identifiable information
+    )
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
