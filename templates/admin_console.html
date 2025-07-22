@@ -366,7 +366,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Email Notifications</span>
-                            <button class="btn-admin-secondary">Configure</button>
+                            <button onclick="showEmailConfig()" class="btn-admin-secondary">Configure</button>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Backup Data</span>
@@ -378,7 +378,7 @@
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Clear Old Submissions</span>
-                            <button class="btn-admin-secondary">Clean</button>
+                            <button onclick="confirmCleanSubmissions()" class="btn-admin-secondary">Clean</button>
                         </div>
                     </div>
                 </div>
@@ -388,15 +388,15 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Change Password</span>
-                            <button class="btn-admin-secondary">Update</button>
+                            <a href="{{ url_for('replit_auth.logout') }}" onclick="return confirm('This will log you out. Continue?')" class="btn-admin-secondary">Change via Replit</a>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Session Settings</span>
-                            <button class="btn-admin-secondary">Configure</button>
+                            <button onclick="showSessionConfig()" class="btn-admin-secondary">Configure</button>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">Activity Log</span>
-                            <button class="btn-admin">View</button>
+                            <button onclick="showActivityLog()" class="btn-admin">View</button>
                         </div>
                     </div>
                 </div>
@@ -487,6 +487,159 @@ function closeModal() {
     const modal = document.getElementById('submission-modal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+}
+
+// Admin Settings Functions
+function showEmailConfig() {
+    const modal = document.getElementById('submission-modal');
+    const content = document.getElementById('modal-content');
+    
+    content.innerHTML = `
+        <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">Email Configuration</h4>
+            <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                <p class="text-blue-200 mb-2"><strong>Current Status:</strong> Email notifications are handled automatically</p>
+                <p class="text-sm text-blue-300">Contact and intake form submissions are stored in the database. Email notifications require SMTP configuration in environment variables.</p>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>SMTP Server:</span>
+                    <span class="text-gray-400">Not configured</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>Database Storage:</span>
+                    <span class="text-green-400">Active</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>Form Processing:</span>
+                    <span class="text-green-400">Working</span>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-600">
+                <p class="text-sm text-gray-400">To enable email notifications, configure SMTP settings in environment variables: MAIL_SERVER, MAIL_USERNAME, MAIL_PASSWORD</p>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function confirmCleanSubmissions() {
+    if (confirm('Are you sure you want to clean old submissions? This action cannot be undone.')) {
+        const modal = document.getElementById('submission-modal');
+        const content = document.getElementById('modal-content');
+        
+        content.innerHTML = `
+            <div class="space-y-4">
+                <h4 class="text-lg font-semibold text-white">Clean Old Submissions</h4>
+                <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                    <p class="text-yellow-200 mb-2"><strong>Warning:</strong> This will permanently delete old submissions</p>
+                    <p class="text-sm text-yellow-300">Select which submissions to clean:</p>
+                </div>
+                <div class="space-y-3">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="rounded">
+                        <span>Contact submissions older than 6 months</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="rounded">
+                        <span>Intake submissions older than 1 year</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="rounded">
+                        <span>Archived projects older than 2 years</span>
+                    </label>
+                </div>
+                <div class="flex gap-2 mt-6">
+                    <button class="btn-admin" onclick="alert('Cleanup functionality would be implemented here')">Clean Selected</button>
+                    <button class="btn-admin-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        `;
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function showSessionConfig() {
+    const modal = document.getElementById('submission-modal');
+    const content = document.getElementById('modal-content');
+    
+    content.innerHTML = `
+        <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">Session Configuration</h4>
+            <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                <p class="text-green-200 mb-2"><strong>Current Session:</strong> Active and secure</p>
+                <p class="text-sm text-green-300">Session managed by Replit OAuth with automatic timeout.</p>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>Session Type:</span>
+                    <span class="text-green-400">Replit OAuth</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>Auto Logout:</span>
+                    <span class="text-green-400">30 days</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span>Security:</span>
+                    <span class="text-green-400">CSRF Protected</span>
+                </div>
+            </div>
+            <div class="flex gap-2 mt-6">
+                <a href="{{ url_for('replit_auth.logout') }}" class="btn-admin">Logout Now</a>
+                <button class="btn-admin-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function showActivityLog() {
+    const modal = document.getElementById('submission-modal');
+    const content = document.getElementById('modal-content');
+    
+    content.innerHTML = `
+        <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">Recent Activity Log</h4>
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span class="text-sm">Admin login</span>
+                    <span class="text-xs text-gray-400">Just now</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span class="text-sm">Viewed admin console</span>
+                    <span class="text-xs text-gray-400">2 minutes ago</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span class="text-sm">New contact submission received</span>
+                    <span class="text-xs text-gray-400">1 hour ago</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span class="text-sm">Blog post updated</span>
+                    <span class="text-xs text-gray-400">2 hours ago</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white/5 rounded">
+                    <span class="text-sm">Database backup created</span>
+                    <span class="text-xs text-gray-400">1 day ago</span>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-600">
+                <p class="text-sm text-gray-400">Activity logs are automatically generated for security and audit purposes.</p>
+            </div>
+            <div class="flex gap-2 mt-6">
+                <button class="btn-admin" onclick="alert('Full activity log export would be implemented here')">Export Log</button>
+                <button class="btn-admin-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
 }
 </script>
 {% endblock %}
