@@ -1,0 +1,94 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utility classes for your brand colors */
+@layer utilities {
+  .text-signature-grey {
+    color: #6B7280;
+  }
+  
+  .text-main-pink {
+    color: #E0218A;
+  }
+  
+  .text-accessible-grey {
+    color: #4B5563;
+  }
+  
+  .bg-container {
+    background-color: #374151;
+  }
+  
+  .border-custom {
+    border-color: #4b5563;
+  }
+}
+
+/* Keep your existing custom styles that aren't utilities */
+.nav-link {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.nav-link:hover, .nav-link.active {
+  transform: translateY(-2px);
+}
+
+.btn-begin-canvas {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-begin-canvas:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Your other custom component styles */
+.main-content-container {
+  backdrop-filter: blur(12px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-container {
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card {
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.section-divider::before {
+  background: linear-gradient(90deg, #E0218A, #7A7A7A);
+}
+
+/* Keep your existing animations and complex styles */
+@keyframes twinkle {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+@keyframes favicon-pulse {
+  0% { 
+    filter: drop-shadow(0 0 3px rgba(224, 33, 138, 0.7)) 
+            brightness(1.2) 
+            contrast(1.3) 
+            saturate(1.4);
+  }
+  50% { 
+    filter: drop-shadow(0 0 6px rgba(224, 33, 138, 1.0)) 
+            brightness(1.4) 
+            contrast(1.5) 
+            saturate(1.6);
+  }
+  100% { 
+    filter: drop-shadow(0 0 3px rgba(224, 33, 138, 0.7)) 
+            brightness(1.2) 
+            contrast(1.3) 
+            saturate(1.4);
+  }
+}

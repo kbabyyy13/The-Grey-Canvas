@@ -4,5 +4,13 @@
     "@tailwindcss/postcss": "^4.1.11",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1"
+  },
+  "scripts": {
+    "build-css": "./build-css.sh",
+    "watch-css": "npx tailwindcss -i ./static/css/input.css -o ./static/css/optimized.css --watch"
   }
 }
