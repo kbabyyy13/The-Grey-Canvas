@@ -29,6 +29,80 @@ task = "shell.exec"
 args = "gunicorn --bind 0.0.0.0:5000 --reuse-port --reload main:app"
 waitForPort = 5000
 
+[[workflows.workflow]]
+name = "Code Quality Check"
+author = 34701515
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔍 Running code quality checks...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📏 Formatting with Black...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "black --check --diff ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📦 Sorting imports with isort...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "isort --check-only --diff ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔎 Linting with flake8...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flake8 ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🏷️  Type checking with mypy...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mypy app.py models.py routes.py forms.py --ignore-missing-imports"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"✅ Code quality check complete!\""
+
+[[workflows.workflow]]
+name = "Auto-Format Code"
+author = 34701515
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔧 Auto-formatting code...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📏 Formatting with Black...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "black ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📦 Sorting imports with isort...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "isort ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"✅ Code formatting complete!\""
+
 [[ports]]
 localPort = 5000
 externalPort = 80

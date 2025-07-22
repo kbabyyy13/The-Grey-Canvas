@@ -17,6 +17,39 @@ dependencies = [
     "pdfplumber>=0.11.7",
     "flask-dance>=7.1.0",
     "flask-login>=0.6.3",
+
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["app", "models", "routes", "forms"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
     "oauthlib>=3.3.1",
     "pyjwt[crypto]>=2.10.1",
     "cryptography>=45.0.5",
