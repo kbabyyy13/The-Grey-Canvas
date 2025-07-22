@@ -4,18 +4,20 @@ Comprehensive Code and Website Scan for The Grey Canvas
 Performs security analysis, code quality review, performance audit, and accessibility testing
 """
 
+import ast
+import hashlib
+import json
 import os
 import re
-import ast
-import sys
-import json
-import time
-import requests
-from datetime import datetime
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse
 import subprocess
-import hashlib
+import sys
+import time
+from datetime import datetime
+from urllib.parse import urljoin, urlparse
+
+import requests
+from bs4 import BeautifulSoup
+
 
 class ComprehensiveScan:
     def __init__(self, base_url="http://localhost:5000"):

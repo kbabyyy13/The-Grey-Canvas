@@ -4,9 +4,9 @@ Admin Management Utilities
 Provides command-line tools for managing admin users
 """
 
-import sys
-import os
 import argparse
+import os
+import sys
 from datetime import datetime, timedelta
 from getpass import getpass
 
@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from app import app, db
 from models import AdminUser
+
 
 def list_admins():
     """List all admin users"""

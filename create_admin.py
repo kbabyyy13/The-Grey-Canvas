@@ -4,8 +4,8 @@ Create first admin user for secure admin authentication
 Usage: python create_admin.py
 """
 
-import sys
 import os
+import sys
 from getpass import getpass
 
 # Add the project root to Python path
@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from app import app, db
 from models import AdminUser
+
 
 def create_admin_user():
     """Interactive script to create first admin user"""

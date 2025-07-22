@@ -1,6 +1,7 @@
 
 from models import User
 
+
 def get_user(user_id: str) -> dict:
     """
     Get user by ID and return as dictionary

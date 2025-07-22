@@ -1,10 +1,12 @@
-from app import db
+import secrets
 from datetime import datetime, timedelta
+
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
 from flask_login import UserMixin
 from sqlalchemy import UniqueConstraint
-from werkzeug.security import generate_password_hash, check_password_hash
-import secrets
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from app import db
 
 
 # Authentication models for Replit Auth

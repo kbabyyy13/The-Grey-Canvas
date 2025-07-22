@@ -1,22 +1,39 @@
+import logging
 from datetime import datetime, timedelta
-from flask import render_template, request, flash, redirect, url_for, make_response, session, jsonify
-from flask_mail import Message
+from urllib.parse import urljoin, urlparse
+
+from flask import (
+    flash,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_login import current_user
+from flask_mail import Message
 from markupsafe import escape
 from sqlalchemy import or_
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import joinedload
-from urllib.parse import urlparse, urljoin
 
-from app import app, mail, db
+from admin_auth import admin_auth
+from app import app, db, mail
 from forms import ContactForm, IntakeForm, NewsletterForm
 from models import (
-    ContactSubmission, IntakeSubmission, BlogPost, 
-    Project, ProjectTimelineEvent, User, OAuth, NewsletterSubscription, AdminUser
+    AdminUser,
+    BlogPost,
+    ContactSubmission,
+    IntakeSubmission,
+    NewsletterSubscription,
+    OAuth,
+    Project,
+    ProjectTimelineEvent,
+    User,
 )
-from replit_auth import require_login, make_replit_blueprint
-from admin_auth import admin_auth
-import logging
+from replit_auth import make_replit_blueprint, require_login
 
 # Register the authentication blueprints
 app.register_blueprint(make_replit_blueprint(), url_prefix="/auth")
@@ -245,7 +262,7 @@ def admin_login():
 def admin_dashboard():
     """Enhanced admin dashboard for managing inquiries"""
     from datetime import datetime, timedelta
-    
+
     # Get submission counts
     contact_count = ContactSubmission.query.count()
     intake_count = IntakeSubmission.query.count()
@@ -916,7 +933,7 @@ Disallow: /
 def sitemap():
     """Generate comprehensive XML sitemap for enhanced SEO and search engine crawling"""
     from datetime import datetime, timedelta
-    
+
     # Use request URL to get the actual domain (supports both dev and production)
     base_url = request.url_root.rstrip('/')
     
@@ -1009,7 +1026,7 @@ def sitemap():
 def export_data():
     """Export all data as XML"""
     from datetime import datetime
-    
+
     # Get all data from database
     contact_submissions = ContactSubmission.query.all()
     intake_submissions = IntakeSubmission.query.all()

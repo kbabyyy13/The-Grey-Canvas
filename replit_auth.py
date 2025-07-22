@@ -1,19 +1,19 @@
-import jwt
 import os
 import uuid
-import requests
 from functools import wraps
 from urllib.parse import urlencode
-from jwt import PyJWKClient
 
-from flask import g, session, redirect, request, render_template, url_for
+import jwt
+import requests
+from flask import g, redirect, render_template, request, session, url_for
 from flask_dance.consumer import (
     OAuth2ConsumerBlueprint,
     oauth_authorized,
     oauth_error,
 )
 from flask_dance.consumer.storage import BaseStorage
-from flask_login import LoginManager, login_user, logout_user, current_user
+from flask_login import LoginManager, current_user, login_user, logout_user
+from jwt import PyJWKClient
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 from sqlalchemy.exc import NoResultFound
 from werkzeug.local import LocalProxy

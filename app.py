@@ -1,8 +1,7 @@
-import os
 import logging
+import os
+
 import sentry_sdk
-from sentry_sdk.integrations.flask import FlaskIntegration
-from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
 # Simple Sentry test configuration (commented out - use environment-based config below)
 # sentry_sdk.init(
@@ -10,10 +9,12 @@ from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 #     traces_sample_rate=1.0,
 # )
 from flask import Flask
-from flask_wtf.csrf import CSRFProtect
-from flask_mail import Mail
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
+from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from sqlalchemy.orm import DeclarativeBase
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -95,7 +96,7 @@ login_manager.login_message_category = 'info'
 def load_user(user_id):
     """Load user for Flask-Login - supports both Replit users and Admin users"""
     from models import AdminUser, User
-    
+
     # Try to load as AdminUser first (for secure admin login)
     try:
         admin_user = AdminUser.query.get(int(user_id)) if user_id.isdigit() else None
@@ -119,5 +120,6 @@ from routes import *
 if __name__ == '__main__':
     # Development server run - Gunicorn handles production
     import os
+
     # Type ignore comment to suppress LSP diagnostic for production environment
     app.run(host='0.0.0.0', port=5000, debug=True)  # type: ignore

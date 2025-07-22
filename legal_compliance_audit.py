@@ -7,8 +7,10 @@ Comprehensive code review and compliance testing for Privacy Policy and Terms of
 import os
 import re
 from datetime import datetime
-from bs4 import BeautifulSoup
+
 import requests
+from bs4 import BeautifulSoup
+
 
 class LegalComplianceAudit:
     def __init__(self, base_url="http://localhost:5000"):

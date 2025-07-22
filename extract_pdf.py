@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-import pdfplumber
 import sys
+
+import pdfplumber
+
 
 def extract_text_from_pdf(pdf_path):
     try:

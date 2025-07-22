@@ -4,13 +4,15 @@ WCAG 2.2 Compliance Audit Script
 Performs comprehensive accessibility testing on The Grey Canvas website
 """
 
-import requests
-from bs4 import BeautifulSoup
-import re
 import json
-from urllib.parse import urljoin, urlparse
+import re
 import time
 from collections import defaultdict
+from urllib.parse import urljoin, urlparse
+
+import requests
+from bs4 import BeautifulSoup
+
 
 class WCAGAudit:
     def __init__(self, base_url="http://localhost:5000"):

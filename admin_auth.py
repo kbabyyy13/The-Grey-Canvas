@@ -3,14 +3,25 @@ Secure Admin Authentication System
 Provides customizable login URLs and strong password requirements
 """
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
-from flask_login import login_user, logout_user, login_required, current_user
-from werkzeug.security import generate_password_hash
-from models import AdminUser, db
-from datetime import datetime, timedelta
-import secrets
-import re
 import logging
+import re
+import secrets
+from datetime import datetime, timedelta
+
+from flask import (
+    Blueprint,
+    flash,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
+from flask_login import current_user, login_required, login_user, logout_user
+from werkzeug.security import generate_password_hash
+
+from models import AdminUser, db
 
 admin_auth = Blueprint('admin_auth', __name__)
 

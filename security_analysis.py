@@ -4,11 +4,12 @@ Security Analysis for The Grey Canvas
 Quick security assessment focused on critical vulnerabilities
 """
 
+import ast
 import os
 import re
-import ast
 import subprocess
 from datetime import datetime
+
 
 def check_critical_security():
     """Check for critical security vulnerabilities"""

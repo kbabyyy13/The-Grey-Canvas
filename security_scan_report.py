@@ -10,6 +10,7 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+
 class SecurityScanner:
     def __init__(self):
         self.issues = []

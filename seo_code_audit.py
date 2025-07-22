@@ -4,13 +4,15 @@ Comprehensive SEO & Code Review Audit for The Grey Canvas
 Analyzes all pages for SEO optimization, accessibility, performance, and code quality
 """
 
+import os
+import re
+import sys
+import time
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
-import time
-import re
-from datetime import datetime
-import sys
-import os
+
 
 class SEOCodeAudit:
     def __init__(self, base_url="http://localhost:5000"):
