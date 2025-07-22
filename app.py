@@ -25,7 +25,7 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 
 # Initialize Sentry SDK
-sentry_dsn = os.environ.get('SENTRY_DSN')
+sentry_dsn = os.environ.get('SENTRY_DSN') or "https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400"
 if sentry_dsn:
     # Determine environment-specific sampling rates
     environment = os.environ.get('SENTRY_ENVIRONMENT', 'development')
@@ -47,7 +47,7 @@ if sentry_dsn:
         release=os.environ.get('SENTRY_RELEASE', 'development'),
         environment=environment,
         attach_stacktrace=True,
-        send_default_pii=False,  # Keep PII protection enabled
+        send_default_pii=True,  # Enable PII data collection as requested
         before_send=lambda event, hint: event if environment != 'production' or not event.get('user', {}).get('ip_address') else {**event, 'user': {k: v for k, v in event.get('user', {}).items() if k != 'ip_address'}}
     )
 
