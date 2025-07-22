@@ -1,22 +1,50 @@
 import logging
 import os
 
-import sentry_sdk
-
-# Simple Sentry test configuration (commented out - use environment-based config below)
-# sentry_sdk.init(
-#     dsn="https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400",
-#     traces_sample_rate=1.0,
-# )
 from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
-from sentry_sdk.integrations.flask import FlaskIntegration
-from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from sqlalchemy.orm import DeclarativeBase
 from werkzeug.middleware.proxy_fix import ProxyFix
+
+# Initialize Sentry SDK early to avoid circular imports
+try:
+    import sentry_sdk
+    from sentry_sdk.integrations.flask import FlaskIntegration
+    from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+    
+    # Initialize Sentry SDK
+    sentry_dsn = os.environ.get('SENTRY_DSN')
+    if sentry_dsn:
+        # Determine environment-specific sampling rates
+        environment = os.environ.get('SENTRY_ENVIRONMENT', 'development')
+        if environment == 'production':
+            traces_sample_rate = 0.1  # 10% in production
+            profile_sample_rate = 0.1  # 10% profiling in production
+        else:
+            traces_sample_rate = 1.0   # 100% in development
+            profile_sample_rate = 1.0  # 100% profiling in development
+        
+        sentry_sdk.init(
+            dsn=sentry_dsn,
+            integrations=[
+                FlaskIntegration(),
+                SqlalchemyIntegration()
+            ],
+            traces_sample_rate=traces_sample_rate,
+            profiles_sample_rate=profile_sample_rate,
+            release=os.environ.get('SENTRY_RELEASE', 'development'),
+            environment=environment,
+            attach_stacktrace=True,
+            send_default_pii=True,
+            before_send=lambda event, hint: event if environment != 'production' or not event.get('user', {}).get('ip_address') else {**event, 'user': {k: v for k, v in event.get('user', {}).items() if k != 'ip_address'}}
+        )
+except ImportError:
+    # Sentry SDK not available, continue without it
+    print("Warning: Sentry SDK not available. Error tracking disabled.")
+    sentry_sdk = None
 
 
 class Base(DeclarativeBase):
@@ -24,33 +52,6 @@ class Base(DeclarativeBase):
 
 
 db = SQLAlchemy(model_class=Base)
-
-# Initialize Sentry SDK
-sentry_dsn = os.environ.get('SENTRY_DSN') or "https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400"
-if sentry_dsn:
-    # Determine environment-specific sampling rates
-    environment = os.environ.get('SENTRY_ENVIRONMENT', 'development')
-    if environment == 'production':
-        traces_sample_rate = 0.1  # 10% in production
-        profile_sample_rate = 0.1  # 10% profiling in production
-    else:
-        traces_sample_rate = 1.0   # 100% in development
-        profile_sample_rate = 1.0  # 100% profiling in development
-    
-    sentry_sdk.init(
-        dsn=sentry_dsn,
-        integrations=[
-            FlaskIntegration(),
-            SqlalchemyIntegration()
-        ],
-        traces_sample_rate=traces_sample_rate,
-        profiles_sample_rate=profile_sample_rate,
-        release=os.environ.get('SENTRY_RELEASE', 'development'),
-        environment=environment,
-        attach_stacktrace=True,
-        send_default_pii=True,  # Enable PII data collection as requested
-        before_send=lambda event, hint: event if environment != 'production' or not event.get('user', {}).get('ip_address') else {**event, 'user': {k: v for k, v in event.get('user', {}).items() if k != 'ip_address'}}
-    )
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)

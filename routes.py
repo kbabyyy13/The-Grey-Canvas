@@ -1187,9 +1187,12 @@ def test_sentry_message():
         flash('Error testing is disabled in production.', 'warning')
         return redirect(url_for('index'))
     
-    import sentry_sdk
-    sentry_sdk.capture_message("Test message from The Grey Canvas", level="info")
-    flash('Test message sent to Sentry successfully!', 'success')
+    try:
+        import sentry_sdk
+        sentry_sdk.capture_message("Test message from The Grey Canvas", level="info")
+        flash('Test message sent to Sentry successfully!', 'success')
+    except ImportError:
+        flash('Sentry SDK not available for testing.', 'warning')
     return redirect(url_for('index'))
 
 
