@@ -257,8 +257,8 @@
     </div>
 
     {% if posts and posts.items %}
-        <!-- Blog Posts Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Blog Posts Grid - Optimized for 6 posts per page -->
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {% for post in posts.items %}
                 <article class="blog-card {% if post.slug == 'future-of-web-design-2025' %}featured-blog-card{% endif %}">
                     {% if post.slug == 'future-of-web-design-2025' %}
@@ -334,40 +334,45 @@
             {% endfor %}
         </div>
 
-        <!-- Pagination -->
+        <!-- Enhanced Pagination -->
         {% if posts.pages > 1 %}
-            <div class="pagination">
+            <nav class="pagination" role="navigation" aria-label="Blog pagination">
                 {% if posts.has_prev %}
-                    <a href="{{ url_for('blog', page=posts.prev_num) }}" class="pagination-btn prev">
+                    <a href="{{ url_for('blog', page=posts.prev_num) }}" 
+                       class="pagination-btn prev"
+                       aria-label="Go to previous page">
                         <span>← Previous</span>
                     </a>
                 {% endif %}
                 
                 <div class="pagination-numbers">
-                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
                         {% if page_num %}
                             {% if page_num != posts.page %}
-                                <a href="{{ url_for('blog', page=page_num) }}">{{ page_num }}</a>
+                                <a href="{{ url_for('blog', page=page_num) }}" 
+                                   aria-label="Go to page {{ page_num }}">{{ page_num }}</a>
                             {% else %}
-                                <span class="current">{{ page_num }}</span>
+                                <span class="current" aria-current="page" aria-label="Current page">{{ page_num }}</span>
                             {% endif %}
                         {% else %}
-                            <span class="ellipsis">…</span>
+                            <span class="ellipsis" aria-hidden="true">…</span>
                         {% endif %}
                     {% endfor %}
                 </div>
                 
                 {% if posts.has_next %}
-                    <a href="{{ url_for('blog', page=posts.next_num) }}" class="pagination-btn next">
+                    <a href="{{ url_for('blog', page=posts.next_num) }}" 
+                       class="pagination-btn next"
+                       aria-label="Go to next page">
                         <span>Next →</span>
                     </a>
                 {% endif %}
-            </div>
+            </nav>
             
             <div class="pagination-info">
                 <p class="text-sm text-gray-400 text-center mt-4">
-                    Showing {{ ((posts.page - 1) * 5) + 1 }} - {{ ((posts.page - 1) * 5) + posts.items|length }} 
-                    of {{ posts.total }} posts
+                    Showing {{ ((posts.page - 1) * 6) + 1 }} - {{ ((posts.page - 1) * 6) + posts.items|length }} 
+                    of {{ posts.total }} posts (Page {{ posts.page }} of {{ posts.pages }})
                 </p>
             </div>
         {% endif %}

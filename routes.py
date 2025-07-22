@@ -198,13 +198,26 @@ def intake():
 @app.route('/blog')
 def blog():
     page = request.args.get('page', 1, type=int)
-    # Optimized query with selective column loading and index usage
-    posts = BlogPost.query.filter_by(published=True)\
-        .order_by(BlogPost.created_at.desc())\
-        .options(db.load_only(BlogPost.id, BlogPost.title, BlogPost.excerpt, 
-                             BlogPost.slug, BlogPost.created_at, BlogPost.author, 
-                             BlogPost.tags, BlogPost.featured_image))\
-        .paginate(page=page, per_page=5, error_out=False)
+    per_page = 6  # Optimized for better grid layout (divisible by 2 and 3)
+    
+    try:
+        # Optimized query with selective column loading and index usage
+        posts = BlogPost.query.filter_by(published=True)\
+            .order_by(BlogPost.created_at.desc())\
+            .options(db.load_only(BlogPost.id, BlogPost.title, BlogPost.excerpt, 
+                                 BlogPost.slug, BlogPost.created_at, BlogPost.author, 
+                                 BlogPost.tags, BlogPost.featured_image))\
+            .paginate(page=page, per_page=per_page, error_out=False)
+        
+        # If page number is too high, redirect to last page
+        if page > posts.pages and posts.pages > 0:
+            return redirect(url_for('blog', page=posts.pages))
+            
+    except SQLAlchemyError as e:
+        logging.error(f'Database error loading blog posts: {e}')
+        flash('Error loading blog posts. Please refresh the page.', 'error')
+        # Return empty pagination object for graceful error handling
+        posts = BlogPost.query.filter_by(published=True).paginate(page=1, per_page=per_page, error_out=False)
     
     # Set cache headers for better performance
     response = make_response(render_template('blog.html', posts=posts))
