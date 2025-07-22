@@ -1,4 +1,3 @@
-import os
 from datetime import datetime, timedelta
 from flask import render_template, request, flash, redirect, url_for, make_response, session, jsonify
 from flask_mail import Message
@@ -199,26 +198,13 @@ def intake():
 @app.route('/blog')
 def blog():
     page = request.args.get('page', 1, type=int)
-    per_page = 6  # Optimized for better grid layout (divisible by 2 and 3)
-    
-    try:
-        # Optimized query with selective column loading and index usage
-        posts = BlogPost.query.filter_by(published=True)\
-            .order_by(BlogPost.created_at.desc())\
-            .options(db.load_only(BlogPost.id, BlogPost.title, BlogPost.excerpt, 
-                                 BlogPost.slug, BlogPost.created_at, BlogPost.author, 
-                                 BlogPost.tags, BlogPost.featured_image))\
-            .paginate(page=page, per_page=per_page, error_out=False)
-        
-        # If page number is too high, redirect to last page
-        if page > posts.pages and posts.pages > 0:
-            return redirect(url_for('blog', page=posts.pages))
-            
-    except SQLAlchemyError as e:
-        logging.error(f'Database error loading blog posts: {e}')
-        flash('Error loading blog posts. Please refresh the page.', 'error')
-        # Return empty pagination object for graceful error handling
-        posts = BlogPost.query.filter_by(published=True).paginate(page=1, per_page=per_page, error_out=False)
+    # Optimized query with selective column loading and index usage
+    posts = BlogPost.query.filter_by(published=True)\
+        .order_by(BlogPost.created_at.desc())\
+        .options(db.load_only(BlogPost.id, BlogPost.title, BlogPost.excerpt, 
+                             BlogPost.slug, BlogPost.created_at, BlogPost.author, 
+                             BlogPost.tags, BlogPost.featured_image))\
+        .paginate(page=page, per_page=5, error_out=False)
     
     # Set cache headers for better performance
     response = make_response(render_template('blog.html', posts=posts))
@@ -704,7 +690,6 @@ def add_first_post():
     try:
         db.session.add(first_post)
         db.session.commit()
-        clear_sitemap_cache()  # Clear cache so new post appears in sitemap
         flash('First blog post added successfully!', 'success')
     except SQLAlchemyError as e:
         db.session.rollback()
@@ -828,7 +813,6 @@ def add_featured_post():
     try:
         db.session.add(featured_post)
         db.session.commit()
-        clear_sitemap_cache()  # Clear cache so new post appears in sitemap
         flash('Featured blog post added successfully!', 'success')
     except SQLAlchemyError as e:
         db.session.rollback()
@@ -920,32 +904,10 @@ Disallow: /
     response.headers['Cache-Control'] = 'public, max-age=86400'  # Cache for 24 hours
     return response
 
-# Sitemap cache variables
-_sitemap_cache = None
-_sitemap_cache_time = None
-_sitemap_cache_duration = 3600  # 1 hour in seconds
-
-def clear_sitemap_cache():
-    """Clear the sitemap cache to force regeneration"""
-    global _sitemap_cache, _sitemap_cache_time
-    _sitemap_cache = None
-    _sitemap_cache_time = None
-
 @app.route('/sitemap.xml')
 def sitemap():
     """Generate comprehensive XML sitemap for enhanced SEO and search engine crawling"""
     from datetime import datetime, timedelta
-    
-    global _sitemap_cache, _sitemap_cache_time
-    
-    # Check if we have a valid cached sitemap
-    current_time = datetime.now()
-    if (_sitemap_cache and _sitemap_cache_time and 
-        (current_time - _sitemap_cache_time).total_seconds() < _sitemap_cache_duration):
-        response = make_response(_sitemap_cache)
-        response.headers['Content-Type'] = 'application/xml; charset=utf-8'
-        response.headers['Cache-Control'] = 'public, max-age=3600'
-        return response
     
     # Use request URL to get the actual domain (supports both dev and production)
     base_url = request.url_root.rstrip('/')
@@ -1027,10 +989,6 @@ def sitemap():
         sitemap_xml += '  </url>\n'
     
     sitemap_xml += '</urlset>'
-    
-    # Cache the generated sitemap
-    _sitemap_cache = sitemap_xml
-    _sitemap_cache_time = current_time
     
     # Create response with proper headers for search engines
     response = make_response(sitemap_xml)
@@ -1193,6 +1151,7 @@ def newsletter_subscribe():
 @app.route('/test-sentry')
 def test_sentry():
     """Test route to trigger Sentry error reporting - only for development"""
+    import os
     if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
         flash('Error testing is disabled in production.', 'warning')
         return redirect(url_for('index'))
@@ -1204,6 +1163,7 @@ def test_sentry():
 @app.route('/test-sentry-message')
 def test_sentry_message():
     """Test route to send a custom message to Sentry"""
+    import os
     if os.environ.get('SENTRY_ENVIRONMENT') == 'production':
         flash('Error testing is disabled in production.', 'warning')
         return redirect(url_for('index'))
