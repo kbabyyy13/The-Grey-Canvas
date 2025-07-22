@@ -125,6 +125,14 @@ def contact():
 def thegrey():
     return render_template('thegrey.html')
 
+@app.route('/privacy')
+def privacy_policy():
+    return render_template('privacy_policy.html')
+
+@app.route('/terms')
+def terms_of_service():
+    return render_template('terms_of_service.html')
+
 @app.route('/packages')
 def packages():
     return render_template('packages.html')
@@ -1066,13 +1074,7 @@ def export_data():
     response.headers['Content-Disposition'] = f'attachment; filename=grey_canvas_data_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xml'
     return response
 
-@app.route('/privacy-policy')
-def privacy_policy():
-    return render_template('privacy_policy.html')
 
-@app.route('/terms-of-service')
-def terms_of_service():
-    return render_template('terms_of_service.html')
 
 @app.route('/newsletter/subscribe', methods=['POST'])
 def newsletter_subscribe():
