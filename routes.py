@@ -1173,6 +1173,25 @@ def test_sentry_message():
     flash('Test message sent to Sentry successfully!', 'success')
     return redirect(url_for('index'))
 
+@app.route('/.well-known/pki-validation/<filename>')
+def ssl_validation(filename):
+    """Serve SSL certificate validation files"""
+    import os
+    from flask import send_from_directory
+    
+    # Security check - only allow specific validation filename
+    if filename != '0DFDA1F53A812AE06ED41AEB0678E198.txt':
+        return "File not found", 404
+    
+    validation_dir = os.path.join(app.root_path, '.well-known', 'pki-validation')
+    
+    try:
+        response = send_from_directory(validation_dir, filename, mimetype='text/plain')
+        response.headers['Cache-Control'] = 'no-cache'
+        return response
+    except FileNotFoundError:
+        return "Validation file not found", 404
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
