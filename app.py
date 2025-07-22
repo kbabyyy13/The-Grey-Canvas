@@ -4,11 +4,20 @@ import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
-# Simple Sentry test configuration (commented out - use environment-based config below)
-# sentry_sdk.init(
-#     dsn="https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400",
-#     traces_sample_rate=1.0,
-# )
+# Direct Sentry configuration with enhanced Flask integration
+sentry_sdk.init(
+    dsn="https://a4a1e2fb28becfe6aa44ef0b93f8ed8e@o4509702640697344.ingest.us.sentry.io/4509702645350400",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    send_default_pii=True,
+    integrations=[
+        FlaskIntegration(transaction_style='url'),
+        SqlalchemyIntegration()
+    ],
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+    attach_stacktrace=True,
+)
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
@@ -24,10 +33,10 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 
-# Initialize Sentry SDK
+# Environment-based Sentry configuration (fallback if no direct DSN)
 sentry_dsn = os.environ.get('SENTRY_DSN')
-if sentry_dsn:
-    # Determine environment-specific sampling rates
+if sentry_dsn and not sentry_sdk.Hub.current.client:
+    # Only initialize if not already configured above
     environment = os.environ.get('SENTRY_ENVIRONMENT', 'development')
     if environment == 'production':
         traces_sample_rate = 0.1  # 10% in production
@@ -39,7 +48,7 @@ if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
         integrations=[
-            FlaskIntegration(),
+            FlaskIntegration(transaction_style='url'),
             SqlalchemyIntegration()
         ],
         traces_sample_rate=traces_sample_rate,
@@ -47,8 +56,7 @@ if sentry_dsn:
         release=os.environ.get('SENTRY_RELEASE', 'development'),
         environment=environment,
         attach_stacktrace=True,
-        send_default_pii=False,  # Keep PII protection enabled
-        before_send=lambda event, hint: event if environment != 'production' or not event.get('user', {}).get('ip_address') else {**event, 'user': {k: v for k, v in event.get('user', {}).items() if k != 'ip_address'}}
+        send_default_pii=True,  # Enable PII data collection as requested
     )
 
 # Configure logging
