@@ -25,8 +25,8 @@ from models import OAuth, User
 _jwk_clients = {}
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'replit_auth.login'
-login_manager.login_message = 'Please log in to access the admin panel.'
+login_manager.login_view = "replit_auth.login"
+login_manager.login_message = "Please log in to access the admin panel."
 
 
 @login_manager.user_loader
@@ -38,11 +38,16 @@ class UserSessionStorage(BaseStorage):
 
     def get(self, blueprint):
         try:
-            token = db.session.query(OAuth).filter_by(
-                user_id=current_user.get_id(),
-                browser_session_key=g.browser_session_key,
-                provider=blueprint.name,
-            ).one().token
+            token = (
+                db.session.query(OAuth)
+                .filter_by(
+                    user_id=current_user.get_id(),
+                    browser_session_key=g.browser_session_key,
+                    provider=blueprint.name,
+                )
+                .one()
+                .token
+            )
         except NoResultFound:
             token = None
         return token
@@ -65,17 +70,18 @@ class UserSessionStorage(BaseStorage):
         db.session.query(OAuth).filter_by(
             user_id=current_user.get_id(),
             browser_session_key=g.browser_session_key,
-            provider=blueprint.name).delete()
+            provider=blueprint.name,
+        ).delete()
         db.session.commit()
 
 
 def make_replit_blueprint():
     try:
-        repl_id = os.environ['REPL_ID']
+        repl_id = os.environ["REPL_ID"]
     except KeyError:
         raise SystemExit("the REPL_ID environment variable must be set")
 
-    issuer_url = os.environ.get('ISSUER_URL', "https://replit.com/oidc")
+    issuer_url = os.environ.get("ISSUER_URL", "https://replit.com/oidc")
 
     replit_bp = OAuth2ConsumerBlueprint(
         "replit_auth",
@@ -104,10 +110,10 @@ def make_replit_blueprint():
 
     @replit_bp.before_app_request
     def set_applocal_session():
-        if '_browser_session_key' not in session:
-            session['_browser_session_key'] = uuid.uuid4().hex
+        if "_browser_session_key" not in session:
+            session["_browser_session_key"] = uuid.uuid4().hex
         session.modified = True
-        g.browser_session_key = session['_browser_session_key']
+        g.browser_session_key = session["_browser_session_key"]
         g.flask_dance_replit = replit_bp.session
 
     @replit_bp.route("/logout")
@@ -116,12 +122,12 @@ def make_replit_blueprint():
         logout_user()
 
         end_session_endpoint = issuer_url + "/session/end"
-        encoded_params = urlencode({
-            "client_id":
-            repl_id,
-            "post_logout_redirect_uri":
-            request.url_root,
-        })
+        encoded_params = urlencode(
+            {
+                "client_id": repl_id,
+                "post_logout_redirect_uri": request.url_root,
+            }
+        )
         logout_url = f"{end_session_endpoint}?{encoded_params}"
 
         return redirect(logout_url)
@@ -135,11 +141,11 @@ def make_replit_blueprint():
 
 def save_user(user_claims):
     user = User()
-    user.id = user_claims['sub']
-    user.email = user_claims.get('email')
-    user.first_name = user_claims.get('first_name')
-    user.last_name = user_claims.get('last_name')
-    user.profile_image_url = user_claims.get('profile_image_url')
+    user.id = user_claims["sub"]
+    user.email = user_claims.get("email")
+    user.first_name = user_claims.get("first_name")
+    user.last_name = user_claims.get("last_name")
+    user.profile_image_url = user_claims.get("profile_image_url")
     merged_user = db.session.merge(user)
     db.session.commit()
     return merged_user
@@ -149,41 +155,43 @@ def save_user(user_claims):
 def logged_in(blueprint, token):
     try:
         # Get issuer URL for OIDC verification
-        issuer_url = os.environ.get('ISSUER_URL', "https://replit.com/oidc")
-        
+        issuer_url = os.environ.get("ISSUER_URL", "https://replit.com/oidc")
+
         # Get or create JWK client for this issuer
         if issuer_url not in _jwk_clients:
             # Fetch OIDC configuration to get JWKS URI
-            config_response = requests.get(f"{issuer_url}/.well-known/openid-configuration", timeout=10)
+            config_response = requests.get(
+                f"{issuer_url}/.well-known/openid-configuration", timeout=10
+            )
             config_response.raise_for_status()
             config = config_response.json()
-            
+
             # Create JWK client
-            _jwk_clients[issuer_url] = PyJWKClient(config['jwks_uri'])
-        
+            _jwk_clients[issuer_url] = PyJWKClient(config["jwks_uri"])
+
         jwk_client = _jwk_clients[issuer_url]
-        
+
         # Get the signing key for the JWT
-        signing_key = jwk_client.get_signing_key_from_jwt(token['id_token'])
-        
+        signing_key = jwk_client.get_signing_key_from_jwt(token["id_token"])
+
         # Verify the JWT signature and claims
         user_claims = jwt.decode(
-            token['id_token'],
+            token["id_token"],
             signing_key.key,
             algorithms=["RS256"],
-            audience=os.environ.get('REPL_ID'),
+            audience=os.environ.get("REPL_ID"),
             issuer=issuer_url,
-            options={"verify_signature": True}
+            options={"verify_signature": True},
         )
     except jwt.InvalidTokenError as e:
         # Log the error and redirect to error page
         app.logger.error(f"JWT verification failed: {e}")
-        return redirect(url_for('replit_auth.error'))
+        return redirect(url_for("replit_auth.error"))
     except Exception as e:
         # Handle other errors (network issues, etc.)
         app.logger.error(f"JWT verification error: {e}")
-        return redirect(url_for('replit_auth.error'))
-    
+        return redirect(url_for("replit_auth.error"))
+
     user = save_user(user_claims)
     login_user(user)
     blueprint.token = token
@@ -194,7 +202,7 @@ def logged_in(blueprint, token):
 
 @oauth_error.connect
 def handle_error(blueprint, error, error_description=None, error_uri=None):
-    return redirect(url_for('replit_auth.error'))
+    return redirect(url_for("replit_auth.error"))
 
 
 def require_login(f):
@@ -202,23 +210,24 @@ def require_login(f):
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated:
             session["next_url"] = get_next_navigation_url(request)
-            return redirect(url_for('replit_auth.login'))
+            return redirect(url_for("replit_auth.login"))
 
         # Check if token is expired and refresh if needed
-        if hasattr(g, 'flask_dance_replit') and g.flask_dance_replit.token:
-            expires_in = g.flask_dance_replit.token.get('expires_in', 0)
+        if hasattr(g, "flask_dance_replit") and g.flask_dance_replit.token:
+            expires_in = g.flask_dance_replit.token.get("expires_in", 0)
             if expires_in < 0:
-                refresh_token_url = os.environ.get('ISSUER_URL', "https://replit.com/oidc") + "/token"
+                refresh_token_url = (
+                    os.environ.get("ISSUER_URL", "https://replit.com/oidc") + "/token"
+                )
                 try:
                     token = g.flask_dance_replit.refresh_token(
-                        token_url=refresh_token_url,
-                        client_id=os.environ['REPL_ID']
+                        token_url=refresh_token_url, client_id=os.environ["REPL_ID"]
                     )
                     g.flask_dance_replit.token = token
                 except InvalidGrantError:
                     # If the refresh token is invalid, the user needs to re-login
                     session["next_url"] = get_next_navigation_url(request)
-                    return redirect(url_for('replit_auth.login'))
+                    return redirect(url_for("replit_auth.login"))
 
         return f(*args, **kwargs)
 
@@ -226,9 +235,10 @@ def require_login(f):
 
 
 def get_next_navigation_url(request):
-    is_navigation_url = request.headers.get(
-        'Sec-Fetch-Mode') == 'navigate' and request.headers.get(
-            'Sec-Fetch-Dest') == 'document'
+    is_navigation_url = (
+        request.headers.get("Sec-Fetch-Mode") == "navigate"
+        and request.headers.get("Sec-Fetch-Dest") == "document"
+    )
     if is_navigation_url:
         return request.url
     return request.referrer or request.url

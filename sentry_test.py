@@ -9,15 +9,18 @@ sentry_sdk.init(
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World! Sentry test app is running.</p>"
 
+
 @app.route("/test-error")
 def test_error():
     """Route to test Sentry error reporting"""
-    1/0  # This will raise a ZeroDivisionError
+    1 / 0  # This will raise a ZeroDivisionError
     return "<p>This should not be reached</p>"
+
 
 @app.route("/test-message")
 def test_message():
@@ -25,8 +28,9 @@ def test_message():
     sentry_sdk.capture_message("Test message from Sentry test app")
     return "<p>Test message sent to Sentry</p>"
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print("Sentry Test App")
     print("Visit /test-error to trigger an error")
     print("Visit /test-message to send a test message")
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)
