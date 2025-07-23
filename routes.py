@@ -975,12 +975,20 @@ def add_featured_post():
 @app.route("/robots.txt")
 def robots_txt():
     """Generate comprehensive robots.txt for optimal SEO crawling"""
-    robots_content = """User-agent: *
+    # Safely construct base URL with validation
+    from urllib.parse import urlparse
+    
+    # Get the base URL with proper validation
+    parsed_url = urlparse(request.url_root)
+    # Only use scheme and netloc, ignore any potentially malicious components
+    safe_base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+    
+    robots_content = f"""User-agent: *
 Allow: /
 
 # Allow all search engines to index the site
 # Sitemap location for enhanced crawling
-Sitemap: {}/sitemap.xml
+Sitemap: {safe_base_url}/sitemap.xml
 
 # IMPORTANT: Disallow admin areas for security
 Disallow: /admin/
@@ -1044,9 +1052,7 @@ Disallow: /
 
 User-agent: Claude-Web
 Disallow: /
-""".format(
-        request.url_root.rstrip("/")
-    )
+"""
 
     response = make_response(robots_content)
     response.headers["Content-Type"] = "text/plain"
