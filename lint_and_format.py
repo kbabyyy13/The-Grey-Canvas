@@ -8,13 +8,16 @@ Run this before committing code changes
 import os
 import subprocess
 import sys
+import shlex
 
 
 def run_command(command, description):
     """Run a command and return success status"""
     print(f"\n🔍 {description}...")
     try:
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        # Convert string command to list for safer execution
+        cmd_list = shlex.split(command)
+        result = subprocess.run(cmd_list, capture_output=True, text=True)
         if result.returncode == 0:
             print(f"✅ {description} passed")
             if result.stdout:
