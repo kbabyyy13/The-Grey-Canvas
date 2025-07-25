@@ -1312,6 +1312,132 @@ def export_data():
     return response
 
 
+@app.route("/admin/backup")
+@require_login
+def backup_management():
+    """Backup management dashboard"""
+    import os
+    from pathlib import Path
+    
+    # Get backup files
+    backup_dir = Path("backups")
+    backup_files = []
+    
+    if backup_dir.exists():
+        for backup_file in backup_dir.glob("grey_canvas_backup_*.zip"):
+            stat = backup_file.stat()
+            backup_files.append({
+                'name': backup_file.name,
+                'size': round(stat.st_size / (1024 * 1024), 2),  # MB
+                'created': datetime.fromtimestamp(stat.st_mtime),
+                'path': str(backup_file)
+            })
+    
+    # Sort by creation date (newest first)
+    backup_files.sort(key=lambda x: x['created'], reverse=True)
+    
+    return render_template("admin_backup.html", backup_files=backup_files)
+
+
+@app.route("/admin/backup/create", methods=["POST"])
+@require_login
+def create_backup():
+    """Create an immediate backup"""
+    try:
+        from backup_system import run_daily_backup
+        success = run_daily_backup()
+        
+        if success:
+            flash("Backup created successfully!", "success")
+        else:
+            flash("Backup creation failed. Check logs for details.", "error")
+            
+    except Exception as e:
+        flash(f"Backup error: {str(e)}", "error")
+    
+    return redirect(url_for("backup_management"))
+
+
+@app.route("/admin/backup/download/<filename>")
+@require_login  
+def download_backup(filename):
+    """Download a backup file"""
+    from pathlib import Path
+    import os
+    
+    backup_dir = Path("backups")
+    backup_file = backup_dir / filename
+    
+    if not backup_file.exists() or not filename.startswith("grey_canvas_backup_"):
+        flash("Backup file not found!", "error")
+        return redirect(url_for("backup_management"))
+    
+    try:
+        from flask import send_file
+        return send_file(backup_file, as_attachment=True, download_name=filename)
+    except Exception as e:
+        flash(f"Download error: {str(e)}", "error")
+        return redirect(url_for("backup_management"))
+
+
+@app.route("/admin/backup/delete/<filename>", methods=["POST"])
+@require_login
+def delete_backup(filename):
+    """Delete a backup file"""
+    from pathlib import Path
+    
+    backup_dir = Path("backups")
+    backup_file = backup_dir / filename
+    
+    if not backup_file.exists() or not filename.startswith("grey_canvas_backup_"):
+        flash("Backup file not found!", "error")
+        return redirect(url_for("backup_management"))
+    
+    try:
+        backup_file.unlink()
+        flash(f"Backup {filename} deleted successfully!", "success")
+    except Exception as e:
+        flash(f"Delete error: {str(e)}", "error")
+    
+    return redirect(url_for("backup_management"))
+
+
+@app.route("/admin/backup/status")
+@require_login
+def backup_status():
+    """Get backup system status"""
+    import os
+    from pathlib import Path
+    
+    status = {
+        'backup_dir_exists': Path("backups").exists(),
+        'total_backups': 0,
+        'latest_backup': None,
+        'total_size_mb': 0,
+        'scheduler_running': False
+    }
+    
+    backup_dir = Path("backups")
+    if backup_dir.exists():
+        backup_files = list(backup_dir.glob("grey_canvas_backup_*.zip"))
+        status['total_backups'] = len(backup_files)
+        
+        if backup_files:
+            # Get latest backup
+            latest = max(backup_files, key=lambda f: f.stat().st_mtime)
+            status['latest_backup'] = {
+                'name': latest.name,
+                'created': datetime.fromtimestamp(latest.stat().st_mtime).isoformat(),
+                'size_mb': round(latest.stat().st_size / (1024 * 1024), 2)
+            }
+            
+            # Calculate total size
+            total_size = sum(f.stat().st_size for f in backup_files)
+            status['total_size_mb'] = round(total_size / (1024 * 1024), 2)
+    
+    return jsonify(status)
+
+
 @app.route("/newsletter/subscribe", methods=["POST"])
 def newsletter_subscribe():
     """Handle newsletter subscription from footer form"""
