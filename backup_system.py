@@ -139,23 +139,25 @@ class BackupManager:
             # Create pg_dump command
             sql_path = backup_dir / 'database_dump.sql'
             
-            # Use pg_dump if available
+            # Use pg_dump if available (with secure parameter escaping)
+            import shlex
             dump_cmd = [
                 'pg_dump',
-                f'--host={parsed.hostname}',
-                f'--port={parsed.port or 5432}',
-                f'--username={parsed.username}',
-                f'--dbname={parsed.path[1:]}',  # Remove leading slash
+                f'--host={shlex.escape(str(parsed.hostname) if parsed.hostname else "localhost")}',
+                f'--port={shlex.escape(str(parsed.port or 5432))}',
+                f'--username={shlex.escape(str(parsed.username) if parsed.username else "")}',
+                f'--dbname={shlex.escape(str(parsed.path[1:]) if parsed.path else "")}',  # Remove leading slash
                 '--no-password',
                 '--clean',
                 '--create',
                 '--verbose',
-                f'--file={sql_path}'
+                f'--file={shlex.escape(str(sql_path))}'
             ]
             
             # Set password environment variable
             env = os.environ.copy()
-            env['PGPASSWORD'] = parsed.password
+            if parsed.password:
+                env['PGPASSWORD'] = parsed.password
             
             import subprocess
             result = subprocess.run(dump_cmd, env=env, capture_output=True, text=True)
