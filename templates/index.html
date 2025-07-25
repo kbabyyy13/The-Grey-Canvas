@@ -16,146 +16,41 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
-/* Parallax Scrolling Effects */
-.parallax-container {
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    perspective: 1px;
-}
-
-.parallax-layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.parallax-back {
-    transform: translateZ(-1px) scale(2);
-}
-
-.parallax-base {
-    transform: translateZ(0);
-}
-
-/* Fixed Background Parallax Sections */
-.parallax-section {
-    min-height: 100vh;
+/* Simplified Smooth Scroll Effects */
+.smooth-section {
+    padding: 4rem 0;
     position: relative;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-section {
+    min-height: 90vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-}
-
-.parallax-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://i1.photobucket.com/albums/d/thecanvas/background2_1751605332939.jpeg');
-    min-height: 100vh;
-}
-
-.parallax-services {
-    background-image: linear-gradient(rgba(224, 33, 138, 0.2), rgba(122, 122, 122, 0.3)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
-    min-height: 80vh;
-}
-
-.parallax-portfolio {
-    background-image: linear-gradient(rgba(75, 85, 99, 0.3), rgba(31, 41, 55, 0.4)), url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
-    min-height: 80vh;
-}
-
-.parallax-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    align-items: center;
     text-align: center;
+    padding: 2rem;
+}
+
+.content-section {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem auto;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Floating Elements for Parallax Effect */
-.floating-element {
-    position: absolute;
-    opacity: 0.1;
-    animation: float 6s ease-in-out infinite;
-}
-
-.floating-element:nth-child(odd) {
-    animation-delay: -2s;
-}
-
-.floating-element:nth-child(even) {
-    animation-delay: -4s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(5deg);
-    }
-}
-
-.floating-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, rgba(224, 33, 138, 0.3), rgba(122, 122, 122, 0.2));
-    top: 20%;
-    left: 10%;
-}
-
-.floating-triangle {
-    width: 0;
-    height: 0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 52px solid rgba(224, 33, 138, 0.2);
-    top: 60%;
-    right: 15%;
-}
-
-.floating-square {
-    width: 80px;
-    height: 80px;
-    background: rgba(122, 122, 122, 0.2);
-    transform: rotate(45deg);
-    top: 40%;
-    left: 80%;
-}
-
-/* Scroll-triggered Animations */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-out;
-}
-
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
+    max-width: 1200px;
 }
 
 /* Home page specific styles */
@@ -469,20 +364,16 @@
     font-style: italic;
 }
 
-/* Mobile Parallax Optimization */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .parallax-section {
-        background-attachment: scroll !important; /* Better mobile performance */
-        min-height: 100vh;
+    .hero-section {
+        min-height: 70vh;
+        padding: 1.5rem;
     }
     
-    .parallax-content {
+    .content-section {
         padding: 1.5rem;
         margin: 1rem;
-    }
-    
-    .floating-element {
-        display: none; /* Hide floating elements on mobile for performance */
     }
     
     .button-container {
@@ -497,25 +388,9 @@
         text-align: center;
     }
     
-    .portfolio-showcase,
     .grid {
         grid-template-columns: 1fr !important;
         gap: 1.5rem;
-    }
-    
-    .parallax-hero h1 {
-        font-size: 2.5rem !important;
-        line-height: 1.2;
-    }
-    
-    .parallax-hero p {
-        font-size: 1.25rem !important;
-    }
-    
-    .parallax-services h2,
-    .parallax-portfolio h2 {
-        font-size: 2rem !important;
-        line-height: 1.3;
     }
     
     .service-link-btn {
@@ -524,16 +399,15 @@
     }
 }
 
-/* Enhanced mobile responsiveness */
+/* Small mobile devices */
 @media (max-width: 640px) {
-    .parallax-content {
+    .hero-section {
         padding: 1rem;
-        margin: 0.5rem;
     }
     
-    .service-links {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+    .content-section {
+        padding: 1rem;
+        margin: 0.5rem;
     }
     
     .portfolio-card {
@@ -551,15 +425,6 @@
     
     .result-stat .stat-number {
         font-size: 1.5rem;
-    }
-    
-    /* Better text rendering on small screens */
-    .parallax-hero h1 {
-        font-size: 2rem !important;
-    }
-    
-    .parallax-hero p {
-        font-size: 1.1rem !important;
     }
 }
 
@@ -618,253 +483,179 @@
 {% endblock %}
 
 {% block content %}
-<!-- Parallax Hero Section -->
-<section class="parallax-section parallax-hero">
-    <!-- Floating Elements -->
-    <div class="floating-element floating-circle"></div>
-    <div class="floating-element floating-triangle"></div>
-    <div class="floating-element floating-square"></div>
-    
-    <div class="parallax-content">
+<!-- Main Content Container -->
+<div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
+    <!-- Hero Section -->
+    <section class="hero-section fade-in">
         <!-- Hero Image -->
         <div class="mb-8">
             <img src="{{ url_for('static', filename='tgctag.png') }}" 
                  alt="The Grey Canvas - Web. Design. Thrive." 
-                 class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain scroll-reveal"
+                 class="mx-auto w-auto max-w-full h-64 md:h-80 lg:h-96 object-contain"
                  style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
         </div>
         
         <!-- Main Tagline -->
         <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 scroll-reveal" 
+            <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight mb-6" 
                 style="font-family: 'Playfair Display', serif;">
                 <span style="color: #FFFFFF;">Web</span><span style="color: #7A7A7A;">.</span> 
                 <span style="color: #E0218A;">Design</span><span style="color: #FFFFFF;">.</span> 
                 <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
             </h1>
-            <p class="text-xl md:text-2xl text-white mb-8 scroll-reveal" 
+            <p class="text-lg md:text-xl text-white mb-8" 
                style="font-family: 'Times New Roman', serif;">
                 Professional web design for <span style="color: #E0218A;">Texas small businesses</span>
             </p>
-            <div class="button-container scroll-reveal">
+            <div class="button-container">
                 <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">Begin Your Canvas</a>
                 <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn secondary">View Portfolio</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Parallax Services Section -->
-<section class="parallax-section parallax-services">
-    <div class="parallax-content scroll-reveal">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center" 
-            style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-            From <span style="color: #7A7A7A;">Blank Canvas</span> to <span style="color: #E0218A;">Brilliant Brand</span>
-        </h2>
-        
-        <!-- Service Quick Links -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <a href="{{ url_for('services') }}" class="service-link-btn text-center">
-                <span style="color: #E0218A;">Web Design</span>
-            </a>
-            <a href="{{ url_for('services') }}" class="service-link-btn text-center">
-                <span style="color: #7A7A7A;">SEO & Marketing</span>
-            </a>
-            <a href="{{ url_for('services') }}" class="service-link-btn text-center">
-                <span style="color: #E0218A;">Maintenance</span>
-            </a>
-            <a href="{{ url_for('services') }}" class="service-link-btn text-center">
-                <span style="color: #7A7A7A;">Branding</span>
-            </a>
-        </div>
-        
-        <div class="text-lg md:text-xl text-center max-w-4xl mx-auto leading-relaxed" 
-             style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-            <strong><span style="color: #7A7A7A;">The Grey Canvas</span></strong> provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My collaborative process begins with <strong><span style="color: #E0218A;">Discovery</span></strong>, followed by <strong><span style="color: #E0218A;">Strategy, Design & Build</span></strong>, and culminates in a successful <strong><span style="color: #E0218A;">Launch</span></strong> with ongoing support.
-        </div>
-        
-        <div class="mt-8">
-            <a href="{{ url_for('services') }}" class="enhanced-cta-btn">Explore Services</a>
-        </div>
-    </div>
-</section>
-
-<!-- Parallax Portfolio Section -->
-<section class="parallax-section parallax-portfolio">
-    <div class="parallax-content scroll-reveal">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center" 
-            style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-            The <span style="color: #E0218A;">Gallery</span>: Real <span style="color: #7A7A7A;">Texas Business</span> Results
-        </h2>
-        
-        <div class="text-lg md:text-xl text-center max-w-4xl mx-auto mb-12 leading-relaxed" 
-             style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-            Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>.
-        </div>
-        
-        <!-- Portfolio Showcase with Results -->
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <div class="portfolio-card scroll-reveal">
-                <div class="portfolio-title">DFW Restaurant Chain</div>
-                <div class="portfolio-description">Custom e-commerce platform with online ordering and mobile-responsive design</div>
-                <div class="result-stat">
-                    <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+180%</div>
-                    <div class="text-sm" style="color: #D1D5DB;">Online Orders Increase</div>
-                </div>
-                <div class="portfolio-tech">WordPress • WooCommerce • Custom PHP</div>
+    <!-- Services Section -->
+    <section class="smooth-section fade-in">
+        <div class="content-section">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" 
+                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                From <span style="color: #7A7A7A;">Blank Canvas</span> to <span style="color: #E0218A;">Brilliant Brand</span>
+            </h2>
+            
+            <!-- Service Quick Links -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                    <span style="color: #E0218A;">Web Design</span>
+                </a>
+                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                    <span style="color: #7A7A7A;">SEO & Marketing</span>
+                </a>
+                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                    <span style="color: #E0218A;">Maintenance</span>
+                </a>
+                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                    <span style="color: #7A7A7A;">Branding</span>
+                </a>
             </div>
-            <div class="portfolio-card scroll-reveal">
-                <div class="portfolio-title">Texas HVAC Company</div>
-                <div class="portfolio-description">Lead-generating website with service scheduling and local SEO optimization</div>
-                <div class="result-stat">
-                    <div class="stat-number text-2xl font-bold" style="color: #E0218A;">50+</div>
-                    <div class="text-sm" style="color: #D1D5DB;">Qualified Leads Monthly</div>
-                </div>
-                <div class="portfolio-tech">Custom HTML/CSS • JavaScript • Local SEO</div>
+            
+            <div class="text-base md:text-lg text-center leading-relaxed" 
+                 style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                <strong><span style="color: #7A7A7A;">The Grey Canvas</span></strong> provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My collaborative process begins with <strong><span style="color: #E0218A;">Discovery</span></strong>, followed by <strong><span style="color: #E0218A;">Strategy, Design & Build</span></strong>, and culminates in a successful <strong><span style="color: #E0218A;">Launch</span></strong> with ongoing support.
             </div>
-            <div class="portfolio-card scroll-reveal">
-                <div class="portfolio-title">Plano Law Firm</div>
-                <div class="portfolio-description">Professional website with client intake forms and case studies</div>
-                <div class="result-stat">
-                    <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+120%</div>
-                    <div class="text-sm" style="color: #D1D5DB;">Consultation Bookings</div>
-                </div>
-                <div class="portfolio-tech">Custom Design • Contact Forms • Analytics</div>
+            
+            <div class="text-center mt-6">
+                <a href="{{ url_for('services') }}" class="enhanced-cta-btn">Explore Services</a>
             </div>
         </div>
-        
-        <div class="text-center">
-            <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn">View Full Portfolio</a>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Final Call to Action Section -->
-<section class="min-h-screen bg-gradient-to-b from-gray-900 to-black flex items-center justify-center">
-    <div class="parallax-content scroll-reveal text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8" 
-            style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-            Ready to Transform Your <span style="color: #E0218A;">Digital Presence</span>?
-        </h2>
-        <p class="text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed" 
-           style="font-family: 'Times New Roman', serif;">
-            Join <span style="color: #E0218A;">150+ Texas businesses</span> that trust <span style="color: #7A7A7A;">The Grey Canvas</span> to deliver professional websites that drive real results.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="{{ url_for('intake') }}" class="enhanced-cta-btn text-xl px-8 py-4">Begin Your Canvas</a>
-            <a href="{{ url_for('contact') }}" class="enhanced-cta-btn secondary text-xl px-8 py-4">Let's Connect</a>
+    <!-- Portfolio Section -->
+    <section class="smooth-section fade-in">
+        <div class="content-section">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" 
+                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                The <span style="color: #E0218A;">Gallery</span>: Real <span style="color: #7A7A7A;">Texas Business</span> Results
+            </h2>
+            
+            <div class="text-base md:text-lg text-center mb-8 leading-relaxed" 
+                 style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>.
+            </div>
+            
+            <!-- Portfolio Showcase with Results -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="portfolio-card">
+                    <div class="portfolio-title">DFW Restaurant Chain</div>
+                    <div class="portfolio-description">Custom e-commerce platform with online ordering and mobile-responsive design</div>
+                    <div class="result-stat">
+                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+180%</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Online Orders Increase</div>
+                    </div>
+                    <div class="portfolio-tech">WordPress • WooCommerce • Custom PHP</div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-title">Texas HVAC Company</div>
+                    <div class="portfolio-description">Lead-generating website with service scheduling and local SEO optimization</div>
+                    <div class="result-stat">
+                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">50+</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Qualified Leads Monthly</div>
+                    </div>
+                    <div class="portfolio-tech">Custom HTML/CSS • JavaScript • Local SEO</div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-title">Plano Law Firm</div>
+                    <div class="portfolio-description">Professional website with client intake forms and case studies</div>
+                    <div class="result-stat">
+                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+120%</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Consultation Bookings</div>
+                    </div>
+                    <div class="portfolio-tech">Custom Design • Contact Forms • Analytics</div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn">View Full Portfolio</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Final Call to Action Section -->
+    <section class="smooth-section fade-in">
+        <div class="content-section text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6" 
+                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                Ready to Transform Your <span style="color: #E0218A;">Digital Presence</span>?
+            </h2>
+            <p class="text-base md:text-lg text-white mb-8 leading-relaxed" 
+               style="font-family: 'Times New Roman', serif;">
+                Join <span style="color: #E0218A;">150+ Texas businesses</span> that trust <span style="color: #7A7A7A;">The Grey Canvas</span> to deliver professional websites that drive real results.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">Begin Your Canvas</a>
+                <a href="{{ url_for('contact') }}" class="enhanced-cta-btn secondary">Let's Connect</a>
+            </div>
+        </div>
+    </section>
+</div>
 
 <script>
-// Scroll Reveal Animation
-function scrollReveal() {
-    const reveals = document.querySelectorAll('.scroll-reveal');
+// Simple Fade-in Animation on Scroll
+function fadeInOnScroll() {
+    const elements = document.querySelectorAll('.fade-in');
+    const windowHeight = window.innerHeight;
     
-    for (let i = 0; i < reveals.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveals[i].getBoundingClientRect().top;
-        const elementVisible = 150;
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
         
-        if (elementTop < windowHeight - elementVisible) {
-            reveals[i].classList.add('revealed');
+        // Check if element is in viewport
+        if (elementTop < windowHeight && elementBottom > 0) {
+            element.classList.add('visible');
         }
-    }
-}
-
-// Enhanced Parallax Effect for mobile compatibility
-function parallaxEffect() {
-    if (window.innerWidth > 768) { // Only on desktop for performance
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        
-        document.querySelectorAll('.parallax-section').forEach((section, index) => {
-            if (isElementInViewport(section)) {
-                const yPos = rate * (index + 1) * 0.3;
-                section.style.transform = `translateY(${yPos}px)`;
-            }
-        });
-        
-        // Floating elements animation
-        document.querySelectorAll('.floating-element').forEach((element, index) => {
-            const speed = 0.1 + (index * 0.05);
-            const yPos = scrolled * speed;
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-    }
-}
-
-// Check if element is in viewport
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// Smooth scrolling for anchor links
-function smoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
     });
 }
 
-// Initialize all effects
+// Initialize animations when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Initial reveal
-    scrollReveal();
+    // Initial check
+    fadeInOnScroll();
     
-    // Throttled scroll events for performance
+    // Add scroll listener with throttling for performance
     let ticking = false;
-    
-    function updateOnScroll() {
-        scrollReveal();
-        parallaxEffect();
-        ticking = false;
-    }
-    
     window.addEventListener('scroll', function() {
         if (!ticking) {
-            requestAnimationFrame(updateOnScroll);
+            requestAnimationFrame(function() {
+                fadeInOnScroll();
+                ticking = false;
+            });
             ticking = true;
         }
     });
     
-    // Initialize smooth scrolling
-    smoothScroll();
-    
-    // Add fade-in animation to hero elements
+    // Animate hero section immediately
     setTimeout(() => {
-        document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
-            setTimeout(() => {
-                el.classList.add('revealed');
-            }, index * 200);
-        });
-    }, 500);
-});
-
-// Handle resize for mobile optimization
-window.addEventListener('resize', function() {
-    if (window.innerWidth <= 768) {
-        // Reset parallax transforms on mobile
-        document.querySelectorAll('.parallax-section').forEach(section => {
-            section.style.transform = '';
-        });
-    }
+        document.querySelector('.hero-section').classList.add('visible');
+    }, 300);
 });
 </script>
 {% endblock %}
