@@ -143,15 +143,15 @@ class BackupManager:
             import shlex
             dump_cmd = [
                 'pg_dump',
-                f'--host={shlex.escape(str(parsed.hostname) if parsed.hostname else "localhost")}',
-                f'--port={shlex.escape(str(parsed.port or 5432))}',
-                f'--username={shlex.escape(str(parsed.username) if parsed.username else "")}',
-                f'--dbname={shlex.escape(str(parsed.path[1:]) if parsed.path else "")}',  # Remove leading slash
+                f'--host={shlex.quote(str(parsed.hostname) if parsed.hostname else "localhost")}',
+                f'--port={shlex.quote(str(parsed.port or 5432))}',
+                f'--username={shlex.quote(str(parsed.username) if parsed.username else "")}',
+                f'--dbname={shlex.quote(str(parsed.path[1:]) if parsed.path else "")}',  # Remove leading slash
                 '--no-password',
                 '--clean',
                 '--create',
                 '--verbose',
-                f'--file={shlex.escape(str(sql_path))}'
+                f'--file={shlex.quote(str(sql_path))}'
             ]
             
             # Set password environment variable
