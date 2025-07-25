@@ -238,6 +238,9 @@
                     <h3 class="text-lg font-semibold text-white mb-3">Quick Actions</h3>
                     <div class="space-y-2">
                         <a href="{{ url_for('admin_dashboard') }}" class="btn-admin block text-center">New Dashboard</a>
+                        <a href="{{ url_for('backup_management') }}" class="btn-admin block text-center" style="background: linear-gradient(135deg, #10B981, #059669); border-color: #10B981;">
+                            🛡️ Backup Management
+                        </a>
                         <a href="{{ url_for('admin_submissions') }}" class="btn-admin-secondary block text-center">View All Submissions</a>
                         <a href="{{ url_for('blog') }}" class="btn-admin-secondary block text-center">Manage Blog</a>
                         <a href="{{ url_for('add_first_post') }}" class="btn-admin-secondary block text-center">Add First Blog Post</a>
@@ -370,8 +373,12 @@
                             <button onclick="showEmailConfig()" class="btn-admin-secondary">Configure</button>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
-                            <span class="text-gray-300">Backup Data</span>
-                            <a href="{{ url_for('export_data') }}" class="btn-admin">Export XML</a>
+                            <span class="text-gray-300">Backup Management</span>
+                            <a href="{{ url_for('backup_management') }}" class="btn-admin" style="background: linear-gradient(135deg, #10B981, #059669); border-color: #10B981;">Manage Backups</a>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white/5 rounded">
+                            <span class="text-gray-300">Export Data (Legacy)</span>
+                            <a href="{{ url_for('export_data') }}" class="btn-admin-secondary">Export XML</a>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-white/5 rounded">
                             <span class="text-gray-300">SEO Sitemap</span>
