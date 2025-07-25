@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Optimized Google Analytics (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8YBSLXMF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'G-ZZ8YBSLXMF');
-      
-      // Load GA script after page load
-      window.addEventListener('load', function() {
-        var script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZZ8YBSLXMF';
-        script.async = true;
-        document.head.appendChild(script);
-      });
     </script>
     
     <meta charset="UTF-8">
@@ -90,19 +84,16 @@
     }
     </script>
     {% block structured_data %}{% endblock %}
-    <!-- Optimized Hotjar Tracking Code -->
+    <!-- Hotjar Tracking Code for https://thegreycanvas.co -->
     <script>
-        // Load Hotjar after page load to prevent render blocking
-        window.addEventListener('load', function() {
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:6469714,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        });
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:6469714,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     
     <!-- Hotjar User Identification Script -->
@@ -128,22 +119,12 @@
     <meta name="theme-color" content="#e0218a">
     <meta name="msapplication-TileColor" content="#e0218a">
     <meta name="msapplication-TileImage" content="{{ url_for('static', filename='favicon.png') }}">
-    <!-- Resource hints for faster loading -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn-cookieyes.com">
-    
-    <!-- Critical CSS loaded first -->
-    <link rel="preload" href="https://cdn.tailwindcss.com/3.4.16" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com/3.4.16"></noscript>
-    
-    <!-- Optimized font loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Critical CSS inlined for faster rendering */
         :root {
             --signature-grey: #6B7280; /* Darker grey for better contrast (4.5:1 ratio) */
             --main-accent-pink: #C1185E; /* Even darker pink for better contrast (4.5:1+ ratio) */
@@ -159,13 +140,6 @@
             --accessible-grey: #4B5563; /* Even darker grey for critical text (7.0:1 ratio) */
             --error-red: #B91C1C; /* Darker red for better contrast */
         }
-        /* Critical above-the-fold styles */
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text-color); }
-        .logo-container, .footer-logo { display: inline-block; }
-        .logo-container img, .footer-logo { max-width: 100%; height: auto; }
-        img { max-width: 100%; height: auto; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .object-contain { object-fit: contain; }
         body {
             font-family: 'Inter', sans-serif;
             background-image: url('{{ url_for('static', filename='background2.jpg') }}');
@@ -1089,16 +1063,7 @@
             <!-- Main Header -->
             <div class="flex justify-between items-center">
                 <a href="{{ url_for('index') }}" class="logo-container" aria-label="The Grey Canvas home page">
-                    <picture>
-                        <source srcset="{{ url_for('static', filename='logo.webp') }}" type="image/webp">
-                        <img src="{{ url_for('static', filename='logo.png') }}" 
-                             alt="The Grey Canvas Logo" 
-                             class="h-36 w-auto" 
-                             style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));"
-                             width="144"
-                             height="144"
-                             loading="eager"/>
-                    </picture>
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="The Grey Canvas Logo" class="h-36 w-auto" style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));"/>
                 </a>
                 <nav class="hidden lg:flex items-center space-x-2 text-base font-medium">
                     <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a>
@@ -1164,16 +1129,7 @@
             <div class="footer-container">
                 <div class="footer-brand">
                     <a href="{{ url_for('index') }}" aria-label="The Grey Canvas home page">
-                        <picture>
-                            <source srcset="{{ url_for('static', filename='logo.webp') }}" type="image/webp">
-                            <img src="{{ url_for('static', filename='logo.png') }}" 
-                                 alt="The Grey Canvas logo" 
-                                 class="footer-logo" 
-                                 style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));"
-                                 width="80"
-                                 height="80"
-                                 loading="lazy"/>
-                        </picture>
+                        <img src="{{ url_for('static', filename='logo.png') }}" alt="The Grey Canvas logo" class="footer-logo" style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));" />
                     </a>
                 </div>
 

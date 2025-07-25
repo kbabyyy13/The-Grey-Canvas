@@ -7,27 +7,8 @@
 {% endblock %}
 
 {% block cookieyes_banner %}
-<!-- Start cookieyes banner - optimized loading -->
-<script>
-(function() {
-    // Load CookieYes script asynchronously after page load
-    function loadCookieYes() {
-        var script = document.createElement('script');
-        script.id = 'cookieyes';
-        script.type = 'text/javascript';
-        script.src = 'https://cdn-cookieyes.com/client_data/f35dd372961a1ec639f3ba94/script.js';
-        script.async = true;
-        document.head.appendChild(script);
-    }
-    
-    // Load after page is fully loaded
-    if (document.readyState === 'complete') {
-        loadCookieYes();
-    } else {
-        window.addEventListener('load', loadCookieYes);
-    }
-})();
-</script>
+<!-- Start cookieyes banner -->
+<script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/f35dd372961a1ec639f3ba94/script.js"></script>
 <!-- End cookieyes banner -->
 {% endblock %}
 
@@ -446,21 +427,7 @@
 <div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
     <!-- Hero Image Section -->
     <div class="block mb-8">
-        <picture>
-            <source media="(min-width: 1024px)" srcset="{{ url_for('static', filename='tgctag.webp') }}" type="image/webp">
-            <source media="(min-width: 768px)" srcset="{{ url_for('static', filename='tgctag-medium.webp') }}" type="image/webp">
-            <source media="(max-width: 767px)" srcset="{{ url_for('static', filename='tgctag-small.webp') }}" type="image/webp">
-            <source media="(min-width: 1024px)" srcset="{{ url_for('static', filename='tgctag.png') }}">
-            <source media="(min-width: 768px)" srcset="{{ url_for('static', filename='tgctag.png') }}">
-            <img src="{{ url_for('static', filename='tgctag.png') }}" 
-                 alt="The Grey Canvas - Web. Design. Thrive." 
-                 class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain" 
-                 style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"
-                 fetchpriority="high"
-                 loading="eager"
-                 width="322"
-                 height="249"/>
-        </picture>
+        <img src="{{ url_for('static', filename='tgctag.png') }}" alt="The Grey Canvas - Web. Design. Thrive." class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain" style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
     </div>
 
     <!-- Header Layout Section -->
