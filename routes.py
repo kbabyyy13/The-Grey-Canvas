@@ -987,9 +987,7 @@ def add_frontend_blog_post():
     frontend_post = BlogPost()
     frontend_post.title = "The Frontend Has Changed: Why Your Next Project Won't Start with create-react-app"
     frontend_post.slug = "frontend-has-changed-why-next-project-wont-start-create-react-app"
-    frontend_post.content = """<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
-
-<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
+    frontend_post.content = """<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
 
 <p>We've entered the age of the meta-framework, and it's a shift that has fundamentally changed how we build for the web.</p>
 
@@ -1086,10 +1084,8 @@ def update_frontend_blog_image():
         flash("Frontend blog post not found!", "error")
         return redirect(url_for("blog"))
 
-    # Update the content with the image at the top
-    updated_content = """<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
-
-<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
+    # Update the content without the image at the top (image will be shown via featured_image field)
+    updated_content = """<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
 
 <p>We've entered the age of the meta-framework, and it's a shift that has fundamentally changed how we build for the web.</p>
 
