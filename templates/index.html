@@ -16,48 +16,9 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
-/* Simplified Smooth Scroll Effects */
-.smooth-section {
-    padding: 4rem 0;
-    position: relative;
-}
-
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.hero-section {
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-}
-
-.content-section {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 2rem auto;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: 1200px;
-}
-
 /* Home page specific styles */
 .home-section {
     margin-bottom: 4rem;
-    position: relative;
-    z-index: 3;
 }
 
 .home-headline {
@@ -364,67 +325,46 @@
     font-style: italic;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 70vh;
-        padding: 1.5rem;
-    }
-    
-    .content-section {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-    
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
     .button-container {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
     }
-    
-    .enhanced-cta-btn {
+    .btn-begin-canvas {
         width: 100%;
-        max-width: 280px;
-        text-align: center;
+        max-width: 300px;
+    }
+    .service-links {
+        grid-template-columns: 1fr 1fr;
     }
     
-    .grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem;
-    }
-    
-    .service-link-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Small mobile devices */
-@media (max-width: 640px) {
-    .hero-section {
-        padding: 1rem;
-    }
-    
-    .content-section {
-        padding: 1rem;
-        margin: 0.5rem;
-    }
-    
-    .portfolio-card {
-        min-height: 180px;
-        padding: 1.5rem;
-    }
-    
-    .portfolio-title {
-        font-size: 1.1rem;
-    }
-    
-    .portfolio-description {
-        font-size: 0.9rem;
-    }
-    
-    .result-stat .stat-number {
+    /* Better word spacing on mobile */
+    .section-title {
         font-size: 1.5rem;
+        line-height: 1.3;
+        text-align: left;
+        word-spacing: 0.1em;
+        letter-spacing: 0.02em;
+    }
+    
+    .section-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        text-align: left;
+        word-spacing: 0.05em;
+        letter-spacing: 0.01em;
+    }
+    
+    /* Improve span word spacing */
+    .section-title span,
+    .section-text span {
+        word-spacing: inherit;
+    }
+    
+    /* Better mobile layout for content */
+    .section-content {
+        padding: 1.5rem;
     }
 }
 
@@ -485,177 +425,186 @@
 {% block content %}
 <!-- Main Content Container -->
 <div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
-    <!-- Hero Section -->
-    <section class="hero-section fade-in">
-        <!-- Hero Image -->
-        <div class="mb-8">
-            <img src="{{ url_for('static', filename='tgctag.png') }}" 
-                 alt="The Grey Canvas - Web. Design. Thrive." 
-                 class="mx-auto w-auto max-w-full h-64 md:h-80 lg:h-96 object-contain"
-                 style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
-        </div>
+    <!-- Hero Image Section -->
+    <div class="block mb-8">
+        <img src="{{ url_for('static', filename='tgctag.png') }}" alt="The Grey Canvas - Web. Design. Thrive." class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain" style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
+    </div>
+
+    <!-- Header Layout Section -->
+    <div class="header-layout-container relative mb-16">
+        <!-- Corner Decorations -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration bottom-right"></div>
         
-        <!-- Main Tagline -->
-        <div class="text-center">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight mb-6" 
-                style="font-family: 'Playfair Display', serif;">
-                <span style="color: #FFFFFF;">Web</span><span style="color: #7A7A7A;">.</span> 
-                <span style="color: #E0218A;">Design</span><span style="color: #FFFFFF;">.</span> 
-                <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-white mb-8" 
-               style="font-family: 'Times New Roman', serif;">
-                Professional web design for <span style="color: #E0218A;">Texas small businesses</span>
-            </p>
-            <div class="button-container">
-                <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">Begin Your Canvas</a>
-                <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn secondary">View Portfolio</a>
+        <!-- Main Header Content -->
+        <div class="header-content text-center relative z-10">
+            <!-- Web Design Thrive Text -->
+            <div class="brilliant-brands-text mb-8">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight text-center" style="font-family: 'Playfair Display', serif;">
+                    <span style="color: #FFFFFF;">Web</span><span style="color: #7A7A7A;">.</span> 
+                    <span style="color: #E0218A;">Design</span><span style="color: #FFFFFF;">.</span> 
+                    <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
+                </h1>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Services Section -->
-    <section class="smooth-section fade-in">
-        <div class="content-section">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" 
-                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                From <span style="color: #7A7A7A;">Blank Canvas</span> to <span style="color: #E0218A;">Brilliant Brand</span>
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Section 1: Services Overview -->
+    <section class="home-section">
+        <div class="section-content">
+            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                From <strong><span style="color: #7A7A7A;">Blank</span> Canvas</strong> to <strong><span style="color: #E0218A;">Brilliant</span> Brand</strong>: <strong><span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #E0218A;">Canvas</span></strong> Services
             </h2>
             
             <!-- Service Quick Links -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+            <div class="service-links flex flex-wrap justify-center gap-4 mb-8">
+                <a href="{{ url_for('services') }}" class="service-link-btn">
                     <span style="color: #E0218A;">Web Design</span>
                 </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                <a href="{{ url_for('services') }}" class="service-link-btn">
                     <span style="color: #7A7A7A;">SEO & Marketing</span>
                 </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                <a href="{{ url_for('services') }}" class="service-link-btn">
                     <span style="color: #E0218A;">Maintenance</span>
                 </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn text-center">
+                <a href="{{ url_for('services') }}" class="service-link-btn">
                     <span style="color: #7A7A7A;">Branding</span>
                 </a>
             </div>
             
-            <div class="text-base md:text-lg text-center leading-relaxed" 
-                 style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-                <strong><span style="color: #7A7A7A;">The Grey Canvas</span></strong> provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My collaborative process begins with <strong><span style="color: #E0218A;">Discovery</span></strong>, followed by <strong><span style="color: #E0218A;">Strategy, Design & Build</span></strong>, and culminates in a successful <strong><span style="color: #E0218A;">Launch</span></strong> with ongoing support.
-            </div>
-            
-            <div class="text-center mt-6">
-                <a href="{{ url_for('services') }}" class="enhanced-cta-btn">Explore Services</a>
+            <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                <strong><span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #E0218A;">Canvas</span></strong> provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My offerings are broken down into four main categories:
+                <br><br>
+                <strong><span style="color: #E0218A;">Web Design</span> & <span style="color: #E0218A;">Development</span>:</strong> I build custom, responsive websites from scratch, focusing on beautiful design, user experience (UX), and performance. This includes everything from basic informational sites to full e-commerce solutions.
+                <br><br>
+                <strong><span style="color: #E0218A;">SEO</span> & <span style="color: #E0218A;">Digital Marketing</span>:</strong> To ensure your website gets found by the right customers, I offer strategic SEO services, including on-page optimization, local SEO for geographic targeting, and content strategy.
+                <br><br>
+                <strong><span style="color: #E0218A;">Maintenance</span> & <span style="color: #E0218A;">Support</span>:</strong> I provide ongoing maintenance plans to keep your website secure, updated, and running smoothly, so you can focus on your business.
+                <br><br>
+                <strong><span style="color: #E0218A;">Branding</span> & <span style="color: #E0218A;">Creative Services</span>:</strong> To create a cohesive brand identity, I offer logo design, brand style guides, and other creative materials that make your business stand out.
+                <br><br>
+                My process is collaborative and structured, beginning with a <strong>Discovery</strong> phase to understand your goals, followed by <strong><span style="color: #E0218A;">Strategy</span>, <span style="color: #E0218A;">Design</span> & <span style="color: #E0218A;">Build</span>,</strong> and finally, a successful <strong><span style="color: #E0218A;">Launch</span></strong> with ongoing support.
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="smooth-section fade-in">
-        <div class="content-section">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" 
-                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                The <span style="color: #E0218A;">Gallery</span>: Real <span style="color: #7A7A7A;">Texas Business</span> Results
+    <!-- Section 2: The Gallery -->
+    <section class="home-section">
+        <div class="section-content">
+            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                The <strong><span style="color: #E0218A;">Gallery</span></strong>: <strong><span style="color: #7A7A7A;">Real</span> Texas <span style="color: #E0218A;">Business</span> <span style="color: #FFFFFF;">Results</span></strong>
             </h2>
-            
-            <div class="text-base md:text-lg text-center mb-8 leading-relaxed" 
-                 style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-                Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>.
+            <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>. Here are real projects that deliver <strong><span style="color: #E0218A;">measurable results</span></strong>:
+                <br><br>
+                Each project showcases my commitment to creating websites that don't just look professional—they drive business growth through strategic design, user experience optimization, and results-focused development.
             </div>
             
-            <!-- Portfolio Showcase with Results -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="portfolio-card">
+            <!-- Enhanced Portfolio Showcase with Stats -->
+            <div class="portfolio-showcase">
+                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
                     <div class="portfolio-title">DFW Restaurant Chain</div>
-                    <div class="portfolio-description">Custom e-commerce platform with online ordering and mobile-responsive design</div>
+                    <div class="portfolio-description">Custom e-commerce platform with online ordering, location finder, and mobile-responsive design</div>
                     <div class="result-stat">
                         <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+180%</div>
                         <div class="text-sm" style="color: #D1D5DB;">Online Orders Increase</div>
                     </div>
                     <div class="portfolio-tech">WordPress • WooCommerce • Custom PHP</div>
-                </div>
-                <div class="portfolio-card">
+                </a>
+                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
                     <div class="portfolio-title">Texas HVAC Company</div>
-                    <div class="portfolio-description">Lead-generating website with service scheduling and local SEO optimization</div>
+                    <div class="portfolio-description">Lead-generating website with service scheduling, customer portal, and local SEO optimization</div>
                     <div class="result-stat">
                         <div class="stat-number text-2xl font-bold" style="color: #E0218A;">50+</div>
                         <div class="text-sm" style="color: #D1D5DB;">Qualified Leads Monthly</div>
                     </div>
                     <div class="portfolio-tech">Custom HTML/CSS • JavaScript • Local SEO</div>
-                </div>
-                <div class="portfolio-card">
+                </a>
+                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
                     <div class="portfolio-title">Plano Law Firm</div>
-                    <div class="portfolio-description">Professional website with client intake forms and case studies</div>
+                    <div class="portfolio-description">Professional website with client intake forms, case studies, and attorney bios</div>
                     <div class="result-stat">
                         <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+120%</div>
                         <div class="text-sm" style="color: #D1D5DB;">Consultation Bookings</div>
                     </div>
                     <div class="portfolio-tech">Custom Design • Contact Forms • Analytics</div>
-                </div>
+                </a>
             </div>
             
-            <div class="text-center">
-                <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn">View Full Portfolio</a>
+            <!-- Gallery Call-to-Action -->
+            <div class="text-center mt-8">
+                <div class="button-container">
+                    <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn">
+                        <span style="color: #FFFFFF;">View Full Portfolio</span>
+                    </a>
+                    <a href="{{ url_for('intake') }}" class="enhanced-cta-btn secondary">
+                        <span style="color: #FFFFFF;">Start Your Project</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Final Call to Action Section -->
-    <section class="smooth-section fade-in">
-        <div class="content-section text-center">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6" 
-                style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                Ready to Transform Your <span style="color: #E0218A;">Digital Presence</span>?
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Section 3: Client Testimonials & Social Proof -->
+    <section class="home-section">
+        <div class="section-content">
+            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                What <strong><span style="color: #E0218A;">Texas Business Owners</span></strong> Are Saying
             </h2>
-            <p class="text-base md:text-lg text-white mb-8 leading-relaxed" 
-               style="font-family: 'Times New Roman', serif;">
-                Join <span style="color: #E0218A;">150+ Texas businesses</span> that trust <span style="color: #7A7A7A;">The Grey Canvas</span> to deliver professional websites that drive real results.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">Begin Your Canvas</a>
-                <a href="{{ url_for('contact') }}" class="enhanced-cta-btn secondary">Let's Connect</a>
+            
+            <div class="testimonial-section">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Krysta transformed our outdated website into a lead-generating machine! We went from 2-3 inquiries per month to 15-20 qualified leads. Her local SEO work put us on the map in Dallas."
+                    </div>
+                    <div class="testimonial-author">Mike Rodriguez</div>
+                    <div class="testimonial-business">Owner, Rodriguez HVAC Solutions</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "The Grey Canvas delivered exactly what we needed - a professional website that actually converts visitors into clients. Our online consultation bookings increased by 120% in just 3 months."
+                    </div>
+                    <div class="testimonial-author">Alexis Johnson</div>
+                    <div class="testimonial-business">Managing Partner, Johnson & Associates Law</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Working with Krysta was a game-changer for our restaurant chain. The new e-commerce platform she built increased our online orders by 180%. Professional, responsive, and results-driven."
+                    </div>
+                    <div class="testimonial-author">David Chen</div>
+                    <div class="testimonial-business">Operations Manager, DFW Eats Group</div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Call to Action Section -->
+    <section class="home-section">
+        <div class="mt-12">
+            <div class="blog-card text-center">
+                <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
+                <p class="text-gray-300 mb-6">
+                    Need help implementing what you read? Let's bring your site to life—book your free consult today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
+                    <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+                </div>
             </div>
         </div>
     </section>
 </div>
-
-<script>
-// Simple Fade-in Animation on Scroll
-function fadeInOnScroll() {
-    const elements = document.querySelectorAll('.fade-in');
-    const windowHeight = window.innerHeight;
-    
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        
-        // Check if element is in viewport
-        if (elementTop < windowHeight && elementBottom > 0) {
-            element.classList.add('visible');
-        }
-    });
-}
-
-// Initialize animations when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Initial check
-    fadeInOnScroll();
-    
-    // Add scroll listener with throttling for performance
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(function() {
-                fadeInOnScroll();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-    
-    // Animate hero section immediately
-    setTimeout(() => {
-        document.querySelector('.hero-section').classList.add('visible');
-    }, 300);
-});
-</script>
 {% endblock %}
