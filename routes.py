@@ -1425,6 +1425,178 @@ def sitemap():
     return response
 
 
+@app.route("/download-sitemap")
+def download_sitemap():
+    """Download XML sitemap as a file for local use or SEO tools"""
+    from datetime import datetime
+    
+    # Use request URL to get the actual domain (supports both dev and production)
+    base_url = request.url_root.rstrip("/")
+
+    # Static pages with optimized priorities and change frequencies
+    static_pages = [
+        # High priority pages - main business pages
+        {
+            "url": "/",
+            "priority": "1.0",
+            "changefreq": "weekly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/services",
+            "priority": "0.9",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/contact",
+            "priority": "0.9",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/intake",
+            "priority": "0.9",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        # Service detail pages - important for conversion
+        {
+            "url": "/overview",
+            "priority": "0.8",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/packages",
+            "priority": "0.8",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/plans",
+            "priority": "0.8",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        # Portfolio and content pages
+        {
+            "url": "/portfolio",
+            "priority": "0.8",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/blog",
+            "priority": "0.8",
+            "changefreq": "weekly",
+            "lastmod": datetime.now(),
+        },
+        # About and company pages
+        {
+            "url": "/about",
+            "priority": "0.7",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/owner",
+            "priority": "0.7",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/company",
+            "priority": "0.7",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/thegrey",
+            "priority": "0.6",
+            "changefreq": "monthly",
+            "lastmod": datetime.now(),
+        },
+        # Legal pages - lower priority but important for trust
+        {
+            "url": "/privacy-policy",
+            "priority": "0.3",
+            "changefreq": "yearly",
+            "lastmod": datetime.now(),
+        },
+        {
+            "url": "/terms-of-service",
+            "priority": "0.3",
+            "changefreq": "yearly",
+            "lastmod": datetime.now(),
+        },
+    ]
+
+    try:
+        # Get all published blog posts with error handling
+        blog_posts = (
+            BlogPost.query.filter_by(published=True)
+            .order_by(BlogPost.created_at.desc())
+            .all()
+        )
+    except Exception as e:
+        logging.error(f"Error fetching blog posts for downloadable sitemap: {e}")
+        blog_posts = []
+
+    # Generate XML sitemap with proper encoding and namespaces
+    sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    sitemap_xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+    sitemap_xml += 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+    sitemap_xml += 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 '
+    sitemap_xml += 'http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n'
+
+    # Add static pages with proper XML formatting
+    for page in static_pages:
+        sitemap_xml += "  <url>\n"
+        sitemap_xml += f'    <loc>{base_url}{page["url"]}</loc>\n'
+        sitemap_xml += (
+            f'    <lastmod>{page["lastmod"].strftime("%Y-%m-%d")}</lastmod>\n'
+        )
+        sitemap_xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
+        sitemap_xml += f'    <priority>{page["priority"]}</priority>\n'
+        sitemap_xml += "  </url>\n"
+
+    # Add blog posts with dynamic content handling
+    for post in blog_posts:
+        # Use the actual post update date for better crawling
+        last_modified = post.updated_at if post.updated_at else post.created_at
+
+        # Determine change frequency based on post age
+        post_age = datetime.utcnow() - post.created_at
+        if post_age.days < 30:
+            change_freq = "weekly"
+            priority = "0.7"
+        elif post_age.days < 90:
+            change_freq = "monthly"
+            priority = "0.6"
+        else:
+            change_freq = "yearly"
+            priority = "0.5"
+
+        sitemap_xml += "  <url>\n"
+        sitemap_xml += f"    <loc>{base_url}/blog/{post.slug}</loc>\n"
+        sitemap_xml += f'    <lastmod>{last_modified.strftime("%Y-%m-%d")}</lastmod>\n'
+        sitemap_xml += f"    <changefreq>{change_freq}</changefreq>\n"
+        sitemap_xml += f"    <priority>{priority}</priority>\n"
+        sitemap_xml += "  </url>\n"
+
+    sitemap_xml += "</urlset>"
+
+    # Create downloadable response with proper headers
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml; charset=utf-8"
+    response.headers["Content-Disposition"] = (
+        f'attachment; filename=the-grey-canvas-sitemap-{datetime.now().strftime("%Y%m%d")}.xml'
+    )
+    response.headers["Cache-Control"] = "no-cache"  # Don't cache downloads
+    return response
+
+
 @app.route("/admin/export-data")
 @require_login
 def export_data():

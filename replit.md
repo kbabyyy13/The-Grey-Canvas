@@ -123,6 +123,15 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **July 25, 2025**: Implemented downloadable XML sitemap functionality  
+  - **Downloadable Route**: Created `/download-sitemap` route for direct sitemap file downloads
+  - **File Format**: Generates properly formatted XML sitemap with timestamped filename (the-grey-canvas-sitemap-YYYYMMDD.xml)
+  - **Content Structure**: Includes all static pages, blog posts with dynamic priorities based on age and content
+  - **Admin Integration**: Added download link to admin console Quick Actions with purple gradient styling
+  - **SEO Optimization**: Maintains same intelligent priority system and change frequency detection as main sitemap
+  - **Headers Configuration**: Proper Content-Disposition headers for file downloads with no-cache policy
+  - **Business Use**: Perfect for submitting to search engines, SEO tools, and website analysis platforms
+
 - **July 25, 2025**: Added new blog article "The Frontend Has Changed: Why Your Next Project Won't Start with create-react-app"
   - **Content Addition**: Published comprehensive article about the evolution of frontend development in 2025
   - **Technical Coverage**: Discussed meta-frameworks, build tools, and the philosophical divide in modern web development
