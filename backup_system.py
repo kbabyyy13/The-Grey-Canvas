@@ -179,6 +179,7 @@ class BackupManager:
         logger.info("Creating manual SQL backup...")
         
         try:
+            from sqlalchemy import select
             with app.app_context():
                 sql_path = backup_dir / 'database_manual.sql'
                 
@@ -191,7 +192,8 @@ class BackupManager:
                         f.write(f"-- Table: {table_name}\n")
                         
                         # Get table data
-                        result = db.session.execute(text(f"SELECT * FROM {table_name}"))
+                        table = db.metadata.tables[table_name]
+                        result = db.session.execute(select(table))
                         rows = result.fetchall()
                         
                         if rows:
