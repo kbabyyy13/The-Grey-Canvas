@@ -987,11 +987,11 @@ def add_frontend_blog_post():
     frontend_post = BlogPost()
     frontend_post.title = "The Frontend Has Changed: Why Your Next Project Won't Start with create-react-app"
     frontend_post.slug = "frontend-has-changed-why-next-project-wont-start-create-react-app"
-    frontend_post.content = """<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
+    frontend_post.content = """<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
+
+<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
 
 <p>We've entered the age of the meta-framework, and it's a shift that has fundamentally changed how we build for the web.</p>
-
-<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
 
 <h2>The End of Duct-Tape Engineering</h2>
 <p>Let's be honest: create-react-app was just the starting line. To get to production, we had to become amateur infrastructure engineers, duct-taping together a router, a server-side rendering solution, a build tool, and a dozen other packages. We spent countless hours wrestling with Webpack configs, all to solve problems that every single team was also trying to solve.</p>
@@ -1055,7 +1055,7 @@ def add_frontend_blog_post():
     frontend_post.excerpt = "For years, starting a web project meant running create-react-app. But in 2025, that era is over. Discover how meta-frameworks, managed frontends, and the philosophical divide between ecosystem-first and performance-first approaches are reshaping how we build for the web."
     frontend_post.tags = "frontend development, React, Next.js, Qwik, SolidJS, meta-frameworks, web development, 2025, Vercel, Netlify, build tools"
     frontend_post.meta_description = "Why create-react-app is dead in 2025. Explore meta-frameworks like Next.js, Qwik performance solutions, and managed frontend platforms."
-    frontend_post.featured_image = "https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/images/n1735/1735/placeholder-code-editor-frontend.jpeg?width=590&height=370&fit=bounds"
+    frontend_post.featured_image = "https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds"
     frontend_post.published = True
 
     try:
@@ -1086,12 +1086,12 @@ def update_frontend_blog_image():
         flash("Frontend blog post not found!", "error")
         return redirect(url_for("blog"))
 
-    # Update the content with the image
-    updated_content = """<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
+    # Update the content with the image at the top
+    updated_content = """<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
+
+<p>For years, my process for starting a new web project was almost muscle memory: pop open a terminal, run create-react-app, and start building. It was the standard, the path of least resistance. But as I look at the landscape in 2025, I've realized that era is definitively over. Building a production-grade application with a library like React in isolation just isn't how we do things anymore.</p>
 
 <p>We've entered the age of the meta-framework, and it's a shift that has fundamentally changed how we build for the web.</p>
-
-<a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" target="_blank"><img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds" alt="07-25-25BLOGIMG"/></a>
 
 <h2>The End of Duct-Tape Engineering</h2>
 <p>Let's be honest: create-react-app was just the starting line. To get to production, we had to become amateur infrastructure engineers, duct-taping together a router, a server-side rendering solution, a build tool, and a dozen other packages. We spent countless hours wrestling with Webpack configs, all to solve problems that every single team was also trying to solve.</p>
@@ -1154,6 +1154,7 @@ def update_frontend_blog_image():
 </ul>"""
 
     existing_post.content = updated_content
+    existing_post.featured_image = "https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/e4e81bd3-3ea4-4b1e-9d8e-59560dedd1c6.jpeg?width=960&height=720&fit=bounds"
     existing_post.updated_at = datetime.utcnow()
 
     try:

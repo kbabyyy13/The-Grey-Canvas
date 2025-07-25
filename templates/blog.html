@@ -279,6 +279,12 @@
                                          alt="AI-powered web design workspace showcasing futuristic design tools and interfaces" 
                                          class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg hover:opacity-90 transition-opacity duration-300 shadow-lg border border-gray-600">
                                 </a>
+                            {% elif post.slug == 'frontend-has-changed-why-next-project-wont-start-create-react-app' %}
+                                <a href="{{ post.featured_image }}" target="_blank" class="block">
+                                    <img src="{{ post.featured_image }}" 
+                                         alt="07-25-25BLOGIMG" 
+                                         class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg hover:opacity-90 transition-opacity duration-300 shadow-lg border border-gray-600">
+                                </a>
                             {% else %}
                                 <img src="{{ post.featured_image }}" alt="Featured image for {{ post.title|striptags }}" 
                                      class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg shadow-lg border border-gray-600">
