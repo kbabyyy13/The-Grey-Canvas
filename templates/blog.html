@@ -145,6 +145,90 @@
     border: 2px solid rgba(224, 33, 138, 0.4);
     position: relative;
     overflow: hidden;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Magazine-style Filter Controls */
+.blog-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(55, 65, 81, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(75, 85, 99, 0.6);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--main-accent-pink);
+    border-color: var(--main-accent-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(224, 33, 138, 0.4);
+}
+
+/* Enhanced Featured Post Layout */
+.featured-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .featured-content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .blog-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+
+/* Magazine Grid Variations */
+.magazine-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.magazine-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .magazine-grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .magazine-grid-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 .featured-blog-card::before {
@@ -257,90 +341,187 @@
     </div>
 
     {% if posts and posts.items %}
-        <!-- Blog Posts Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {% for post in posts.items %}
-                <article class="blog-card {% if post.slug == 'future-of-web-design-2025' %}featured-blog-card{% endif %}">
-                    {% if post.slug == 'future-of-web-design-2025' %}
-                        <div class="featured-badge">Featured</div>
-                        <div class="featured-stars">
-                            <span class="featured-star">★</span>
-                            <span class="featured-star">★</span>
-                            <span class="featured-star">★</span>
-                            <span class="featured-star">★</span>
-                            <span class="featured-star">★</span>
-                        </div>
-                    {% endif %}
-                    {% if post.featured_image %}
-                        <div class="mb-4">
-                            {% if post.slug == 'future-of-web-design-2025' %}
-                                <a href="{{ post.featured_image }}" target="_blank" class="block">
-                                    <img src="{{ post.featured_image }}" 
-                                         alt="AI-powered web design workspace showcasing futuristic design tools and interfaces" 
-                                         class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg hover:opacity-90 transition-opacity duration-300 shadow-lg border border-gray-600">
-                                </a>
-                            {% elif post.slug == 'frontend-has-changed-why-next-project-wont-start-create-react-app' %}
-                                <a href="{{ post.featured_image }}" target="_blank" class="block">
-                                    <img src="{{ post.featured_image }}" 
-                                         alt="07-25-25BLOGIMG" 
-                                         class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg hover:opacity-90 transition-opacity duration-300 shadow-lg border border-gray-600">
-                                </a>
-                            {% else %}
-                                <img src="{{ post.featured_image }}" alt="Featured image for {{ post.title|striptags }}" 
-                                     class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg shadow-lg border border-gray-600">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                    
+        <!-- Filter Controls -->
+        <div class="blog-filters">
+            <button class="filter-btn active" onclick="filterPosts('all')">All Articles</button>
+            <button class="filter-btn" onclick="filterPosts('web-design')">Web Design</button>
+            <button class="filter-btn" onclick="filterPosts('seo')">SEO</button>
+            <button class="filter-btn" onclick="filterPosts('business')">Small Business</button>
+            <button class="filter-btn" onclick="filterPosts('technology')">Technology</button>
+            <button class="filter-btn" onclick="filterPosts('diy')">DIY Tips</button>
+        </div>
+
+        <!-- Featured Post (First Post) -->
+        {% set featured_post = posts.items[0] %}
+        <article class="blog-card featured-blog-card mb-12 max-w-none">
+            <div class="featured-badge">Featured Article</div>
+            <div class="featured-stars">
+                <span class="featured-star">★</span>
+                <span class="featured-star">★</span>
+                <span class="featured-star">★</span>
+                <span class="featured-star">★</span>
+                <span class="featured-star">★</span>
+            </div>
+            
+            <div class="featured-content-grid">
+                <!-- Featured Post Image -->
+                {% if featured_post.featured_image %}
+                    <div class="order-2 md:order-1">
+                        <img src="{{ featured_post.featured_image }}" 
+                             alt="{{ featured_post.title }}" 
+                             class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg">
+                    </div>
+                {% endif %}
+                
+                <!-- Featured Post Content -->
+                <div class="{% if featured_post.featured_image %}order-1 md:order-2{% endif %}">
                     <div class="blog-meta">
-                        <span>{{ post.format_date() }}</span>
-                        <span>•</span>
-                        <span>By {{ post.author }}</span>
+                        <time datetime="{{ featured_post.created_at.isoformat() }}">
+                            {{ featured_post.created_at.strftime('%B %d, %Y') }}
+                        </time>
+                        <span class="text-gray-400">•</span>
+                        <span class="text-pink-400">{{ featured_post.author or 'Krysta Dickson' }}</span>
                     </div>
                     
-                    <h2 class="text-xl font-bold mb-3 font-playfair">
-                        <a href="{{ url_for('blog_post', slug=post.slug) }}" 
-                           class="hover:text-pink-400 transition-colors">
-                            {% if post.slug == 'future-of-web-design-2025' %}
-                                <span style="color: #FFFFFF;">Will</span> <span style="color: #E0218A;">AI</span> <span style="color: #FFFFFF;">Take My</span> <span style="color: #E0218A;">Web Designer</span><span style="color: #FFFFFF;">'s Job? A</span> <span style="color: #E0218A;">No</span><span style="color: #FFFFFF;">-Nonsense Guide for</span> <span style="color: #E0218A;">Small</span> <span style="color: #7A7A7A;">Businesses</span>
-                            {% elif post.slug == 'why-small-businesses-need-websites' %}
-                                <span style="color: #7A7A7A;">Why Small Businesses in</span> <span style="color: #E0218A;">Texas</span> <span style="color: #000000;">Need a Professional</span> <span style="color: #FFFFFF;">Website in 2025</span>
-                            {% elif post.slug == 'wordpress-squarespace-or-custom-code-choosing-right-platform' %}
-                                <span style="color: #7A7A7A;">WordPress, Squarespace, or</span> <span style="color: #E0218A;">Custom Code?</span> <span style="color: #000000;">Choosing the Right Platform for Your</span> <span style="color: #FFFFFF;">Texas Small Business</span>
-                            {% elif post.slug == 'more-than-code-the-story-behind-the-grey-canvas' %}
-                                <span style="color: #E0218A;">More Than Code:</span> <span style="color: #7A7A7A;">The Story Behind</span> <span style="color: #FFFFFF;">The Grey Canvas</span>
-                            {% elif post.slug == 'frontend-has-changed-why-next-project-wont-start-create-react-app' %}
-                                <span style="color: #E0218A;">The Frontend</span> <span style="color: #FFFFFF;">Has Changed:</span> <span style="color: #7A7A7A;">Why Your Next Project</span> <span style="color: #FFFFFF;">Won't Start with</span> <span style="color: #E0218A;">create-react-app</span>
-                            {% else %}
-                                <span style="color: #FFFFFF;">{{ post.title }}</span>
-                            {% endif %}
+                    <h2 class="text-2xl md:text-3xl font-playfair font-bold mb-4">
+                        <a href="{{ url_for('blog_post', slug=featured_post.slug) }}" 
+                           class="text-white hover:text-pink-400 transition-colors duration-300">
+                            <span style="color: #E0218A;">{{ featured_post.title.split()[0] }}</span>
+                            <span style="color: #FFFFFF;">{{ featured_post.title.split()[1:3]|join(' ') }}</span>
+                            <span style="color: #7A7A7A;">{{ featured_post.title.split()[3:]|join(' ') }}</span>
                         </a>
                     </h2>
                     
-                    {% if post.excerpt %}
-                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                            {{ post.excerpt }}
-                        </p>
-                    {% else %}
-                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                            {{ post.content[:150] }}{% if post.content|length > 150 %}...{% endif %}
-                        </p>
+                    {% if featured_post.excerpt %}
+                        <p class="text-gray-300 mb-4 text-lg leading-relaxed">{{ featured_post.excerpt }}</p>
                     {% endif %}
                     
-                    {% if post.get_tags_list() %}
+                    {% if featured_post.tags %}
                         <div class="mb-4">
-                            {% for tag in post.get_tags_list() %}
-                                <span class="blog-tag">{{ tag }}</span>
+                            {% for tag in featured_post.tags.split(',') %}
+                                <span class="blog-tag">{{ tag.strip() }}</span>
                             {% endfor %}
                         </div>
                     {% endif %}
                     
-                    <a href="{{ url_for('blog_post', slug=post.slug) }}" class="read-more-btn">
-                        Read More →
+                    <a href="{{ url_for('blog_post', slug=featured_post.slug) }}" 
+                       class="read-more-btn inline-flex items-center">
+                        Read Full Article
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
                     </a>
-                </article>
-            {% endfor %}
-        </div>
+                </div>
+            </div>
+        </article>
+
+        {% if posts.items|length > 1 %}
+            <!-- Secondary Posts (2nd & 3rd Posts) - Two Column Grid -->
+            {% if posts.items|length >= 3 %}
+                <h3 class="text-2xl font-playfair font-bold text-white mb-6 text-center">Recent Articles</h3>
+                <div class="magazine-grid-2 mb-12">
+                    {% for post in posts.items[1:3] %}
+                        <article class="blog-card" data-category="{% if post.tags %}{{ post.tags.replace(' ', '').lower() }}{% else %}web-design,business{% endif %}">
+                            {% if post.featured_image %}
+                                <div class="mb-4">
+                                    <img src="{{ post.featured_image }}" 
+                                         alt="{{ post.title }}" 
+                                         class="w-full h-48 sm:h-56 md:h-64 lg:h-48 object-cover rounded-lg shadow-lg">
+                                </div>
+                            {% endif %}
+                            
+                            <div class="blog-meta">
+                                <time datetime="{{ post.created_at.isoformat() }}">
+                                    {{ post.created_at.strftime('%B %d, %Y') }}
+                                </time>
+                                <span class="text-gray-400">•</span>
+                                <span class="text-pink-400">{{ post.author or 'Krysta Dickson' }}</span>
+                            </div>
+                            
+                            <h3 class="text-xl font-playfair font-bold mb-3">
+                                <a href="{{ url_for('blog_post', slug=post.slug) }}" 
+                                   class="text-white hover:text-pink-400 transition-colors duration-300">
+                                    {{ post.title }}
+                                </a>
+                            </h3>
+                            
+                            {% if post.excerpt %}
+                                <p class="text-gray-300 mb-4 leading-relaxed">{{ post.excerpt }}</p>
+                            {% endif %}
+                            
+                            {% if post.tags %}
+                                <div class="mb-4">
+                                    {% for tag in post.tags.split(',') %}
+                                        <span class="blog-tag">{{ tag.strip() }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <a href="{{ url_for('blog_post', slug=post.slug) }}" 
+                               class="read-more-btn inline-flex items-center">
+                                Read More
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Remaining Posts (4th and beyond) - Three Column Grid -->
+            {% if posts.items|length > 3 %}
+                <h3 class="text-2xl font-playfair font-bold text-white mb-6 text-center">More Articles</h3>
+                <div class="magazine-grid-3">
+                    {% for post in posts.items[3:] %}
+                        <article class="blog-card" data-category="{% if post.tags %}{{ post.tags.replace(' ', '').lower() }}{% else %}web-design,business{% endif %}">
+                            {% if post.featured_image %}
+                                <div class="mb-4">
+                                    <img src="{{ post.featured_image }}" 
+                                         alt="{{ post.title }}" 
+                                         class="w-full h-48 object-cover rounded-lg shadow-lg">
+                                </div>
+                            {% endif %}
+                            
+                            <div class="blog-meta">
+                                <time datetime="{{ post.created_at.isoformat() }}">
+                                    {{ post.created_at.strftime('%B %d, %Y') }}
+                                </time>
+                                <span class="text-gray-400">•</span>
+                                <span class="text-pink-400">{{ post.author or 'Krysta Dickson' }}</span>
+                            </div>
+                            
+                            <h3 class="text-lg font-playfair font-bold mb-3">
+                                <a href="{{ url_for('blog_post', slug=post.slug) }}" 
+                                   class="text-white hover:text-pink-400 transition-colors duration-300">
+                                    {{ post.title }}
+                                </a>
+                            </h3>
+                            
+                            {% if post.excerpt %}
+                                <p class="text-gray-300 mb-4 text-sm leading-relaxed">{{ post.excerpt[:100] }}...</p>
+                            {% endif %}
+                            
+                            {% if post.tags %}
+                                <div class="mb-4">
+                                    {% for tag in post.tags.split(',')[:2] %}
+                                        <span class="blog-tag">{{ tag.strip() }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <a href="{{ url_for('blog_post', slug=post.slug) }}" 
+                               class="read-more-btn inline-flex items-center">
+                                Read More
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
 
         <!-- Pagination -->
         {% if posts.pages > 1 %}
@@ -446,4 +627,61 @@
         </div>
     </div>
 </main>
+
+<script>
+function filterPosts(category) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Show/hide posts based on category
+    const posts = document.querySelectorAll('.blog-card[data-category]');
+    
+    posts.forEach(post => {
+        if (category === 'all') {
+            post.style.display = 'block';
+            post.style.opacity = '1';
+        } else {
+            const postCategories = post.getAttribute('data-category').split(',');
+            if (postCategories.includes(category)) {
+                post.style.display = 'block';
+                post.style.opacity = '1';
+            } else {
+                post.style.opacity = '0';
+                setTimeout(() => {
+                    if (post.style.opacity === '0') {
+                        post.style.display = 'none';
+                    }
+                }, 300);
+            }
+        }
+    });
+    
+    // Update section headers visibility
+    const sections = ['Recent Articles', 'More Articles'];
+    sections.forEach(sectionName => {
+        const header = Array.from(document.querySelectorAll('h3')).find(h => h.textContent === sectionName);
+        if (header) {
+            const container = header.nextElementSibling;
+            const visiblePosts = container.querySelectorAll('.blog-card[style*="display: block"], .blog-card:not([style*="display: none"])');
+            
+            if (category === 'all' || visiblePosts.length > 0) {
+                header.style.display = 'block';
+                container.style.display = 'grid';
+            } else {
+                header.style.display = 'none';
+                container.style.display = 'none';
+            }
+        }
+    });
+}
+
+// Add smooth transitions for filtering
+document.addEventListener('DOMContentLoaded', function() {
+    const blogCards = document.querySelectorAll('.blog-card');
+    blogCards.forEach(card => {
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    });
+});
+</script>
 {% endblock %}
