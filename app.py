@@ -99,6 +99,13 @@ csrf = CSRFProtect(app)
 mail = Mail(app)
 db.init_app(app)
 
+# Add template context processor for CSRF token
+@app.template_global()
+def csrf_token():
+    """Generate CSRF token for templates"""
+    from flask_wtf.csrf import generate_csrf
+    return generate_csrf()
+
 # Initialize Flask-Login for admin authentication
 login_manager = LoginManager()
 login_manager.init_app(app)
