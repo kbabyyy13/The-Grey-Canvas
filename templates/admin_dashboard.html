@@ -395,7 +395,14 @@
 <script>
 // CSRF Token helper function
 function getCSRFToken() {
-    return document.querySelector('meta[name=csrf-token]').getAttribute('content');
+    const csrfMeta = document.querySelector('meta[name=csrf-token]');
+    if (!csrfMeta) {
+        console.error('CSRF token meta tag not found');
+        return null;
+    }
+    const token = csrfMeta.getAttribute('content');
+    console.log('CSRF token retrieved:', token ? 'Found' : 'Not found');
+    return token;
 }
 
 // Filter functionality
@@ -512,24 +519,40 @@ function markComplete(id, type) {
 
 function deleteInquiry(id, type) {
     if (confirm('Are you sure you want to delete this inquiry? This action cannot be undone.')) {
+        console.log(`Attempting to delete inquiry: ${type}/${id}`);
+        
+        const csrfToken = getCSRFToken();
+        if (!csrfToken) {
+            alert('CSRF token not found. Please refresh the page and try again.');
+            return;
+        }
+        
         fetch(`/admin/inquiry/${type}/${id}/delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken()
+                'X-CSRFToken': csrfToken
             }
         })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Delete response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
+                console.log('Delete response data:', data);
                 if (data.success) {
+                    alert('Inquiry deleted successfully!');
                     location.reload();
                 } else {
                     alert('Error deleting inquiry: ' + (data.error || 'Unknown error'));
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('Network error deleting inquiry');
+                console.error('Delete error:', error);
+                alert('Network error deleting inquiry: ' + error.message);
             });
     }
 }

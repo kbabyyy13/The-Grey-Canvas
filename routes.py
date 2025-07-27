@@ -428,14 +428,21 @@ def mark_inquiry_complete(inquiry_type, inquiry_id):
 def delete_inquiry(inquiry_type, inquiry_id):
     """Delete an inquiry"""
     try:
+        logging.info(f"Delete request received for {inquiry_type}/{inquiry_id}")
+        
         # Validate CSRF token for security
         from flask_wtf.csrf import validate_csrf
-        csrf_token = request.headers.get('X-CSRFToken')
+        csrf_token = request.headers.get('X-CSRFToken') or request.form.get('csrf_token')
+        
         if not csrf_token:
+            logging.error("CSRF token missing in delete request")
             return jsonify({"error": "CSRF token missing"}), 403
+            
         try:
             validate_csrf(csrf_token)
-        except Exception:
+            logging.info("CSRF token validation successful")
+        except Exception as e:
+            logging.error(f"CSRF token validation failed: {e}")
             return jsonify({"error": "CSRF token validation failed"}), 403
             
         if inquiry_type == "contact":
@@ -443,11 +450,14 @@ def delete_inquiry(inquiry_type, inquiry_id):
         elif inquiry_type == "intake":
             inquiry = IntakeSubmission.query.get_or_404(inquiry_id)
         else:
+            logging.error(f"Invalid inquiry type: {inquiry_type}")
             return jsonify({"error": "Invalid inquiry type"}), 400
 
         # Store inquiry details for logging
         inquiry_name = getattr(inquiry, 'name', getattr(inquiry, 'business_name', 'Unknown'))
         inquiry_email = getattr(inquiry, 'email', 'Unknown')
+        
+        logging.info(f"Attempting to delete inquiry: {inquiry_name} ({inquiry_email})")
         
         db.session.delete(inquiry)
         db.session.commit()
@@ -462,7 +472,7 @@ def delete_inquiry(inquiry_type, inquiry_id):
     except Exception as e:
         logging.error(f"Unexpected error deleting inquiry {inquiry_id}: {e}")
         db.session.rollback()
-        return jsonify({"error": "Failed to delete inquiry"}), 500
+        return jsonify({"error": f"Failed to delete inquiry: {str(e)}"}), 500
 
 
 # Project Progress Tracking Routes
