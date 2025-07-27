@@ -434,16 +434,25 @@ def delete_inquiry(inquiry_type, inquiry_id):
         from flask_wtf.csrf import validate_csrf
         csrf_token = request.headers.get('X-CSRFToken') or request.form.get('csrf_token')
         
+        logging.info(f"Delete request headers: {dict(request.headers)}")
+        logging.info(f"CSRF token received: {csrf_token[:10] + '...' if csrf_token else 'None'}")
+        
         if not csrf_token:
             logging.error("CSRF token missing in delete request")
-            return jsonify({"error": "CSRF token missing"}), 403
+            return jsonify({
+                "error": "CSRF token missing", 
+                "details": "Security token not provided in request"
+            }), 403
             
         try:
             validate_csrf(csrf_token)
             logging.info("CSRF token validation successful")
         except Exception as e:
             logging.error(f"CSRF token validation failed: {e}")
-            return jsonify({"error": "CSRF token validation failed"}), 403
+            return jsonify({
+                "error": "CSRF token validation failed", 
+                "details": "Security token is invalid or expired"
+            }), 403
             
         if inquiry_type == "contact":
             inquiry = ContactSubmission.query.get_or_404(inquiry_id)

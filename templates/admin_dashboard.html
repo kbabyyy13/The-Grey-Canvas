@@ -5,6 +5,10 @@
 {% block head %}
 {{ super() }}
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<script>
+    // Make CSRF token available globally for JavaScript
+    window.csrf_token = "{{ csrf_token() }}";
+</script>
 {% endblock %}
 
 {% block extra_css %}
@@ -393,16 +397,36 @@
 </div>
 
 <script>
-// CSRF Token helper function
+// CSRF Token helper function with improved error handling
 function getCSRFToken() {
+    // First try to get from meta tag
     const csrfMeta = document.querySelector('meta[name=csrf-token]');
-    if (!csrfMeta) {
-        console.error('CSRF token meta tag not found');
-        return null;
+    if (csrfMeta) {
+        const token = csrfMeta.getAttribute('content');
+        if (token && token.trim()) {
+            console.log('CSRF token retrieved from meta tag');
+            return token.trim();
+        }
     }
-    const token = csrfMeta.getAttribute('content');
-    console.log('CSRF token retrieved:', token ? 'Found' : 'Not found');
-    return token;
+    
+    // Fallback: try to get from any hidden input with name csrf_token
+    const csrfInput = document.querySelector('input[name="csrf_token"]');
+    if (csrfInput) {
+        const token = csrfInput.value;
+        if (token && token.trim()) {
+            console.log('CSRF token retrieved from hidden input');
+            return token.trim();
+        }
+    }
+    
+    // Final fallback: try to get from window object if set
+    if (window.csrf_token && window.csrf_token.trim()) {
+        console.log('CSRF token retrieved from window object');
+        return window.csrf_token.trim();
+    }
+    
+    console.error('CSRF token not found in meta tag, hidden input, or window object');
+    return null;
 }
 
 // Filter functionality
@@ -524,22 +548,40 @@ function deleteInquiry(id, type) {
         const csrfToken = getCSRFToken();
         if (!csrfToken) {
             alert('CSRF token not found. Please refresh the page and try again.');
+            console.error('CSRF token retrieval failed - checking page elements...');
+            console.log('Meta tag exists:', !!document.querySelector('meta[name=csrf-token]'));
+            console.log('Window token exists:', !!window.csrf_token);
             return;
         }
+        
+        console.log('Using CSRF token for delete request');
         
         fetch(`/admin/inquiry/${type}/${id}/delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
             }
         })
             .then(response => {
                 console.log('Delete response status:', response.status);
+                console.log('Delete response headers:', response.headers);
+                
+                if (response.status === 403) {
+                    throw new Error('CSRF token validation failed. Please refresh the page and try again.');
+                }
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.json();
+                
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    throw new Error('Server returned non-JSON response');
+                }
             })
             .then(data => {
                 console.log('Delete response data:', data);
@@ -552,7 +594,12 @@ function deleteInquiry(id, type) {
             })
             .catch(error => {
                 console.error('Delete error:', error);
-                alert('Network error deleting inquiry: ' + error.message);
+                if (error.message.includes('CSRF')) {
+                    alert('Security token expired. Please refresh the page and try again.');
+                    location.reload();
+                } else {
+                    alert('Network error deleting inquiry: ' + error.message);
+                }
             });
     }
 }
