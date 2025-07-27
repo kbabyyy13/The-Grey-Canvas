@@ -423,11 +423,21 @@ def mark_inquiry_complete(inquiry_type, inquiry_id):
         return jsonify({"error": "Failed to mark inquiry complete"}), 500
 
 
-@app.route("/admin/inquiry/<inquiry_type>/<int:inquiry_id>/delete", methods=["DELETE"])
+@app.route("/admin/inquiry/<inquiry_type>/<int:inquiry_id>/delete", methods=["DELETE", "POST"])
 @require_login
 def delete_inquiry(inquiry_type, inquiry_id):
     """Delete an inquiry"""
     try:
+        # Validate CSRF token for security
+        from flask_wtf.csrf import validate_csrf
+        csrf_token = request.headers.get('X-CSRFToken')
+        if not csrf_token:
+            return jsonify({"error": "CSRF token missing"}), 403
+        try:
+            validate_csrf(csrf_token)
+        except Exception:
+            return jsonify({"error": "CSRF token validation failed"}), 403
+            
         if inquiry_type == "contact":
             inquiry = ContactSubmission.query.get_or_404(inquiry_id)
         elif inquiry_type == "intake":
@@ -435,12 +445,22 @@ def delete_inquiry(inquiry_type, inquiry_id):
         else:
             return jsonify({"error": "Invalid inquiry type"}), 400
 
+        # Store inquiry details for logging
+        inquiry_name = getattr(inquiry, 'name', getattr(inquiry, 'business_name', 'Unknown'))
+        inquiry_email = getattr(inquiry, 'email', 'Unknown')
+        
         db.session.delete(inquiry)
         db.session.commit()
-
+        
+        logging.info(f"Inquiry deleted successfully: {inquiry_type} - {inquiry_name} ({inquiry_email})")
         return jsonify({"success": True, "message": "Inquiry deleted successfully"})
+        
+    except SQLAlchemyError as e:
+        logging.error(f"Database error deleting inquiry {inquiry_id}: {e}")
+        db.session.rollback()
+        return jsonify({"error": "Database error occurred while deleting inquiry"}), 500
     except Exception as e:
-        logging.error(f"Error deleting inquiry: {e}")
+        logging.error(f"Unexpected error deleting inquiry {inquiry_id}: {e}")
         db.session.rollback()
         return jsonify({"error": "Failed to delete inquiry"}), 500
 
