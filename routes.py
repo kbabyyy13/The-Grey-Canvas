@@ -434,7 +434,13 @@ def delete_inquiry(inquiry_type, inquiry_id):
         from flask_wtf.csrf import validate_csrf
         csrf_token = request.headers.get('X-CSRFToken') or request.form.get('csrf_token')
         
-        logging.info(f"Delete request headers: {dict(request.headers)}")
+        # Log only essential request info for debugging (avoid sensitive headers)
+        safe_headers = {
+            'Content-Type': request.headers.get('Content-Type'),
+            'User-Agent': request.headers.get('User-Agent', '')[:50] + '...' if len(request.headers.get('User-Agent', '')) > 50 else request.headers.get('User-Agent'),
+            'Content-Length': request.headers.get('Content-Length')
+        }
+        logging.info(f"Delete request info - Method: {request.method}, Headers: {safe_headers}")
         logging.info(f"CSRF token received: {csrf_token[:10] + '...' if csrf_token else 'None'}")
         
         if not csrf_token:
