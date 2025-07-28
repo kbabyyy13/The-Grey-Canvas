@@ -143,6 +143,72 @@ with app.app_context():
 # Import routes
 from routes import *
 
+# Start backup scheduler in background when app starts
+def start_backup_system():
+    """Initialize backup system with error handling"""
+    try:
+        import threading
+        import time
+        import schedule
+        from backup_system import run_daily_backup
+        
+        def backup_job():
+            """Run backup with logging"""
+            try:
+                logging.info("Running scheduled backup...")
+                success = run_daily_backup()
+                if success:
+                    logging.info("Scheduled backup completed successfully")
+                else:
+                    logging.error("Scheduled backup failed")
+            except Exception as e:
+                logging.error(f"Backup job error: {str(e)}")
+        
+        def cleanup_job():
+            """Run weekly cleanup"""
+            try:
+                logging.info("Running weekly backup cleanup...")
+                from backup_system import BackupManager
+                backup_manager = BackupManager()
+                backup_manager.cleanup_old_backups(days_to_keep=30)
+                logging.info("Weekly cleanup completed")
+            except Exception as e:
+                logging.error(f"Cleanup job error: {str(e)}")
+        
+        def scheduler_thread():
+            """Background scheduler thread"""
+            # Schedule jobs
+            schedule.every().day.at("02:00").do(backup_job)
+            schedule.every().sunday.at("03:00").do(cleanup_job)
+            
+            logging.info("Backup scheduler started - Daily backups at 2:00 AM")
+            logging.info(f"Next backup scheduled for: {schedule.next_run()}")
+            
+            # Run scheduler
+            while True:
+                try:
+                    schedule.run_pending()
+                    time.sleep(60)  # Check every minute
+                except Exception as e:
+                    logging.error(f"Scheduler error: {str(e)}")
+                    time.sleep(60)
+        
+        # Start scheduler in daemon thread
+        thread = threading.Thread(target=scheduler_thread, daemon=True)
+        thread.start()
+        
+        print("✅ Automated backup scheduler started successfully")
+        print("Daily backups will run at 2:00 AM")
+        return True
+        
+    except Exception as e:
+        print(f"⚠️ Warning: Could not start backup scheduler: {str(e)}")
+        print("Manual backups are still available through admin panel")
+        return False
+
+# Initialize backup system
+start_backup_system()
+
 if __name__ == "__main__":
     # Development server run - Gunicorn handles production
     import os

@@ -123,6 +123,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **July 28, 2025**: Fixed automated backup system scheduling and integration
+  - **Backup Scheduler Fix**: Resolved issue where automated daily backups were not running since July 25th
+  - **Application Integration**: Integrated backup scheduler directly into Flask app startup to ensure automatic operation
+  - **Background Threading**: Implemented robust background scheduler using daemon threads for continuous operation
+  - **Error Handling**: Added comprehensive error handling and logging for backup operations
+  - **Schedule Verification**: Confirmed daily backups now scheduled for 2:00 AM with weekly cleanup on Sundays at 3:00 AM
+  - **System Status**: Latest backup created successfully (grey_canvas_backup_20250728_190726.zip - 11.28 MB)
+  - **Circular Import Resolution**: Fixed import issues that prevented scheduler from starting automatically
+  - **Production Ready**: Backup system now starts automatically with Flask application and runs continuously
+  - **Manual Override**: Admin panel backup functions remain available for immediate backups when needed
+
 - **July 25, 2025**: Implemented magazine-style blog layout with professional hierarchy and interactive features
   - **Featured Post Layout**: Created full-width featured article section at top with two-column grid layout for image and content
   - **Hierarchical Grid System**: Implemented 2nd & 3rd posts in two-column grid, remaining posts in three-column grid for visual variety
