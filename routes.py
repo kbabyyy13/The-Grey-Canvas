@@ -69,6 +69,11 @@ def safe_redirect(url, fallback_endpoint="index"):
 
 @app.route("/")
 def index():
+    return render_template("temp_maintenance.html")
+
+@app.route("/main")
+def main_site():
+    """Access to main site during maintenance"""
     return render_template("index.html")
 
 

@@ -1,0 +1,200 @@
+
+{% extends "base.html" %}
+
+{% block title %}Something New is Coming - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="The Grey Canvas is currently being updated with exciting improvements. New website launching within 24 hours.">
+{% endblock %}
+
+{% block extra_css %}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+/* Maintenance page specific styles */
+.maintenance-container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.maintenance-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 800px;
+    width: 100%;
+}
+
+.maintenance-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
+                 1px 1px 2px rgba(0, 0, 0, 0.9),
+                 0 0 20px rgba(224, 33, 138, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.maintenance-body {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.maintenance-signature {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.1rem;
+    color: #E0218A;
+    font-style: italic;
+    margin-top: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.logo-section {
+    margin-bottom: 3rem;
+}
+
+.logo-section img {
+    filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));
+    max-width: 100%;
+    height: auto;
+}
+
+/* Loading animation */
+.loading-dots {
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.loading-dots span {
+    display: inline-block;
+    animation: loading 1.4s infinite ease-in-out both;
+    color: #E0218A;
+    font-size: 1.5rem;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes loading {
+    0%, 80%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .maintenance-headline {
+        font-size: 2rem;
+    }
+    
+    .maintenance-body {
+        font-size: 1.1rem;
+    }
+    
+    .maintenance-content {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .logo-section img {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maintenance-headline {
+        font-size: 1.75rem;
+    }
+    
+    .maintenance-body {
+        font-size: 1rem;
+    }
+    
+    .maintenance-content {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Progress indicator */
+.progress-indicator {
+    width: 100%;
+    max-width: 400px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #E0218A, #7A7A7A, #E0218A);
+    background-size: 200% 100%;
+    animation: progress 2s linear infinite;
+    border-radius: 2px;
+}
+
+@keyframes progress {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+{% endblock %}
+
+{% block content %}
+<div class="maintenance-container">
+    <!-- Logo Section -->
+    <div class="logo-section">
+        <img src="{{ url_for('static', filename='tgctag.png') }}" alt="The Grey Canvas - Web. Design. Thrive." class="w-auto max-w-full h-64 md:h-80 object-contain" />
+    </div>
+
+    <!-- Maintenance Content -->
+    <div class="maintenance-content">
+        <h1 class="maintenance-headline">
+            Something New is Coming<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+        </h1>
+        
+        <div class="maintenance-body">
+            <p style="margin-bottom: 1.5rem;">
+                I'm currently making some exciting improvements to <strong><span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #E0218A;">Canvas</span></strong>. I am hard at work behind the scenes to bring you a faster, better, and more intuitive online experience.
+            </p>
+            
+            <p style="margin-bottom: 1.5rem;">
+                The new and improved website will launch within the next <strong><span style="color: #E0218A;">24 hours</span></strong>.
+            </p>
+            
+            <p>
+                Thank you for your patience. I can't wait to show you what I've been working on.
+            </p>
+        </div>
+        
+        <!-- Progress Indicator -->
+        <div class="progress-indicator">
+            <div class="progress-bar"></div>
+        </div>
+        
+        <div class="maintenance-signature">
+            -The Grey Canvas Team
+        </div>
+    </div>
+</div>
+{% endblock %}
