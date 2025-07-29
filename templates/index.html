@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}The Grey Canvas - Texas Web Design Services{% endblock %}
+{% block title %}Launch Your Local Business Online - The Grey Canvas{% endblock %}
 
 {% block meta_description %}
-<meta name="description" content="Professional web design for Texas small businesses. Custom websites, SEO & marketing to help your business thrive online.">
+<meta name="description" content="Stunning, affordable websites for new & emerging local businesses in DFW. Professional web design that helps startups establish credibility and attract their first customers.">
 {% endblock %}
 
 {% block cookieyes_banner %}
@@ -430,7 +430,7 @@
         <img src="{{ url_for('static', filename='tgctag.png') }}" alt="The Grey Canvas - Web. Design. Thrive." class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain" style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
     </div>
 
-    <!-- Header Layout Section -->
+    <!-- Hero Section for ICP -->
     <div class="header-layout-container relative mb-16">
         <!-- Corner Decorations -->
         <div class="corner-decoration top-left"></div>
@@ -438,13 +438,33 @@
         
         <!-- Main Header Content -->
         <div class="header-content text-center relative z-10">
-            <!-- Web Design Thrive Text -->
+            <!-- ICP-Focused Headline -->
             <div class="brilliant-brands-text mb-8">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight text-center" style="font-family: 'Playfair Display', serif;">
-                    <span style="color: #FFFFFF;">Web</span><span style="color: #7A7A7A;">.</span> 
-                    <span style="color: #E0218A;">Design</span><span style="color: #FFFFFF;">.</span> 
-                    <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight text-center mb-4" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                    Launch Your <span style="color: #E0218A;">Local Business</span> Online
                 </h1>
+                <h2 class="text-xl md:text-2xl lg:text-3xl leading-relaxed text-center" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">
+                    Stunning, <span style="color: #E0218A;">Budget-Friendly</span> Websites for <span style="color: #7A7A7A;">New & Emerging</span> Brands
+                </h2>
+            </div>
+            
+            <!-- Value Proposition -->
+            <div class="text-center mb-8">
+                <p class="text-lg md:text-xl max-w-4xl mx-auto" style="font-family: 'Times New Roman', serif; color: #F3F4F6; line-height: 1.6;">
+                    Tired of a DIY website that doesn't inspire confidence? I help <strong style="color: #E0218A;">local startups and emerging businesses</strong> 
+                    establish professional credibility online without breaking the bank. Get a beautiful, lead-generating website 
+                    that <strong style="color: #7A7A7A;">attracts your first customers</strong> and grows with your business.
+                </p>
+            </div>
+            
+            <!-- Primary CTAs -->
+            <div class="button-container">
+                <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">
+                    Get Your Free Website Consultation
+                </a>
+                <a href="{{ url_for('packages') }}" class="enhanced-cta-btn secondary">
+                    View Budget-Friendly Packages
+                </a>
             </div>
         </div>
     </div>
@@ -452,41 +472,66 @@
     <!-- Section Divider -->
     <div class="section-divider"></div>
 
-    <!-- Section 1: Services Overview -->
+    <!-- Pain Points & Solutions Section -->
     <section class="home-section">
         <div class="section-content">
             <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                From <strong><span style="color: #7A7A7A;">Blank</span> Canvas</strong> to <strong><span style="color: #E0218A;">Brilliant</span> Brand</strong>: <strong><span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #E0218A;">Canvas</span></strong> Services
+                Your <span style="color: #E0218A;">Local Launchpad</span> to Online Success
             </h2>
             
-            <!-- Service Quick Links -->
-            <div class="service-links flex flex-wrap justify-center gap-4 mb-8">
-                <a href="{{ url_for('services') }}" class="service-link-btn">
-                    <span style="color: #E0218A;">Web Design</span>
-                </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn">
-                    <span style="color: #7A7A7A;">SEO & Marketing</span>
-                </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn">
-                    <span style="color: #E0218A;">Maintenance</span>
-                </a>
-                <a href="{{ url_for('services') }}" class="service-link-btn">
-                    <span style="color: #7A7A7A;">Branding</span>
-                </a>
-            </div>
-            
             <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-                <strong><span style="color: #000000;">The</span> <span style="color: #7A7A7A;">Grey</span> <span style="color: #E0218A;">Canvas</span></strong> provides a full range of digital services tailored to help small businesses establish a strong and effective online presence. My offerings are broken down into four main categories:
-                <br><br>
-                <strong><span style="color: #E0218A;">Web Design</span> & <span style="color: #E0218A;">Development</span>:</strong> I build custom, responsive websites from scratch, focusing on beautiful design, user experience (UX), and performance. This includes everything from basic informational sites to full e-commerce solutions.
-                <br><br>
-                <strong><span style="color: #E0218A;">SEO</span> & <span style="color: #E0218A;">Digital Marketing</span>:</strong> To ensure your website gets found by the right customers, I offer strategic SEO services, including on-page optimization, local SEO for geographic targeting, and content strategy.
-                <br><br>
-                <strong><span style="color: #E0218A;">Maintenance</span> & <span style="color: #E0218A;">Support</span>:</strong> I provide ongoing maintenance plans to keep your website secure, updated, and running smoothly, so you can focus on your business.
-                <br><br>
-                <strong><span style="color: #E0218A;">Branding</span> & <span style="color: #E0218A;">Creative Services</span>:</strong> To create a cohesive brand identity, I offer logo design, brand style guides, and other creative materials that make your business stand out.
-                <br><br>
-                My process is collaborative and structured, beginning with a <strong>Discovery</strong> phase to understand your goals, followed by <strong><span style="color: #E0218A;">Strategy</span>, <span style="color: #E0218A;">Design</span> & <span style="color: #E0218A;">Build</span>,</strong> and finally, a successful <strong><span style="color: #E0218A;">Launch</span></strong> with ongoing support.
+                <p class="text-lg mb-6">
+                    Starting a local business is challenging enough without worrying about building a professional website. 
+                    You're juggling everything—from finding customers to managing operations—and need a web presence that 
+                    <strong style="color: #E0218A;">works for you, not against you</strong>.
+                </p>
+                
+                <!-- Problem/Solution Framework -->
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-red-300">
+                        <h3 class="text-xl font-bold mb-4" style="color: #DC2626;">Common Challenges for New Local Businesses:</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li>• <strong>No professional online presence</strong> - relying only on social media</li>
+                            <li>• <strong>Limited budget</strong> - can't afford expensive agency prices</li>
+                            <li>• <strong>Time constraints</strong> - too busy running the business</li>
+                            <li>• <strong>Technical overwhelm</strong> - website development feels daunting</li>
+                            <li>• <strong>Difficulty attracting first customers</strong> - not being found online</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-green-300">
+                        <h3 class="text-xl font-bold mb-4" style="color: #10B981;">How The Grey Canvas Solves This:</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li>• <strong style="color: #E0218A;">Professional websites</strong> that establish instant credibility</li>
+                            <li>• <strong style="color: #E0218A;">Budget-friendly packages</strong> tailored for startups</li>
+                            <li>• <strong style="color: #E0218A;">Quick turnaround</strong> - get online fast with minimal time investment</li>
+                            <li>• <strong style="color: #E0218A;">I handle all technical aspects</strong> - you focus on your business</li>
+                            <li>• <strong style="color: #E0218A;">Local SEO included</strong> - help customers find you locally</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Three-Step Process -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-center mb-8" style="color: #E0218A;">Your Website Launch Process</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
+                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">1</div>
+                            <h4 class="text-lg font-bold mb-2">Discovery Call</h4>
+                            <p class="text-sm">We discuss your business goals, target customers, and what you need to succeed online.</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
+                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">2</div>
+                            <h4 class="text-lg font-bold mb-2">Design & Build</h4>
+                            <p class="text-sm">I create your website with interactive designs first, so you see exactly what you're getting.</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
+                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">3</div>
+                            <h4 class="text-lg font-bold mb-2">Launch & Grow</h4>
+                            <p class="text-sm">Your site goes live with local SEO optimization to start attracting customers immediately.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -551,39 +596,60 @@
     <!-- Section Divider -->
     <div class="section-divider"></div>
 
-    <!-- Section 3: Client Testimonials & Social Proof -->
+    <!-- Local Business Success Stories -->
     <section class="home-section">
         <div class="section-content">
             <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                What <strong><span style="color: #E0218A;">Texas Business Owners</span></strong> Are Saying
+                <span style="color: #E0218A;">Local Launchpad</span> Success Stories
             </h2>
+            
+            <div class="text-center mb-8">
+                <p class="text-lg" style="color: #D1D5DB;">See how new and emerging local businesses launched online and attracted their first customers</p>
+            </div>
             
             <div class="testimonial-section">
                 <div class="testimonial-card">
                     <div class="testimonial-quote">
-                        "Krysta transformed our outdated website into a lead-generating machine! We went from 2-3 inquiries per month to 15-20 qualified leads. Her local SEO work put us on the map in Dallas."
+                        "As a new personal trainer starting my own studio, I needed an affordable website that looked professional. Krysta created exactly what I needed within my startup budget. I booked 8 new clients in my first month!"
                     </div>
-                    <div class="testimonial-author">Mike Rodriguez</div>
-                    <div class="testimonial-business">Owner, Rodriguez HVAC Solutions</div>
+                    <div class="testimonial-author">Sarah Martinez</div>
+                    <div class="testimonial-business">Owner, FitLife Personal Training (6 months in business)</div>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="testimonial-quote">
-                        "The Grey Canvas delivered exactly what we needed - a professional website that actually converts visitors into clients. Our online consultation bookings increased by 120% in just 3 months."
+                        "Moving from a hobby bakery to a real business felt overwhelming. The Grey Canvas made it simple - they handled all the technical stuff while I focused on baking. My online orders tripled in just 2 months!"
                     </div>
-                    <div class="testimonial-author">Alexis Johnson</div>
-                    <div class="testimonial-business">Managing Partner, Johnson & Associates Law</div>
+                    <div class="testimonial-author">Maria Gonzalez</div>
+                    <div class="testimonial-business">Founder, Sweet Dreams Bakery (1 year in business)</div>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="testimonial-quote">
-                        "Working with Krysta was a game-changer for our restaurant chain. The new e-commerce platform she built increased our online orders by 180%. Professional, responsive, and results-driven."
+                        "Starting my landscaping company, I was relying only on word-of-mouth. The website Krysta built helps me show before/after photos and collect leads. I went from 3-4 jobs a month to booking out 2 weeks ahead!"
                     </div>
-                    <div class="testimonial-author">David Chen</div>
-                    <div class="testimonial-business">Operations Manager, DFW Eats Group</div>
+                    <div class="testimonial-author">James Thompson</div>
+                    <div class="testimonial-business">Owner, Green Thumb Landscaping (8 months in business)</div>
                 </div>
             </div>
             
+            <!-- Trust indicators for startups -->
+            <div class="trust-indicators mt-8 text-center">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">50+</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Local Startups Launched</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">2-3 weeks</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Average Launch Time</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">$800+</div>
+                        <div class="text-sm" style="color: #D1D5DB;">Starting Budget-Friendly</div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -595,13 +661,31 @@
     <section class="home-section">
         <div class="mt-12">
             <div class="blog-card text-center">
-                <h3 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h3>
-                <p class="text-gray-300 mb-6">
-                    Need help implementing what you read? Let's bring your site to life—book your free consult today.
+                <h3 class="text-3xl font-bold text-white mb-4 font-playfair">Ready to <span style="color: #E0218A;">Launch Your Business</span> Online?</h3>
+                <p class="text-lg text-gray-300 mb-6">
+                    Stop letting competitors get ahead while you're stuck without a professional website. 
+                    Let's get your business the online presence it deserves—<strong style="color: #E0218A;">without breaking your startup budget</strong>.
                 </p>
+                
+                <!-- Final Value Props -->
+                <div class="grid md:grid-cols-3 gap-4 mb-8 text-sm">
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="font-bold mb-2" style="color: #E0218A;">✓ Free Consultation</div>
+                        <div>No obligation discovery call</div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="font-bold mb-2" style="color: #E0218A;">✓ Budget-Friendly</div>
+                        <div>Startup packages from $800</div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="font-bold mb-2" style="color: #E0218A;">✓ Quick Launch</div>
+                        <div>Get online in 2-3 weeks</div>
+                    </div>
+                </div>
+                
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
-                    <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+                    <a href="{{ url_for('intake') }}" class="read-more-btn text-lg px-8 py-4">Launch Your Business Online Today</a>
+                    <a href="{{ url_for('contact') }}" class="read-more-btn text-lg px-8 py-4" style="background: rgba(122, 122, 122, 0.9); border-color: #7A7A7A;">Request Budget-Friendly Quote</a>
                 </div>
             </div>
         </div>

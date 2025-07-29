@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Website Packages - The Grey Canvas{% endblock %}
+{% block title %}Budget-Friendly Website Packages for Local Startups - The Grey Canvas{% endblock %}
 
 {% block meta_description %}
-<meta name="description" content="Professional website packages for Texas small businesses. Essential, Professional, and Premium options starting at $1,500. DFW web developer.">
+<meta name="description" content="Affordable website packages for new and emerging local businesses in DFW. Professional web design starting at $800. Perfect for startups ready to launch online.">
 {% endblock %}
 
 {% block extra_css %}
@@ -101,10 +101,11 @@
 <main class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
     <div class="text-center mb-8">
         <h1 class="text-4xl md:text-5xl font-playfair text-white mb-4">
-            <span style="color: #7A7A7A;">Website</span> <span style="color: #e0218a;">Packages</span> <span class="text-white">for</span> <span style="color: #7A7A7A;">Texas</span> <span style="color: #e0218a;">Small</span> <span class="text-white">Businesses</span>
+            <span style="color: #e0218a;">Local Launchpad</span> <span class="text-white">Website Packages</span>
         </h1>
-        <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-            Choose the perfect website package for your business needs. Each package includes detailed planning, custom design, professional development, and comprehensive support to ensure your online success.
+        <p class="text-lg text-gray-300 max-w-4xl mx-auto">
+            <strong style="color: #e0218a;">Budget-friendly website packages</strong> designed specifically for <strong style="color: #7A7A7A;">new and emerging local businesses</strong>. 
+            Launch your professional online presence without breaking the bank—starting at just $800.
         </p>
     </div>
 
@@ -121,28 +122,59 @@
 
     <!-- Package Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Startup Launch Package -->
+        <article class="blog-card" style="border-color: rgba(34, 197, 94, 0.5);">
+            <div class="package-timeline">
+                <span>Timeline: 1-2 Weeks</span>
+                <span>•</span>
+                <span style="color: #22C55E;">Perfect for Startups</span>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-3 font-playfair">
+                <span style="color: #22C55E;">Startup</span> <span style="color: #FFFFFF;">Launch</span>
+            </h2>
+            
+            <div class="package-price" style="color: #22C55E;">$800</div>
+            
+            <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                <strong>Perfect for new local businesses</strong> launching their first professional website. Get online fast with everything you need to establish credibility.
+            </p>
+            
+            <div class="mb-4">
+                <span class="package-tag">3-4 Pages</span>
+                <span class="package-tag">Contact Form</span>
+                <span class="package-tag">Local SEO</span>
+                <span class="package-tag">Mobile Ready</span>
+            </div>
+            
+            <a href="{{ url_for('intake') }}" class="read-more-btn" style="background: linear-gradient(135deg, #22C55E, #16A34A);">
+                Launch My Business →
+            </a>
+        </article>
+
         <!-- Essential Package -->
         <article class="blog-card">
             <div class="package-timeline">
-                <span>Timeline: 2-4 Weeks</span>
+                <span>Timeline: 2-3 Weeks</span>
                 <span>•</span>
-                <span>Starting at</span>
+                <span>Popular Choice</span>
             </div>
             
             <h2 class="text-xl font-bold mb-3 font-playfair">
                 <span style="color: #e0218a;">Essential</span> <span style="color: #FFFFFF;">Package</span>
             </h2>
             
-            <div class="package-price">$1,500</div>
+            <div class="package-price">$1,200</div>
             
             <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                Perfect for new businesses establishing their online presence with a professional, mobile-ready website.
+                For businesses ready to expand beyond the basics with additional pages and enhanced features for growth.
             </p>
             
             <div class="mb-4">
-                <span class="package-tag">3-5 Pages</span>
-                <span class="package-tag">SEO Ready</span>
-                <span class="package-tag">Mobile Responsive</span>
+                <span class="package-tag">5-6 Pages</span>
+                <span class="package-tag">Blog Setup</span>
+                <span class="package-tag">SEO Optimized</span>
+                <span class="package-tag">Social Links</span>
             </div>
             
             <a href="{{ url_for('intake') }}" class="read-more-btn">
@@ -155,72 +187,58 @@
             <div class="package-timeline">
                 <span>Timeline: 3-4 Weeks</span>
                 <span>•</span>
-                <span>Most Popular</span>
+                <span>For Growing Businesses</span>
             </div>
             
             <h2 class="text-xl font-bold mb-3 font-playfair">
                 <span style="color: #e0218a;">Professional</span> <span style="color: #FFFFFF;">Package</span>
             </h2>
             
-            <div class="package-price">$2,500</div>
+            <div class="package-price">$1,800</div>
             
             <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                For growing businesses ready to scale online with advanced features and comprehensive optimization.
+                Perfect for local businesses ready to scale with advanced features, e-commerce capabilities, and comprehensive online marketing tools.
             </p>
             
             <div class="mb-4">
-                <span class="package-tag">5-8 Pages</span>
-                <span class="package-tag">Blog Setup</span>
+                <span class="package-tag">7-10 Pages</span>
+                <span class="package-tag">E-commerce Ready</span>
                 <span class="package-tag">Advanced SEO</span>
-                <span class="package-tag">Social Integration</span>
+                <span class="package-tag">Analytics Setup</span>
             </div>
             
             <a href="{{ url_for('intake') }}" class="read-more-btn">
-                Get Started →
+                Scale My Business →
             </a>
         </article>
+    </div>
 
-        <!-- Premium Package -->
-        <article class="blog-card">
-            <div class="package-timeline">
-                <span>Timeline: 4-6 Weeks</span>
-                <span>•</span>
-                <span>Custom Solutions</span>
-            </div>
-            
-            <h2 class="text-xl font-bold mb-3 font-playfair">
-                <span style="color: #e0218a;">Premium</span> <span style="color: #FFFFFF;">Package</span>
-            </h2>
-            
-            <div class="package-price">$3,000-$5,000</div>
-            
-            <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                For established businesses seeking advanced functionality, e-commerce, and custom integrations.
+    <!-- Special Offer Section -->
+    <div class="mt-8 mb-8">
+        <div class="blog-card text-center" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.05)); border-color: rgba(34, 197, 94, 0.3);">
+            <h3 class="text-xl font-bold text-white mb-3 font-playfair">
+                <span style="color: #22C55E;">New Business Special:</span> Free Discovery Call + $100 Off
+            </h3>
+            <p class="text-gray-300 mb-4 text-sm">
+                Starting a new local business? Schedule your free consultation this month and save $100 on any package. 
+                Let's discuss your vision and create a launch plan that fits your budget.
             </p>
-            
-            <div class="mb-4">
-                <span class="package-tag">8+ Pages</span>
-                <span class="package-tag">E-commerce</span>
-                <span class="package-tag">Custom Features</span>
-                <span class="package-tag">Training Included</span>
-            </div>
-            
-            <a href="{{ url_for('intake') }}" class="read-more-btn">
-                Get Started →
+            <a href="{{ url_for('contact') }}" class="read-more-btn" style="background: linear-gradient(135deg, #22C55E, #16A34A);">
+                Claim Your New Business Discount
             </a>
-        </article>
+        </div>
     </div>
 
     <!-- Call to Action Section -->
     <div class="mt-12">
         <div class="blog-card text-center">
-            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to Get Started?</h2>
+            <h2 class="text-2xl font-bold text-white mb-4 font-playfair">Ready to <span style="color: #e0218a;">Launch Your Business</span> Online?</h2>
             <p class="text-gray-300 mb-6">
-                Choose your perfect package or schedule a free consultation to discuss your project needs.
+                Don't wait another month to establish your professional online presence. Choose your package and start attracting local customers today.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ url_for('intake') }}" class="read-more-btn">Begin Your Canvas</a>
-                <a href="{{ url_for('contact') }}" class="read-more-btn">Let's Connect!</a>
+                <a href="{{ url_for('intake') }}" class="read-more-btn">Get Your Free Website Consultation</a>
+                <a href="{{ url_for('contact') }}" class="read-more-btn">Ask About Payment Plans</a>
             </div>
         </div>
     </div>
