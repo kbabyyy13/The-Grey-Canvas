@@ -1134,8 +1134,8 @@
                 </div>
 
                 <nav class="footer-nav">
-                    <h3 style="color: #E0218A;">Explore</h3>
-                    <ul>
+                    <h3 class="font-playfair" style="color: #E0218A;">Explore</h3>
+                    <ul class="font-times-new-roman">
                         <li><a href="{{ url_for('thegrey') }}">The Grey Canvas Co.</a></li>
                         <li><a href="{{ url_for('index') }}">Home</a></li>
                         <li><a href="{{ url_for('services') }}">Services</a></li>
@@ -1147,29 +1147,29 @@
                 </nav>
 
                 <div class="footer-contact">
-                    <h3 style="color: #E0218A;">Connect</h3>
-                    <ul>
+                    <h3 class="font-playfair" style="color: #E0218A;">Connect</h3>
+                    <ul class="font-times-new-roman">
                         <li><a href="mailto:krystamcalister@thegreycanvas.co">krystamcalister@thegreycanvas.co</a></li>
                         <li><a href="tel:+16824031904">(682) 403-1904</a></li>
                     </ul>
                     
-                    <h3 style="margin-top: 1.5rem; color: #e0218a;">Business Hours</h3>
-                    <ul style="font-size: 0.9rem;">
+                    <h3 class="font-playfair" style="margin-top: 1.5rem; color: #e0218a;">Business Hours</h3>
+                    <ul class="font-times-new-roman" style="font-size: 0.9rem;">
                         <li style="color: #FFFFFF;">Mon-Fri: 10:00AM-6:00PM</li>
                         <li style="color: #FFFFFF;">Saturday: 12:00PM-6:00PM</li>
                         <li style="color: #FFFFFF;">Sunday: 1:00PM-6:00PM</li>
                         <li style="color: #FFFFFF; font-size: 0.8rem;">(Lunch: 1:00PM-2:00PM Mon-Fri)</li>
                     </ul>
                     
-                    <h3 style="margin-top: 1.5rem; color: #e0218a;">Location</h3>
-                    <ul style="font-size: 0.9rem;">
+                    <h3 class="font-playfair" style="margin-top: 1.5rem; color: #e0218a;">Location</h3>
+                    <ul class="font-times-new-roman" style="font-size: 0.9rem;">
                         <li style="color: #FFFFFF;">No Physical Location</li>
                         <li style="color: #FFFFFF;">Based out of:</li>
                         <li style="color: #FFFFFF;">Dallas/Fort Worth, Texas</li>
                     </ul>
                     
-                    <h3 style="margin-top: 1.5rem; color: #E0218A;">Follow</h3>
-                    <ul class="social-icons">
+                    <h3 class="font-playfair" style="margin-top: 1.5rem; color: #E0218A;">Follow</h3>
+                    <ul class="social-icons font-times-new-roman">
                         <li><a href="https://www.facebook.com/thegreycanvasdfw" target="_blank" rel="noopener noreferrer">Facebook</a></li>
                         <li><a href="https://instagram.com/thegreycanvasdfw" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                         <li><a href="https://www.linkedin.com/company/thegreycanvas" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -1178,18 +1178,18 @@
                 </div>
 
                 <div class="footer-newsletter">
-                    <h3 style="color: #E0218A;">Subscribe</h3>
+                    <h3 class="font-playfair" style="color: #E0218A;">Subscribe</h3>
                     <form action="{{ url_for('newsletter_subscribe') }}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                        <label for="newsletter-email" class="sr-only">Email address for newsletter subscription</label>
+                        <label for="newsletter-email" class="sr-only font-times-new-roman">Email address for newsletter subscription</label>
                         <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" aria-label="Email address for newsletter subscription" required />
-                        <button type="submit" aria-label="Subscribe to newsletter">Join Newsletter</button>
+                        <button type="submit" aria-label="Subscribe to newsletter" class="font-times-new-roman">Join Newsletter</button>
                     </form>
-                    <p class="disclaimer">No spam. Just pixels, stories, and the occasional existential crisis.</p>
+                    <p class="disclaimer font-times-new-roman">No spam. Just pixels, stories, and the occasional existential crisis.</p>
                 </div>
             </div>
 
-            <div class="footer-bottom">
+            <div class="footer-bottom font-times-new-roman">
                 <p>© 2025 The Grey Canvas. All rights reserved.</p>
                 <p>Built with 💻 + ☕ by Krysta McAlister</p>
                 <p>

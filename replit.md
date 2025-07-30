@@ -123,6 +123,22 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **July 30, 2025**: Typography standardization completed across website
+  - **Headline Reversion**: Reverted headlines to original branding on services, packages, and about pages
+    - Services: "The Grey Canvas Services" 
+    - Packages: "Website Packages for Texas Small Businesses"
+    - About: "Where Code Meets Craft"
+  - **Typography Standards Applied**: Implemented consistent font usage throughout website
+    - All headlines and titles now use Playfair Display font family
+    - All body text, subtext, and descriptions now use Times New Roman font family
+  - **Owner Page Typography**: Updated owner page biographical text under photo to Times New Roman
+  - **Footer Typography**: Updated all footer sections to use proper font families
+    - Footer headings (Explore, Connect, Business Hours, Location, Follow, Subscribe) use Playfair Display
+    - All footer body text, links, and information use Times New Roman
+    - Copyright, built by, and legal links use Times New Roman
+  - **Content Preservation**: Maintained all ICP-focused messaging while restoring original Grey Canvas branding
+  - **Design Consistency**: Achieved uniform typography standards across all pages while preserving visual hierarchy
+
 - **July 29, 2025**: Implemented comprehensive ICP (Ideal Client Profile) strategy targeting "The Local Launchpad Business"
   - **Target Audience Shift**: Repositioned from general small businesses to specifically target new and emerging local businesses, startups launching their first professional website
   - **Homepage Transformation**: Complete messaging overhaul focused on budget-conscious startups needing credibility and first customers
