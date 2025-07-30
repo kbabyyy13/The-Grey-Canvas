@@ -217,7 +217,7 @@
     <div class="mt-8 mb-8">
         <div class="blog-card text-center" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.05)); border-color: rgba(34, 197, 94, 0.3);">
             <h3 class="text-xl font-bold text-white mb-3 font-playfair">
-                <span style="color: #22C55E;">New Business Special:</span> Free Discovery Call + $100 Off
+                <span style="color: #22C55E;">New Business Special:</span> Free Discovery Call + $100 Off<span style="color: #e0218a;">*</span>
             </h3>
             <p class="text-gray-300 mb-4 text-sm font-times-new-roman">
                 Starting a new local business? Schedule your free consultation this month and save $100 on any package. 
@@ -239,6 +239,29 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="{{ url_for('intake') }}" class="read-more-btn">Get Your Free Website Consultation</a>
                 <a href="{{ url_for('contact') }}" class="read-more-btn">Ask About Payment Plans</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discount Eligibility Disclosure Section -->
+    <div class="mt-12 mb-8">
+        <div class="blog-card">
+            <h3 class="text-lg font-bold mb-4 font-times-new-roman" style="color: #e0218a;">
+                * Discount Eligibility Disclosure
+            </h3>
+            <div class="text-gray-300 text-sm leading-relaxed font-times-new-roman">
+                <p class="mb-4">
+                    To qualify for the New Business Special: Free Discovery Call + $100 Off, clients must provide two forms of verifiable proof that their business is newly established and has not previously had a professional website. Acceptable forms of proof include, but are not limited to:
+                </p>
+                <ul class="list-disc list-inside mb-4 space-y-2">
+                    <li>Business registration documents (e.g., LLC formation papers, DBA registration) dated within the last 12 months.</li>
+                    <li>Recent utility bills or lease agreements for the business premises (dated within the last 6 months).</li>
+                    <li>Official bank statements for the new business account (showing account opening within the last 12 months).</li>
+                    <li>Tax identification number (EIN) confirmation letter issued within the last 12 months.</li>
+                </ul>
+                <p>
+                    This offer is exclusively for businesses genuinely in their startup phase looking to establish their first official online presence.
+                </p>
             </div>
         </div>
     </div>
