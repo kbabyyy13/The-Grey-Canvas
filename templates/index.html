@@ -125,32 +125,32 @@
     .home-headline {
         font-size: 2rem;
     }
-    
+
     .home-tagline {
         font-size: 1.5rem;
     }
-    
+
     .section-content {
         padding: 3rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
         text-align: center;
         word-spacing: normal;
         letter-spacing: normal;
     }
-    
+
     .section-text {
         text-align: justify;
         word-spacing: normal;
         letter-spacing: normal;
     }
-    
+
     .project-showcase {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .header-image {
         width: 650px;
     }
@@ -160,19 +160,19 @@
     .home-headline {
         font-size: 2.5rem;
     }
-    
+
     .home-tagline {
         font-size: 1.75rem;
     }
-    
+
     .section-content {
         padding: 4rem;
     }
-    
+
     .section-title {
         font-size: 2.25rem;
     }
-    
+
 }
 
 /* Section Divider Styles */
@@ -338,7 +338,7 @@
     .service-links {
         grid-template-columns: 1fr 1fr;
     }
-    
+
     /* Better word spacing on mobile */
     .section-title {
         font-size: 1.5rem;
@@ -347,7 +347,7 @@
         word-spacing: 0.1em;
         letter-spacing: 0.02em;
     }
-    
+
     .section-text {
         font-size: 1rem;
         line-height: 1.5;
@@ -355,13 +355,13 @@
         word-spacing: 0.05em;
         letter-spacing: 0.01em;
     }
-    
+
     /* Improve span word spacing */
     .section-title span,
     .section-text span {
         word-spacing: inherit;
     }
-    
+
     /* Better mobile layout for content */
     .section-content {
         padding: 1.5rem;
@@ -427,7 +427,21 @@
 <div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
     <!-- Hero Image Section -->
     <div class="block mb-8">
-        <img src="{{ url_for('static', filename='tgctag.png') }}" alt="The Grey Canvas - Web. Design. Thrive." class="mx-auto w-auto max-w-full h-80 md:h-96 lg:h-[28rem] object-contain" style="filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.4));"/>
+        <!-- Logo -->
+            <div class="mb-8">
+                <img src="{{ url_for('static', filename='grey-canvas-logo-new.png') }}" 
+                     alt="The Grey Canvas" 
+                     class="mx-auto h-32 w-auto">
+            </div>
+
+            <!-- Styled Tagline -->
+            <div class="mb-8 text-center">
+                <h2 class="text-2xl md:text-3xl font-playfair">
+                    <span style="color: #000000;">Web</span><span style="color: #7A7A7A;">.</span> 
+                    <span style="color: #E0218A;">Design</span><span style="color: #000000;">.</span> 
+                    <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
+                </h2>
+            </div>
     </div>
 
     <!-- Hero Section for ICP -->
@@ -435,7 +449,7 @@
         <!-- Corner Decorations -->
         <div class="corner-decoration top-left"></div>
         <div class="corner-decoration bottom-right"></div>
-        
+
         <!-- Main Header Content -->
         <div class="header-content text-center relative z-10">
             <!-- Enhanced ICP-Focused Headline -->
@@ -446,7 +460,7 @@
                 <h2 class="text-xl md:text-2xl lg:text-3xl leading-relaxed text-center mb-6" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">
                     Affordable Website Development That Helps <span style="color: #E0218A;">DFW Startups & Small Businesses</span> Grow Online
                 </h2>
-                
+
                 <!-- Urgency & Social Proof Indicators -->
                 <div class="flex flex-wrap justify-center gap-4 mb-6 text-sm" style="font-family: 'Times New Roman', serif;">
                     <div class="bg-green-600 bg-opacity-20 px-3 py-1 rounded-full border border-green-400">
@@ -460,7 +474,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Enhanced Value Proposition with ROI Focus -->
             <div class="text-center mb-8">
                 <p class="text-lg md:text-xl max-w-4xl mx-auto mb-4" style="font-family: 'Times New Roman', serif; color: #F3F4F6; line-height: 1.6;">
@@ -472,7 +486,7 @@
                     and emerging local businesses. Build instant credibility with <strong style="color: #E0218A;">small business website design</strong> 
                     that generates leads from day one—without the agency price tag.
                 </p>
-                
+
                 <!-- ROI Statistics -->
                 <div class="grid md:grid-cols-3 gap-4 mt-6 max-w-3xl mx-auto">
                     <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg" style="font-family: 'Times New Roman', serif;">
@@ -489,7 +503,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Urgency Messaging -->
             <div class="text-center mb-6">
                 <div class="bg-red-600 bg-opacity-20 border border-red-400 rounded-lg p-4 mb-4 max-w-2xl mx-auto">
@@ -498,7 +512,7 @@
                         is potential revenue lost to competitors. August 2025 is prime season for local business growth!
                     </p>
                 </div>
-                
+
                 <!-- Special Offer -->
                 <div class="bg-green-600 bg-opacity-20 border border-green-400 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
                     <h3 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #10B981;">
@@ -532,14 +546,14 @@
             <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
                 Your <span style="color: #E0218A;">Local Launchpad</span> to Online Success
             </h2>
-            
+
             <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
                 <p class="text-lg mb-6">
                     Starting a local business is challenging enough without worrying about building a professional website. 
                     You're juggling everything—from finding customers to managing operations—and need a web presence that 
                     <strong style="color: #E0218A;">works for you, not against you</strong>.
                 </p>
-                
+
                 <!-- Enhanced Problem/Solution Framework -->
                 <div class="grid md:grid-cols-2 gap-8 mt-8">
                     <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-red-300">
@@ -553,7 +567,7 @@
                             <li>• <strong>"I'm tech-overwhelmed"</strong> - coding feels impossible</li>
                         </ul>
                     </div>
-                    
+
                     <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-green-300">
                         <h3 class="text-xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #10B981;">Your Local Launchpad Solution:</h3>
                         <ul class="space-y-3 text-sm" style="font-family: 'Times New Roman', serif;">
@@ -566,7 +580,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Industry Examples Section -->
                 <div class="mt-12 mb-8">
                     <h3 class="text-2xl font-bold text-center mb-6" style="font-family: 'Playfair Display', serif; color: #E0218A;">Perfect for These DFW Startup Industries:</h3>
@@ -640,7 +654,7 @@
                 <br><br>
                 Each project showcases my commitment to creating websites that don't just look professional—they drive business growth through strategic design, user experience optimization, and results-focused development.
             </div>
-            
+
             <!-- Enhanced Portfolio Showcase with Stats -->
             <div class="portfolio-showcase">
                 <a href="{{ url_for('portfolio') }}" class="portfolio-card">
@@ -671,7 +685,7 @@
                     <div class="portfolio-tech">Custom Design • Contact Forms • Analytics</div>
                 </a>
             </div>
-            
+
             <!-- Gallery Call-to-Action -->
             <div class="text-center mt-8">
                 <div class="button-container">
@@ -695,11 +709,11 @@
             <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
                 <span style="color: #E0218A;">Local Launchpad</span> Success Stories
             </h2>
-            
+
             <div class="text-center mb-8">
                 <p class="text-lg" style="color: #D1D5DB;">See how new and emerging local businesses launched online and attracted their first customers</p>
             </div>
-            
+
             <div class="testimonial-section">
                 <div class="testimonial-card">
                     <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
@@ -708,7 +722,7 @@
                     <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Sarah Martinez</div>
                     <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">FitLife Personal Training • Launched with $800 package • Now $8K/month revenue</div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
                         "Transitioning from hobby baker to real business, I needed credibility fast. The Grey Canvas gave me a professional website in 2 weeks that makes customers trust me immediately. My online orders went from 5/month to 60/month!"
@@ -716,7 +730,7 @@
                     <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Maria Gonzalez</div>
                     <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">Sweet Dreams Bakery • Started 10 months ago • 1200% order increase</div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
                         "As a new HVAC contractor, I was losing jobs to companies with professional websites. Krysta's site makes me look established and trustworthy. I went from $2,000/month to $15,000/month in just 4 months!"
@@ -724,7 +738,7 @@
                     <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Mike Rodriguez</div>
                     <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">DFW Climate Solutions • Started 8 months ago • 650% revenue growth</div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
                         "Starting my landscaping business at 23, no one took me seriously. The professional website Krysta built changed everything. Customers now see me as an established business. I'm booked 3 weeks out and had to hire help!"
@@ -733,7 +747,7 @@
                     <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">Green Thumb Landscaping • Age 23 startup • Now 2-person team</div>
                 </div>
             </div>
-            
+
             <!-- Trust indicators for startups -->
             <div class="trust-indicators mt-8 text-center">
                 <div class="grid md:grid-cols-3 gap-6">
@@ -768,7 +782,7 @@
                     While you're thinking about it, competitors with professional websites are booking the customers that should be yours. 
                     <strong style="color: #7A7A7A;">Don't let another month slip by—your business deserves better than social media pages and DIY disasters.</strong>
                 </p>
-                
+
                 <!-- Enhanced Final Value Props -->
                 <div class="grid md:grid-cols-4 gap-4 mb-8 text-sm">
                     <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
@@ -788,7 +802,7 @@
                         <div style="font-family: 'Times New Roman', serif;">Get found by DFW customers</div>
                     </div>
                 </div>
-                
+
                 <!-- Mobile-Optimized CTAs -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ url_for('intake') }}" class="read-more-btn text-lg px-8 py-4 text-center">
