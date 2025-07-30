@@ -1899,13 +1899,13 @@ def newsletter_subscribe():
                         body=f"""
                         Welcome to The Grey Canvas Newsletter!
 
-                        Thank you for subscribing to our newsletter. You'll receive:
+                        Thank you for subscribing to my newsletter. You'll receive:
                         - Web design tips and trends
                         - Small business digital marketing insights
                         - Latest projects and case studies
                         - Special offers and announcements
 
-                        We promise no spam - just pixels, stories, and the occasional existential crisis!
+                        I promise no spam - just pixels, stories, and the occasional existential crisis!
 
                         Best regards,
                         Krysta McAlister
