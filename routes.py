@@ -1419,7 +1419,7 @@ def sitemap():
         {
             "url": "/terms-of-service",
             "priority": "0.3",
-            ""changefreq": "yearly",
+            "changefreq": "yearly",
             "lastmod": datetime.now(),
         },
     ]
