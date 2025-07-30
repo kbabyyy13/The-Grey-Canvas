@@ -1083,13 +1083,11 @@
                 <a href="{{ url_for('index') }}" class="logo-container" aria-label="The Grey Canvas home page">
                     <img src="{{ url_for('static', filename='logo.png') }}" alt="The Grey Canvas Logo" class="h-36 w-auto" style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));"/>
                 </a>
-                <nav class="hidden lg:flex items-center space-x-2 text-base font-medium">
+                <nav class="hidden lg:flex items-center space-x-3 text-base font-medium">
                     <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a>
                     <a href="{{ url_for('services') }}" class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a>
+                    <a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Work</a>
                     <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
-                    <a href="{{ url_for('thegrey') }}" class="nav-link {% if request.endpoint == 'thegrey' %}active{% endif %}">The Grey Canvas Co.</a>
-                    <a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a>
-                    <a href="{{ url_for('testimonials') }}" class="nav-link {% if request.endpoint == 'testimonials' %}active{% endif %}">Testimonials</a>
                     <a href="{{ url_for('blog') }}" class="nav-link {% if request.endpoint == 'blog' %}active{% endif %}">Blog</a>
                     <a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
                 </nav>
@@ -1119,12 +1117,16 @@
             <!-- Navigation Links -->
             <a href="{{ url_for('index') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'index' %}active{% endif %}">Home</a>
             <a href="{{ url_for('services') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'services' %}active{% endif %}">Services</a>
+            <a href="{{ url_for('portfolio') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'portfolio' %}active{% endif %}">Work</a>
             <a href="{{ url_for('about') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'about' %}active{% endif %}">About</a>
-            <a href="{{ url_for('thegrey') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'thegrey' %}active{% endif %}">The Grey Canvas Co.</a>
-            <a href="{{ url_for('portfolio') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a>
-            <a href="{{ url_for('testimonials') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'testimonials' %}active{% endif %}">Testimonials</a>
             <a href="{{ url_for('blog') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'blog' %}active{% endif %}">Blog</a>
-            <a href="{{ url_for('contact') }}" class="block py-2 px-4 text-sm nav-link text-center {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
+            <a href="{{ url_for('contact') }}" class="block py-2 px-4 text-sm nav-link text-center mb-2 {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
+            
+            <!-- Secondary Pages (Condensed) -->
+            <div class="border-t border-white/20 pt-4 mt-4">
+                <a href="{{ url_for('thegrey') }}" class="block py-2 px-4 text-xs nav-link text-center mb-2 {% if request.endpoint == 'thegrey' %}active{% endif %}" style="opacity: 0.8;">Company Info</a>
+                <a href="{{ url_for('testimonials') }}" class="block py-2 px-4 text-xs nav-link text-center {% if request.endpoint == 'testimonials' %}active{% endif %}" style="opacity: 0.8;">Testimonials</a>
+            </div>
         </div>
 
         <!-- Flash Messages -->
@@ -1156,14 +1158,14 @@
                 <nav class="footer-nav">
                     <h3 class="font-playfair" style="color: #E0218A;">Explore</h3>
                     <ul class="font-times-new-roman">
-                        <li><a href="{{ url_for('thegrey') }}">The Grey Canvas Co.</a></li>
                         <li><a href="{{ url_for('index') }}">Home</a></li>
                         <li><a href="{{ url_for('services') }}">Services</a></li>
+                        <li><a href="{{ url_for('portfolio') }}">Work</a></li>
                         <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
-                        <li><a href="{{ url_for('testimonials') }}">Testimonials</a></li>
                         <li><a href="{{ url_for('blog') }}">Blog</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        <li><a href="{{ url_for('testimonials') }}">Testimonials</a></li>
+                        <li><a href="{{ url_for('thegrey') }}">Company Info</a></li>
                     </ul>
                 </nav>
 
