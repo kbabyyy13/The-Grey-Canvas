@@ -129,12 +129,12 @@ def contact():
                     recipients=[app.config["MAIL_DEFAULT_SENDER"]],
                     body=f"""
                     New contact form submission:
-                    
+
                     Name: {form.name.data}
                     Email: {form.email.data}
                     Phone: {form.phone.data}
                     Subject: {form.subject.data}
-                    
+
                     Message:
                     {form.message.data}
                     """,
@@ -158,6 +158,10 @@ def contact():
 @app.route("/thegrey")
 def thegrey():
     return render_template("thegrey.html")
+
+@app.route('/testimonials')
+def testimonials():
+    return render_template('testimonials.html')
 
 
 @app.route("/privacy")
@@ -224,7 +228,7 @@ def intake():
                     recipients=[app.config["MAIL_DEFAULT_SENDER"]],
                     body=f"""
                     New client intake form submission:
-                    
+
                     Business Name: {form.business_name.data}
                     Contact Name: {form.contact_name.data}
                     Email: {form.email.data}
@@ -232,10 +236,10 @@ def intake():
                     Website Type: {form.website_type.data}
                     Timeline: {form.timeline.data}
                     Budget: {form.budget.data}
-                    
+
                     Project Description:
                     {form.project_description.data}
-                    
+
                     Additional Notes:
                     {form.additional_notes.data}
                     """,
@@ -434,11 +438,11 @@ def delete_inquiry(inquiry_type, inquiry_id):
     """Delete an inquiry"""
     try:
         logging.info(f"Delete request received for {inquiry_type}/{inquiry_id}")
-        
+
         # Validate CSRF token for security
         from flask_wtf.csrf import validate_csrf
         csrf_token = request.headers.get('X-CSRFToken') or request.form.get('csrf_token')
-        
+
         # Log only essential request info for debugging (avoid sensitive headers)
         safe_headers = {
             'Content-Type': request.headers.get('Content-Type'),
@@ -447,14 +451,14 @@ def delete_inquiry(inquiry_type, inquiry_id):
         }
         logging.info(f"Delete request info - Method: {request.method}, Headers: {safe_headers}")
         logging.info(f"CSRF token received: {csrf_token[:10] + '...' if csrf_token else 'None'}")
-        
+
         if not csrf_token:
             logging.error("CSRF token missing in delete request")
             return jsonify({
                 "error": "CSRF token missing", 
                 "details": "Security token not provided in request"
             }), 403
-            
+
         try:
             validate_csrf(csrf_token)
             logging.info("CSRF token validation successful")
@@ -464,7 +468,7 @@ def delete_inquiry(inquiry_type, inquiry_id):
                 "error": "CSRF token validation failed", 
                 "details": "Security token is invalid or expired"
             }), 403
-            
+
         if inquiry_type == "contact":
             inquiry = ContactSubmission.query.get_or_404(inquiry_id)
         elif inquiry_type == "intake":
@@ -476,15 +480,15 @@ def delete_inquiry(inquiry_type, inquiry_id):
         # Store inquiry details for logging
         inquiry_name = getattr(inquiry, 'name', getattr(inquiry, 'business_name', 'Unknown'))
         inquiry_email = getattr(inquiry, 'email', 'Unknown')
-        
+
         logging.info(f"Attempting to delete inquiry: {inquiry_name} ({inquiry_email})")
-        
+
         db.session.delete(inquiry)
         db.session.commit()
-        
+
         logging.info(f"Inquiry deleted successfully: {inquiry_type} - {inquiry_name} ({inquiry_email})")
         return jsonify({"success": True, "message": "Inquiry deleted successfully"})
-        
+
     except SQLAlchemyError as e:
         logging.error(f"Database error deleting inquiry {inquiry_id}: {e}")
         db.session.rollback()
@@ -869,7 +873,8 @@ def add_first_post():
 <li><strong>Fast Loading:</strong> Don't lose customers to slow pages</li>
 </ol>
 
-<h2>Ready to Get Started?</h2>
+<h2>Ready to```python
+ Get Started?</h2>
 <p>Building a website doesn't have to be overwhelming. Whether you're ready to DIY or want professional help, the important thing is to start. Your future customers are searching for you right now—make sure they can find you.</p>
 
 <p>Need help getting your small business online? I specialize in creating professional, affordable websites for Texas entrepreneurs. Let's chat about bringing your business to the digital world.</p>"""
@@ -1129,7 +1134,7 @@ def update_frontend_blog_image():
     existing_post = BlogPost.query.filter_by(
         slug="frontend-has-changed-why-next-project-wont-start-create-react-app"
     ).first()
-    
+
     if not existing_post:
         flash("Frontend blog post not found!", "error")
         return redirect(url_for("blog"))
@@ -1223,12 +1228,12 @@ def robots_txt():
     """Generate comprehensive robots.txt for optimal SEO crawling"""
     # Safely construct base URL with validation
     from urllib.parse import urlparse
-    
+
     # Get the base URL with proper validation
     parsed_url = urlparse(request.url_root)
     # Only use scheme and netloc, ignore any potentially malicious components
     safe_base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
-    
+
     robots_content = f"""User-agent: *
 Allow: /
 
@@ -1415,7 +1420,7 @@ def sitemap():
 
     try:
         # Get all published blog posts with error handling
-        blog_posts = (
+        blog_posts =(
             BlogPost.query.filter_by(published=True)
             .order_by(BlogPost.created_at.desc())
             .all()
@@ -1479,7 +1484,7 @@ def sitemap():
 def download_sitemap():
     """Download XML sitemap as a file for local use or SEO tools"""
     from datetime import datetime
-    
+
     # Use request URL to get the actual domain (supports both dev and production)
     base_url = request.url_root.rstrip("/")
 
@@ -1736,11 +1741,11 @@ def backup_management():
     """Backup management dashboard"""
     import os
     from pathlib import Path
-    
+
     # Get backup files
     backup_dir = Path("backups")
     backup_files = []
-    
+
     if backup_dir.exists():
         for backup_file in backup_dir.glob("grey_canvas_backup_*.zip"):
             stat = backup_file.stat()
@@ -1750,10 +1755,10 @@ def backup_management():
                 'created': datetime.fromtimestamp(stat.st_mtime),
                 'path': str(backup_file)
             })
-    
+
     # Sort by creation date (newest first)
     backup_files.sort(key=lambda x: x['created'], reverse=True)
-    
+
     return render_template("admin_backup.html", backup_files=backup_files)
 
 
@@ -1764,15 +1769,15 @@ def create_backup():
     try:
         from backup_system import run_daily_backup
         success = run_daily_backup()
-        
+
         if success:
             flash("Backup created successfully!", "success")
         else:
             flash("Backup creation failed. Check logs for details.", "error")
-            
+
     except Exception as e:
         flash(f"Backup error: {str(e)}", "error")
-    
+
     return redirect(url_for("backup_management"))
 
 
@@ -1782,14 +1787,14 @@ def download_backup(filename):
     """Download a backup file"""
     from pathlib import Path
     import os
-    
+
     backup_dir = Path("backups")
     backup_file = backup_dir / filename
-    
+
     if not backup_file.exists() or not filename.startswith("grey_canvas_backup_"):
         flash("Backup file not found!", "error")
         return redirect(url_for("backup_management"))
-    
+
     try:
         from flask import send_file
         return send_file(backup_file, as_attachment=True, download_name=filename)
@@ -1803,20 +1808,20 @@ def download_backup(filename):
 def delete_backup(filename):
     """Delete a backup file"""
     from pathlib import Path
-    
+
     backup_dir = Path("backups")
     backup_file = backup_dir / filename
-    
+
     if not backup_file.exists() or not filename.startswith("grey_canvas_backup_"):
         flash("Backup file not found!", "error")
         return redirect(url_for("backup_management"))
-    
+
     try:
         backup_file.unlink()
         flash(f"Backup {filename} deleted successfully!", "success")
     except Exception as e:
         flash(f"Delete error: {str(e)}", "error")
-    
+
     return redirect(url_for("backup_management"))
 
 
@@ -1826,7 +1831,7 @@ def backup_status():
     """Get backup system status"""
     import os
     from pathlib import Path
-    
+
     status = {
         'backup_dir_exists': Path("backups").exists(),
         'total_backups': 0,
@@ -1834,12 +1839,12 @@ def backup_status():
         'total_size_mb': 0,
         'scheduler_running': False
     }
-    
+
     backup_dir = Path("backups")
     if backup_dir.exists():
         backup_files = list(backup_dir.glob("grey_canvas_backup_*.zip"))
         status['total_backups'] = len(backup_files)
-        
+
         if backup_files:
             # Get latest backup
             latest = max(backup_files, key=lambda f: f.stat().st_mtime)
@@ -1848,11 +1853,11 @@ def backup_status():
                 'created': datetime.fromtimestamp(latest.stat().st_mtime).isoformat(),
                 'size_mb': round(latest.stat().st_size / (1024 * 1024), 2)
             }
-            
+
             # Calculate total size
             total_size = sum(f.stat().st_size for f in backup_files)
             status['total_size_mb'] = round(total_size / (1024 * 1024), 2)
-    
+
     return jsonify(status)
 
 
@@ -1893,15 +1898,15 @@ def newsletter_subscribe():
                         recipients=[form.email.data] if form.email.data else [],
                         body=f"""
                         Welcome to The Grey Canvas Newsletter!
-                        
+
                         Thank you for subscribing to our newsletter. You'll receive:
                         - Web design tips and trends
                         - Small business digital marketing insights
                         - Latest projects and case studies
                         - Special offers and announcements
-                        
+
                         We promise no spam - just pixels, stories, and the occasional existential crisis!
-                        
+
                         Best regards,
                         Krysta McAlister
                         The Grey Canvas Co.

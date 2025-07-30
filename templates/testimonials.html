@@ -1,0 +1,272 @@
+
+{% extends "base.html" %}
+
+{% block title %}Client Success Stories - The Grey Canvas{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Read success stories from local Texas businesses that The Grey Canvas has helped launch and grow online. See real results from our web design services.">
+{% endblock %}
+
+{% block extra_css %}
+.testimonial-card {
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.75), rgba(31, 41, 55, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(224, 33, 138, 0.3);
+}
+
+.testimonial-quote {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-info h4 {
+    font-family: 'Playfair Display', serif;
+    color: #E0218A;
+    font-size: 1.1rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.author-info p {
+    font-family: 'Times New Roman', serif;
+    color: #7A7A7A;
+    font-size: 0.9rem;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.case-study-card {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.1), rgba(122, 122, 122, 0.1));
+    border: 1px solid rgba(224, 33, 138, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(224, 33, 138, 0.15);
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(224, 33, 138, 0.25);
+    border-color: rgba(224, 33, 138, 0.4);
+}
+
+.case-study-title {
+    font-family: 'Playfair Display', serif;
+    color: #E0218A;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.case-study-section {
+    margin-bottom: 1rem;
+}
+
+.case-study-section h4 {
+    font-family: 'Playfair Display', serif;
+    color: #FFFFFF;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.case-study-section p {
+    font-family: 'Times New Roman', serif;
+    color: #FFFFFF;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.result-highlight {
+    background: linear-gradient(135deg, rgba(224, 33, 138, 0.2), rgba(224, 33, 138, 0.1));
+    border-left: 4px solid #E0218A;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.section-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #E0218A, transparent);
+    margin: 3rem 0;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card, .case-study-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 1rem;
+    }
+    
+    .case-study-title {
+        font-size: 1.3rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="main-content-container">
+    <div class="space-y-8">
+        <!-- Header Section -->
+        <div class="text-center space-y-4">
+            <h1 class="text-6xl font-playfair text-deep-black">
+                Client <span style="color: #E0218A;">Success</span> Stories
+            </h1>
+            <p class="text-xl font-times-new-roman text-signature-grey">
+                Real results from local Texas businesses we've helped launch and grow
+            </p>
+        </div>
+
+        <!-- Testimonials Section -->
+        <section>
+            <h2 class="text-4xl font-playfair text-center mb-8 text-deep-black">
+                What Our <span style="color: #E0218A;">Clients</span> Say
+            </h2>
+            
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Before The Grey Canvas, our little bakery had no online presence beyond social media. We desperately needed a professional website to take online orders and reach more local customers. The team not only created a stunning, easy-to-navigate site that truly captures our brand, but within the first month, we saw a 50% increase in online orders! It's been an absolute game-changer for our launch."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>Owner, The Daily Crumb Bakery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "As a new personal trainer, I knew I needed a credible online home for my services, but my budget was tight. The Grey Canvas delivered an amazing, affordable website that looks incredibly professional. Clients can now easily find my services, view my schedule, and book sessions directly. It's given me the confidence and tools to attract my first steady stream of clients."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Mark T.</h4>
+                            <p>Founder, Peak Performance Training</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Our handyman business was growing by word-of-mouth, but we lacked a professional online presence. The Grey Canvas built us a simple, effective website that made us look legitimate and trustworthy. Now, when people search for 'handyman services near me,' we actually show up! It's been invaluable for attracting new local jobs and establishing our reputation."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>David L.</h4>
+                            <p>Owner, Dependable Home Repairs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "I pour my heart into my handmade jewelry, and I needed a website that truly showcased my craft. The Grey Canvas understood my vision perfectly. They created a beautiful, budget-friendly online store that highlights my unique pieces and tells my brand story. It's allowed me to reach a wider audience and turn browsers into buyers from day one."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Emily R.</h4>
+                            <p>Creator, Ember & Stone Designs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Case Studies Section -->
+        <section>
+            <h2 class="text-4xl font-playfair text-center mb-8 text-deep-black">
+                <span style="color: #E0218A;">Case</span> Studies
+            </h2>
+            
+            <!-- Case Study 1 -->
+            <div class="case-study-card">
+                <h3 class="case-study-title">The Bloom Box Florist</h3>
+                
+                <div class="case-study-section">
+                    <h4>Challenge:</h4>
+                    <p>New local florist struggling with a basic social media presence; needed a professional platform for online orders and showcasing seasonal arrangements.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h4>Solution:</h4>
+                    <p>The Grey Canvas designed and developed a visually captivating e-commerce website with easy navigation and integrated online ordering. We focused on high-quality image display and a seamless user experience.</p>
+                </div>
+                
+                <div class="result-highlight">
+                    <h4>Result:</h4>
+                    <p><strong>Within 3 months of launch, The Bloom Box reported a 75% increase in online inquiries and direct orders, establishing them as a go-to local florist.</strong></p>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="case-study-card">
+                <h3 class="case-study-title">Community Yoga Hub</h3>
+                
+                <div class="case-study-section">
+                    <h4>Challenge:</h4>
+                    <p>A new yoga studio needed an affordable way to list class schedules, accept bookings, and build a community online, without overwhelming their small team.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h4>Solution:</h4>
+                    <p>The Grey Canvas built a user-friendly website with integrated scheduling and booking features, designed to be easily updated by the studio owner. We prioritized mobile responsiveness for on-the-go access.</p>
+                </div>
+                
+                <div class="result-highlight">
+                    <h4>Result:</h4>
+                    <p><strong>The studio saw a significant increase in class sign-ups and positive feedback on the website's ease of use, helping them quickly build a loyal local following.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="text-center space-y-6 mt-12">
+            <h3 class="text-3xl font-playfair text-deep-black">
+                Ready to Be Our Next <span style="color: #E0218A;">Success</span> Story?
+            </h3>
+            <p class="text-lg font-times-new-roman text-signature-grey max-w-2xl mx-auto">
+                Join the growing list of local businesses that have transformed their online presence with The Grey Canvas.
+            </p>
+            <a href="{{ url_for('contact') }}" class="btn-begin-canvas">
+                Start Your Success Story
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
