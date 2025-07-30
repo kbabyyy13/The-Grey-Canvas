@@ -123,6 +123,28 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **July 30, 2025**: Legal documents updated for comprehensive compliance and current business practices
+  - **Privacy Policy Enhancement**: Updated effective date to July 30, 2025 with expanded data collection details
+    - Added comprehensive information collection categories (personal, project, usage, cookies, communication records)
+    - Enhanced data usage descriptions for service delivery, communication, business operations, website improvement, marketing, and legal compliance
+    - Expanded data sharing policy with specific circumstances and third-party service details
+    - Updated data retention periods including active client projects (project duration + 7 years), email communications (3 years), and payment records (7 years)
+  - **Terms of Service Overhaul**: Updated effective date to July 30, 2025 with professional business terms
+    - Added formal acceptance of terms section for legal clarity
+    - Enhanced content usage rights and restrictions with specific commercial use guidelines
+    - Expanded user conduct requirements with security and intellectual property respect
+    - Added comprehensive web design service agreement terms covering project scope, payment terms, intellectual property, revisions, timelines, and client responsibilities
+    - Added privacy and data protection reference linking to Privacy Policy
+    - Enhanced disclaimer of warranties with "as is" and "as available" language
+    - Strengthened limitation of liability with comprehensive damage categories
+    - Added detailed indemnification clause with specific circumstances
+    - Updated governing law to include binding arbitration in Dallas County, Texas
+    - Added severability clause for legal protection
+    - Enhanced contact information with business details and response time commitments
+    - Improved change notification process with 30-day notice for material changes
+  - **Legal Compliance**: Both documents now meet current business law requirements for Texas-based web design services
+  - **Professional Standards**: Enhanced legal language while maintaining accessibility and clarity for clients
+
 - **July 30, 2025**: Typography standardization completed across website
   - **Headline Reversion**: Reverted headlines to original branding on services, packages, and about pages
     - Services: "The Grey Canvas Services" 
