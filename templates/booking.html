@@ -1,0 +1,645 @@
+
+{% extends "base.html" %}
+
+{% block title %}Book Your Free Website Consultation - The Grey Canvas{% endblock %}
+
+{% block meta_description %}Schedule a free consultation with The Grey Canvas for your website design and development needs. Professional web design services for DFW startups and small businesses.{% endblock %}
+
+{% block additional_css %}
+<style>
+    .booking-container {
+        min-height: 100vh;
+        background: #0f172a;
+        padding: 3rem 1rem;
+    }
+    
+    .booking-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .badge-container {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        border: 1px solid;
+    }
+    
+    .badge-green {
+        background: rgba(34, 197, 94, 0.2);
+        color: #4ade80;
+        border-color: rgba(34, 197, 94, 0.3);
+    }
+    
+    .badge-orange {
+        background: rgba(249, 115, 22, 0.2);
+        color: #fb923c;
+        border-color: rgba(249, 115, 22, 0.3);
+    }
+    
+    .badge-purple {
+        background: rgba(168, 85, 247, 0.2);
+        color: #c084fc;
+        border-color: rgba(168, 85, 247, 0.3);
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .title-pink {
+        color: #ec4899;
+    }
+    
+    .title-white {
+        color: white;
+    }
+    
+    .subtitle {
+        color: #d1d5db;
+        font-size: 1.125rem;
+        max-width: 48rem;
+        margin: 0 auto;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+        color: #ec4899;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    
+    .stat-label {
+        color: #d1d5db;
+        font-size: 0.875rem;
+    }
+    
+    .stat-sublabel {
+        color: #9ca3af;
+        font-size: 0.75rem;
+    }
+    
+    .alert-box {
+        background: rgba(127, 29, 29, 0.3);
+        border: 1px solid rgba(239, 68, 68, 0.5);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .alert-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .alert-text {
+        color: #fecaca;
+        font-size: 0.875rem;
+    }
+    
+    .offer-box {
+        background: rgba(20, 83, 45, 0.3);
+        border: 1px solid rgba(34, 197, 94, 0.5);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .offer-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .offer-title {
+        color: #4ade80;
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .offer-text {
+        color: #bbf7d0;
+        font-size: 0.875rem;
+    }
+    
+    .booking-form {
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        border: 1px solid #374151;
+    }
+    
+    .form-title {
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-label {
+        color: #e5e7eb;
+        font-size: 0.875rem;
+    }
+    
+    .form-input-container {
+        position: relative;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+        background: #374151;
+        border: 1px solid #4b5563;
+        border-radius: 0.375rem;
+        color: white;
+        font-size: 0.875rem;
+    }
+    
+    .form-input:focus {
+        outline: none;
+        border-color: #ec4899;
+    }
+    
+    .form-input::placeholder {
+        color: #9ca3af;
+    }
+    
+    .form-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .form-select {
+        width: 100%;
+        padding: 0.75rem;
+        background: #374151;
+        border: 1px solid #4b5563;
+        border-radius: 0.375rem;
+        color: white;
+        font-size: 0.875rem;
+    }
+    
+    .form-select:focus {
+        outline: none;
+        border-color: #ec4899;
+    }
+    
+    .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        background: #374151;
+        border: 1px solid #4b5563;
+        border-radius: 0.375rem;
+        color: white;
+        font-size: 0.875rem;
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: #ec4899;
+    }
+    
+    .form-textarea::placeholder {
+        color: #9ca3af;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #ec4899;
+        color: white;
+        border: none;
+        border-radius: 0.375rem;
+        font-size: 1.125rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    
+    .submit-btn:hover {
+        background: #be185d;
+    }
+    
+    .submit-btn:disabled {
+        background: #6b7280;
+        cursor: not-allowed;
+    }
+    
+    .additional-info {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #4b5563;
+    }
+    
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .info-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: #d1d5db;
+        font-size: 0.875rem;
+    }
+    
+    .info-icon {
+        color: #ec4899;
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .disclosure {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #4b5563;
+    }
+    
+    .disclosure-content {
+        font-family: 'Times New Roman', serif;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: white;
+    }
+    
+    .disclosure-title {
+        font-weight: bold;
+        color: #e0218a;
+        margin-bottom: 1rem;
+    }
+    
+    .disclosure-list {
+        list-style: disc;
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .disclosure-list li {
+        margin-bottom: 0.5rem;
+    }
+    
+    @media (min-width: 768px) {
+        .main-title {
+            font-size: 3.75rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="booking-container">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="booking-header">
+            <div class="badge-container">
+                <span class="badge badge-green">⚡ 20+ DFW Startups Launched</span>
+                <span class="badge badge-orange">🕒 2-Week Launch Timeline</span>
+                <span class="badge badge-purple">💰 Starting at $800</span>
+            </div>
+            
+            <h1 class="main-title">
+                <span class="title-pink">Book Your Free</span>
+                <span class="title-white"> Website Consultation</span>
+            </h1>
+            
+            <p class="subtitle">
+                Schedule a <span class="title-pink">professional consultation</span> that helps 
+                <span class="title-pink">DFW Startups & Small Businesses</span> grow online
+            </p>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">$3,200</div>
+                <div class="stat-label">Average Revenue Increase</div>
+                <div class="stat-sublabel">First 3 Months</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">75%</div>
+                <div class="stat-label">Client Credibility Boost</div>
+                <div class="stat-sublabel">vs. DIY Websites</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4x</div>
+                <div class="stat-label">More Leads Generated</div>
+                <div class="stat-sublabel">Than Social Media Only</div>
+            </div>
+        </div>
+
+        <!-- Alert Box -->
+        <div class="alert-box">
+            <div class="alert-content">
+                <div style="color: #f87171; margin-top: 0.25rem;">⚠️</div>
+                <div class="alert-text">
+                    <strong>Don't Wait Another Month:</strong> Every day without a professional website is potential revenue lost to competitors. August 2025 is prime season for local business growth!
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Offer Box -->
+        <div class="offer-box">
+            <div class="offer-content">
+                <div style="color: #4ade80; margin-top: 0.25rem;">⚡</div>
+                <div>
+                    <h3 class="offer-title">🎉 New Business Special: Free Discovery Call + $100 Off*</h3>
+                    <p class="offer-text">
+                        Starting a new local business? Schedule your free consultation this month and save $100 on any package. Let's discuss your vision and create a launch plan that fits your budget.
+                    </p>
+                    <p class="offer-text" style="margin-top: 0.5rem;">
+                        <strong>Claim Your New Business Discount*</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="booking-form">
+            <h2 class="form-title">Schedule Your Free Consultation</h2>
+            
+            <form id="bookingForm" method="POST" action="{{ url_for('contact') }}">
+                {{ csrf_token() }}
+                
+                <!-- Contact Information -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <div class="form-input-container">
+                            <svg class="form-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <input
+                                id="firstName"
+                                name="firstName"
+                                type="text"
+                                class="form-input"
+                                placeholder="John"
+                                required
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <div class="form-input-container">
+                            <svg class="form-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <input
+                                id="lastName"
+                                name="lastName"
+                                type="text"
+                                class="form-input"
+                                placeholder="Doe"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="form-input-container">
+                            <svg class="form-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                class="form-input"
+                                placeholder="john@example.com"
+                                required
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <div class="form-input-container">
+                            <svg class="form-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                class="form-input"
+                                placeholder="(214) 555-0123"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Selection -->
+                <div class="form-group">
+                    <label for="service" class="form-label">Service Interested In</label>
+                    <select id="service" name="service" class="form-select" required>
+                        <option value="">Select a service...</option>
+                        <option value="website-design">Website Design & Development ($2,500 - $5,000)</option>
+                        <option value="website-redesign">Website Redesign ($1,500 - $3,500)</option>
+                        <option value="seo-audit">SEO Audit & Optimization ($500 - $1,200)</option>
+                        <option value="maintenance">Website Maintenance ($200 - $500/month)</option>
+                        <option value="consultation">Strategy Consultation (FREE - $300)</option>
+                    </select>
+                </div>
+
+                <!-- Date and Time Selection -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="preferredDate" class="form-label">Preferred Date</label>
+                        <div class="form-input-container">
+                            <svg class="form-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                            </svg>
+                            <input
+                                id="preferredDate"
+                                name="preferredDate"
+                                type="date"
+                                class="form-input"
+                                min="{{ (moment().add(1, 'day')).format('YYYY-MM-DD') }}"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredTime" class="form-label">Preferred Time</label>
+                        <select id="preferredTime" name="preferredTime" class="form-select">
+                            <option value="">Select time...</option>
+                            <option value="9:00 AM">🕘 9:00 AM</option>
+                            <option value="10:00 AM">🕙 10:00 AM</option>
+                            <option value="11:00 AM">🕚 11:00 AM</option>
+                            <option value="12:00 PM">🕛 12:00 PM</option>
+                            <option value="1:00 PM">🕐 1:00 PM</option>
+                            <option value="2:00 PM">🕑 2:00 PM</option>
+                            <option value="3:00 PM">🕒 3:00 PM</option>
+                            <option value="4:00 PM">🕓 4:00 PM</option>
+                            <option value="5:00 PM">🕔 5:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group">
+                    <label for="message" class="form-label">Tell Us About Your Project (Optional)</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        class="form-textarea"
+                        placeholder="Describe your business, goals, and any specific requirements..."
+                    ></textarea>
+                </div>
+
+                <!-- Hidden field to indicate this is a booking form -->
+                <input type="hidden" name="form_type" value="booking">
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Schedule Free Consultation
+                </button>
+            </form>
+
+            <!-- Additional Info -->
+            <div class="additional-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                        </svg>
+                        <span>30-minute consultation</span>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Video call or in-person</span>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        <span>No obligation required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclosure Section -->
+        <div class="disclosure">
+            <div class="disclosure-content">
+                <p class="disclosure-title">* Discount Eligibility Disclosure</p>
+                <p style="margin-bottom: 1rem;">
+                    To qualify for the New Business Special: Free Discovery Call + $100 Off, clients must provide two forms of verifiable proof that their business is newly established and has not previously had a professional website. Acceptable forms of proof include, but are not limited to:
+                </p>
+                <ul class="disclosure-list">
+                    <li>Business registration documents (e.g., LLC formation papers, DBA registration) dated within the last 12 months.</li>
+                    <li>Recent utility bills or lease agreements for the business premises (dated within the last 6 months).</li>
+                    <li>Official bank statements for the new business account (showing account opening within the last 12 months).</li>
+                    <li>Tax identification number (EIN) confirmation letter issued within the last 12 months.</li>
+                </ul>
+                <p>
+                    This offer is exclusively for businesses genuinely in their startup phase looking to establish their first official online presence.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('bookingForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Form validation
+    function validateForm() {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        
+        const isValid = firstName && lastName && email && phone && service;
+        
+        submitBtn.disabled = !isValid;
+        
+        return isValid;
+    }
+    
+    // Add event listeners for form validation
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'service'];
+    requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('input', validateForm);
+            field.addEventListener('change', validateForm);
+        }
+    });
+    
+    // Initial validation
+    validateForm();
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+        if (!validateForm()) {
+            e.preventDefault();
+            alert('Please fill in all required fields.');
+            return false;
+        }
+        
+        submitBtn.textContent = 'Scheduling...';
+        submitBtn.disabled = true;
+    });
+});
+</script>
+{% endblock %}

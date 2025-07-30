@@ -161,7 +161,13 @@ def thegrey():
 
 @app.route('/testimonials')
 def testimonials():
+    """Render testimonials page"""
     return render_template('testimonials.html')
+
+@app.route('/book')
+def book():
+    """Render booking consultation page"""
+    return render_template('booking.html')
 
 
 @app.route("/privacy")
@@ -868,13 +874,13 @@ def add_first_post():
 <ol>
 <li><strong>Clear Contact Information:</strong> Make it easy to reach you</li>
 <li><strong>Service Descriptions:</strong> Tell people exactly what you do</li>
-<li><strong>Customer Reviews:</strong> Build social proof</li>
+<li><strong>Customer Reviews:</strong> Build```python
+ social proof</li>
 <li><strong>Mobile Optimization:</strong> Most customers will find you on their phone</li>
 <li><strong>Fast Loading:</strong> Don't lose customers to slow pages</li>
 </ol>
 
-<h2>Ready to```python
- Get Started?</h2>
+<h2>Ready to Get Started?</h2>
 <p>Building a website doesn't have to be overwhelming. Whether you're ready to DIY or want professional help, the important thing is to start. Your future customers are searching for you right now—make sure they can find you.</p>
 
 <p>Need help getting your small business online? I specialize in creating professional, affordable websites for Texas entrepreneurs. Let's chat about bringing your business to the digital world.</p>"""
@@ -1413,7 +1419,7 @@ def sitemap():
         {
             "url": "/terms-of-service",
             "priority": "0.3",
-            "changefreq": "yearly",
+            ""changefreq": "yearly",
             "lastmod": datetime.now(),
         },
     ]
