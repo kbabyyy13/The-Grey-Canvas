@@ -44,43 +44,60 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "The Grey Canvas",
-        "description": "Custom web design and development services for Texas small businesses",
-        "url": "https://replit.app{{ request.path }}",
-        "telephone": "(682) 403-1904",
+        "description": "Professional web design Dallas Fort Worth Texas for small businesses and startups. Affordable website development services for local DFW businesses.",
+        "url": "https://replit.app",
+        "telephone": "+1-682-403-1904",
         "email": "krystamcalister@thegreycanvas.co",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Dallas",
-            "addressRegion": "TX",
-            "addressCountry": "US"
+            "addressRegion": "Texas",
+            "addressCountry": "United States",
+            "postalCode": "75000"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 32.7767,
-            "longitude": -96.7970
+            "latitude": "32.7767",
+            "longitude": "-96.7970"
         },
-        "areaServed": {
-            "@type": "State",
-            "name": "Texas"
-        },
-        "serviceArea": {
-            "@type": "Place",
-            "name": "Dallas-Fort Worth Metroplex"
-        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Dallas",
+                "addressRegion": "Texas"
+            },
+            {
+                "@type": "City", 
+                "name": "Fort Worth",
+                "addressRegion": "Texas"
+            },
+            {
+                "@type": "City",
+                "name": "Arlington",
+                "addressRegion": "Texas"
+            },
+            {
+                "@type": "City",
+                "name": "Plano",
+                "addressRegion": "Texas"
+            }
+        ],
+        "serviceType": [
+            "Web Design Dallas Fort Worth Texas",
+            "Small Business Website Development", 
+            "Affordable Website Development Dallas Fort Worth Texas",
+            "Local Business Web Design",
+            "Startup Website Builder Dallas Fort Worth Texas",
+            "E-commerce Setup for Local Shops",
+            "SEO Services"
+        ],
+        "priceRange": "$800-$5000",
         "founder": {
             "@type": "Person",
             "name": "Krysta McAlister"
         },
-        "sameAs": [
-            "https://www.facebook.com/thegreycanvasdfw",
-            "https://instagram.com/thegreycanvasdfw",
-            "https://x.com/TheGreyCanvas_"
-        ],
-        "offers": {
-            "@type": "Service",
-            "name": "Web Design Services",
-            "description": "Custom website design and development for small businesses"
-        }
+        "businessDays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "businessHours": "Mo-Fr 10:00-18:00, Sa 12:00-18:00, Su 13:00-18:00"
     }
     </script>
     {% block structured_data %}{% endblock %}
