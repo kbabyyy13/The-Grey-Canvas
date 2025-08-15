@@ -1,844 +1,223 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Web Design Dallas Fort Worth Texas - Local Business Websites - The Grey Canvas</title>
+    
+    <meta name="description" content="Professional web design Dallas Fort Worth Texas for startups & local businesses. Affordable website development that helps new DFW businesses attract customers online.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
 
-{% block title %}Web Design Dallas Fort Worth Texas - Local Business Websites - The Grey Canvas{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400&family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script> <link rel="stylesheet" href="styles.css">
 
-{% block meta_description %}
-<meta name="description" content="Professional web design Dallas Fort Worth Texas for startups & local businesses. Affordable website development that helps new DFW businesses attract customers online.">
-{% endblock %}
-
-{% block cookieyes_banner %}
-<!-- Start cookieyes banner -->
-<script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/f35dd372961a1ec639f3ba94/script.js"></script>
-<!-- End cookieyes banner -->
-{% endblock %}
-
-{% block extra_css %}
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
-/* Home page specific styles */
-.home-section {
-    margin-bottom: 4rem;
-}
-
-.home-headline {
-    font-family: 'Times New Roman', serif;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    text-align: center;
-    margin-bottom: 1rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
-                 1px 1px 2px rgba(0, 0, 0, 0.9),
-                 0 0 20px rgba(224, 33, 138, 0.3);
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.home-tagline {
-    font-family: 'Times New Roman', serif;
-    font-size: 1.25rem;
-    line-height: 1.4;
-    text-align: center;
-    margin-bottom: 3rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 
-                 1px 1px 2px rgba(0, 0, 0, 0.9),
-                 0 0 20px rgba(224, 33, 138, 0.3);
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.section-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.section-title {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    word-spacing: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    line-height: 1.4;
-}
-
-.section-text {
-    color: #ffffff;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    text-align: justify;
-    word-spacing: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-}
-
-.project-showcase {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.project-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    color: #ffffff;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.project-card:hover {
-    background: rgba(224, 33, 138, 0.1);
-    border-color: rgba(224, 33, 138, 0.3);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.project-placeholder {
-    font-size: 1.125rem;
-    color: #e0218a;
-    margin-bottom: 0.5rem;
-}
-
-.project-description {
-    color: #d1d5db;
-    font-size: 0.875rem;
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-    .home-headline {
-        font-size: 2rem;
-    }
-
-    .home-tagline {
-        font-size: 1.5rem;
-    }
-
-    .section-content {
-        padding: 3rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        text-align: center;
-        word-spacing: normal;
-        letter-spacing: normal;
-    }
-
-    .section-text {
-        text-align: justify;
-        word-spacing: normal;
-        letter-spacing: normal;
-    }
-
-    .project-showcase {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .header-image {
-        width: 650px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .home-headline {
-        font-size: 2.5rem;
-    }
-
-    .home-tagline {
-        font-size: 1.75rem;
-    }
-
-    .section-content {
-        padding: 4rem;
-    }
-
-    .section-title {
-        font-size: 2.25rem;
-    }
-
-}
-
-/* Section Divider Styles */
-.section-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(224, 33, 138, 0.6), transparent);
-    margin: 3rem 0;
-    position: relative;
-}
-
-.section-divider::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #E0218A, #7A7A7A);
-    border-radius: 2px;
-}
-
-/* Button container for two buttons */
-.button-container {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Service Link Buttons */
-.service-link-btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    font-family: 'Times New Roman', serif;
-}
-
-.service-link-btn:hover {
-    background: rgba(224, 33, 138, 0.2);
-    border-color: rgba(224, 33, 138, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Testimonial Styles */
-.testimonial-section {
-    background: linear-gradient(135deg, rgba(224, 33, 138, 0.1), rgba(122, 122, 122, 0.05));
-    border: 1px solid rgba(224, 33, 138, 0.2);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 2rem 0;
-    backdrop-filter: blur(12px);
-}
-
-.testimonial-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.testimonial-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(224, 33, 138, 0.3);
-    transform: translateY(-2px);
-}
-
-.testimonial-quote {
-    font-style: italic;
-    color: #F3F4F6;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    font-family: 'Times New Roman', serif;
-}
-
-.testimonial-author {
-    color: #E0218A;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.testimonial-business {
-    color: #9CA3AF;
-    font-size: 0.9rem;
-}
-
-/* Enhanced Portfolio Cards */
-.portfolio-showcase {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.portfolio-card {
-    background: linear-gradient(135deg, rgba(75, 85, 99, 0.3), rgba(55, 65, 81, 0.2));
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 2rem;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-.portfolio-card:hover {
-    background: linear-gradient(135deg, rgba(224, 33, 138, 0.2), rgba(122, 122, 122, 0.1));
-    border-color: rgba(224, 33, 138, 0.4);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.portfolio-title {
-    font-size: 1.25rem;
-    color: #E0218A;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-    font-family: 'Playfair Display', serif;
-}
-
-.portfolio-description {
-    color: #D1D5DB;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    font-family: 'Times New Roman', serif;
-}
-
-.portfolio-tech {
-    color: #9CA3AF;
-    font-size: 0.875rem;
-    font-style: italic;
-}
-
-/* Enhanced mobile responsiveness */
-@media (max-width: 640px) {
-    .button-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .btn-begin-canvas {
-        width: 100%;
-        max-width: 300px;
-    }
-    .service-links {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    /* Better word spacing on mobile */
-    .section-title {
-        font-size: 1.5rem;
-        line-height: 1.3;
-        text-align: left;
-        word-spacing: 0.1em;
-        letter-spacing: 0.02em;
-    }
-
-    .section-text {
-        font-size: 1rem;
-        line-height: 1.5;
-        text-align: left;
-        word-spacing: 0.05em;
-        letter-spacing: 0.01em;
-    }
-
-    /* Improve span word spacing */
-    .section-title span,
-    .section-text span {
-        word-spacing: inherit;
-    }
-
-    /* Better mobile layout for content */
-    .section-content {
-        padding: 1.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .portfolio-showcase {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Enhanced CTA Button Styles */
-.enhanced-cta-btn {
-    position: relative;
-    overflow: hidden;
-    font-weight: 700;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, #E0218A, #C1185E);
-    border: 2px solid #E0218A;
-    color: white;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(224, 33, 138, 0.3);
-}
-
-.enhanced-cta-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(224, 33, 138, 0.4);
-    background: linear-gradient(135deg, #C1185E, #A01550);
-}
-
-.enhanced-cta-btn.secondary {
-    background: linear-gradient(135deg, #7A7A7A, #666666);
-    border-color: #7A7A7A;
-    box-shadow: 0 8px 20px rgba(122, 122, 122, 0.3);
-}
-
-.enhanced-cta-btn.secondary:hover {
-    background: linear-gradient(135deg, #666666, #555555);
-    box-shadow: 0 12px 30px rgba(122, 122, 122, 0.4);
-}
-
-/* Result Stats */
-.result-stat {
-    text-align: center;
-    padding: 1rem;
-}
-
-.stat-number {
-    font-family: 'Playfair Display', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Trust Indicators */
-.trust-indicators {
-    opacity: 0.8;
-}
-{% endblock %}
-
-{% block content %}
-<!-- Main Content Container -->
-<div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
-    <!-- Hero Image Section -->
-    <div class="block mb-8">
-        <!-- New Image Above Tagline -->
-            <div class="mb-8 text-center">
-                <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/19ece407-d849-4535-b7f6-f97bb73fd559.png?width=960&height=720&fit=bounds" target="_blank">
-                    <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/19ece407-d849-4535-b7f6-f97bb73fd559.png?width=960&height=720&fit=bounds" 
-                         alt="The" 
-                         class="mx-auto max-w-full h-auto rounded-lg shadow-lg">
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/f35dd372961a1ec639f3ba94/script.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8YBSLXMF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ8YBSLXMF');
+    </script>
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:6469714,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5 box-border">
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <div class="content-wrapper">
+        <header class="w-full max-w-5xl mx-auto py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="logo-container" aria-label="The Grey Canvas home page">
+                    <img src="logo.png" alt="The Grey Canvas Logo" class="h-36 w-auto" style="filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));"/>
                 </a>
+                <nav class="hidden lg:flex items-center space-x-3 text-base font-medium">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-black bg-white/50 p-2 rounded-md" aria-label="Toggle navigation menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                    </button>
+                </div>
             </div>
+        </header>
 
-            <!-- Styled Tagline -->
-            <div class="mb-8 text-center">
-                <h2 class="text-2xl md:text-3xl font-playfair">
-                    <span style="color: #000000;">Web</span><span style="color: #7A7A7A;">.</span> 
-                    <span style="color: #E0218A;">Design</span><span style="color: #000000;">.</span> 
-                    <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
-                </h2>
+        <main id="main-content">
+            <div class="w-full max-w-6xl main-content-container p-6 md:p-8 my-5 mx-auto">
+                <div class="block mb-8">
+                    <div class="mb-8 text-center">
+                        <a href="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/19ece407-d849-4535-b7f6-f97bb73fd559.png?width=960&height=720&fit=bounds" target="_blank">
+                            <img src="https://hosting.photobucket.com/ffe76a37-34ae-4a9f-949c-780379ff74c1/19ece407-d849-4535-b7f6-f97bb73fd559.png?width=960&height=720&fit=bounds" alt="The Grey Canvas Web Design" class="mx-auto max-w-full h-auto rounded-lg shadow-lg">
+                        </a>
+                    </div>
+            
+                    <div class="mb-8 text-center">
+                        <h2 class="text-2xl md:text-3xl font-playfair">
+                            <span style="color: #000000;">Web</span><span style="color: #7A7A7A;">.</span> 
+                            <span style="color: #E0218A;">Design</span><span style="color: #000000;">.</span> 
+                            <span style="color: #7A7A7A;">Thrive</span><span style="color: #E0218A;">.</span>
+                        </h2>
+                    </div>
+                </div>
+            
+                <div class="header-layout-container relative mb-16">
+                    <div class="header-content text-center relative z-10">
+                        <div class="brilliant-brands-text mb-8">
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight text-center mb-4" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                                <span style="color: #E0218A;">Web Design Dallas Fort Worth Texas</span> for <span style="color: #7A7A7A;">Local Businesses</span>
+                            </h1>
+                            <h2 class="text-xl md:text-2xl lg:text-3xl leading-relaxed text-center mb-6" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">
+                                Affordable Website Development That Helps <span style="color: #E0218A;">DFW Startups & Small Businesses</span> Grow Online
+                            </h2>
+            
+                            <div class="flex flex-wrap justify-center gap-4 mb-6 text-sm" style="font-family: 'Times New Roman', serif;">
+                                <div class="bg-green-600 bg-opacity-20 px-3 py-1 rounded-full border border-green-400">
+                                    <span style="color: #10B981;">✓ 50+ DFW Startups Launched</span>
+                                </div>
+                                <div class="bg-yellow-600 bg-opacity-20 px-3 py-1 rounded-full border border-yellow-400">
+                                    <span style="color: #F59E0B;">⚡ 2-Week Launch Timeline</span>
+                                </div>
+                                <div class="bg-purple-600 bg-opacity-20 px-3 py-1 rounded-full border border-purple-400">
+                                    <span style="color: #8B5CF6;">💰 Starting at $800</span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="text-center mb-8">
+                            <p class="text-lg md:text-xl max-w-4xl mx-auto mb-4" style="font-family: 'Times New Roman', serif; color: #F3F4F6; line-height: 1.6;">
+                                <strong style="color: #E0218A;">Professional web design Dallas Fort Worth Texas</strong> that stops you from losing customers to competitors with better websites. Your local business deserves more than a social media page or DIY template. 
+                            </p>
+                        </div>
+            
+                        <div class="text-center mb-6">
+                            <div class="bg-red-600 bg-opacity-20 border border-red-400 rounded-lg p-4 mb-4 max-w-2xl mx-auto">
+                                <p class="text-sm font-bold" style="font-family: 'Times New Roman', serif; color: #F87171;">
+                                    ⚠️ <strong>Don't Wait Another Month:</strong> Every day without a professional website is potential revenue lost to competitors. August 2025 is prime season for local business growth!
+                                </p>
+                            </div>
+            
+                            <div class="bg-green-600 bg-opacity-20 border border-green-400 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
+                                <h3 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #10B981;">
+                                    🎉 New Business Special - August 2025<span style="color: #e0218a;">*</span>
+                                </h3>
+                                <p class="text-sm" style="font-family: 'Times New Roman', serif; color: #D1FAE5;">
+                                    <strong>$100 OFF</strong> your website package + FREE business email setup + FREE local SEO audit for startups launching their first professional website this month.
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div class="button-container">
+                            <a href="intake.html" class="enhanced-cta-btn">
+                                🚀 Claim Your New Business Special
+                            </a>
+                            <a href="packages.html" class="enhanced-cta-btn secondary">
+                                View Startup Packages (From $800)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="section-divider"></div>
+            
+                <section class="home-section">
+                    <div class="section-content">
+                        <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
+                            The <strong><span style="color: #E0218A;">Gallery</span></strong>: <strong><span style="color: #7A7A7A;">Real</span> Texas <span style="color: #E0218A;">Business</span> <span style="color: #FFFFFF;">Results</span></strong>
+                        </h2>
+                        <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
+                            Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>.
+                        </div>
+            
+                        <div class="portfolio-showcase">
+                            <a href="portfolio.html" class="portfolio-card">
+                                <div class="portfolio-title">DFW Restaurant Chain</div>
+                                <div class="portfolio-description">Custom e-commerce platform with online ordering, location finder, and mobile-responsive design</div>
+                            </a>
+                            <a href="portfolio.html" class="portfolio-card">
+                                <div class="portfolio-title">Texas HVAC Company</div>
+                                <div class="portfolio-description">Lead-generating website with service scheduling, customer portal, and local SEO optimization</div>
+                            </a>
+                            <a href="portfolio.html" class="portfolio-card">
+                                <div class="portfolio-title">Plano Law Firm</div>
+                                <div class="portfolio-description">Professional website with client intake forms, case studies, and attorney bios</div>
+                            </a>
+                        </div>
+            
+                        <div class="text-center mt-8">
+                            <div class="button-container">
+                                <a href="portfolio.html" class="enhanced-cta-btn">
+                                    <span style="color: #FFFFFF;">View Full Portfolio</span>
+                                </a>
+                                <a href="intake.html" class="enhanced-cta-btn secondary">
+                                    <span style="color: #FFFFFF;">Start Your Project</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
             </div>
+        </main>
+
+        <footer class="grey-canvas-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <a href="index.html" aria-label="The Grey Canvas home page">
+                        <img src="logo.png" alt="The Grey Canvas logo" class="footer-logo" />
+                    </a>
+                </div>
+                <nav class="footer-nav">
+                    <h3 class="font-playfair" style="color: #E0218A;">Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-contact">
+                    <h3 class="font-playfair" style="color: #E0218A;">Connect</h3>
+                    <ul>
+                        <li><a href="mailto:krystamcalister@thegreycanvas.co">krystamcalister@thegreycanvas.co</a></li>
+                        <li><a href="tel:+16824031904">(682) 403-1904</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 The Grey Canvas. All rights reserved.</p>
+                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Hero Section for ICP -->
-    <div class="header-layout-container relative mb-16">
-        <!-- Corner Decorations -->
-        <div class="corner-decoration top-left"></div>
-        <div class="corner-decoration bottom-right"></div>
-
-        <!-- Main Header Content -->
-        <div class="header-content text-center relative z-10">
-            <!-- Enhanced ICP-Focused Headline -->
-            <div class="brilliant-brands-text mb-8">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight text-center mb-4" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                    <span style="color: #E0218A;">Web Design Dallas Fort Worth Texas</span> for <span style="color: #7A7A7A;">Local Businesses</span>
-                </h1>
-                <h2 class="text-xl md:text-2xl lg:text-3xl leading-relaxed text-center mb-6" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">
-                    Affordable Website Development That Helps <span style="color: #E0218A;">DFW Startups & Small Businesses</span> Grow Online
-                </h2>
-
-                <!-- Urgency & Social Proof Indicators -->
-                <div class="flex flex-wrap justify-center gap-4 mb-6 text-sm" style="font-family: 'Times New Roman', serif;">
-                    <div class="bg-green-600 bg-opacity-20 px-3 py-1 rounded-full border border-green-400">
-                        <span style="color: #10B981;">✓ 50+ DFW Startups Launched</span>
-                    </div>
-                    <div class="bg-yellow-600 bg-opacity-20 px-3 py-1 rounded-full border border-yellow-400">
-                        <span style="color: #F59E0B;">⚡ 2-Week Launch Timeline</span>
-                    </div>
-                    <div class="bg-purple-600 bg-opacity-20 px-3 py-1 rounded-full border border-purple-400">
-                        <span style="color: #8B5CF6;">💰 Starting at $800</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Enhanced Value Proposition with ROI Focus -->
-            <div class="text-center mb-8">
-                <p class="text-lg md:text-xl max-w-4xl mx-auto mb-4" style="font-family: 'Times New Roman', serif; color: #F3F4F6; line-height: 1.6;">
-                    <strong style="color: #E0218A;">Professional web design Dallas Fort Worth Texas</strong> that stops you from losing customers to competitors with better websites. 
-                    Your local business deserves more than a social media page or DIY template. 
-                </p>
-                <p class="text-lg md:text-xl max-w-4xl mx-auto" style="font-family: 'Times New Roman', serif; color: #F3F4F6; line-height: 1.6;">
-                    I specialize in <strong style="color: #7A7A7A;">affordable website development for Dallas Fort Worth Texas startups</strong> 
-                    and emerging local businesses. Build instant credibility with <strong style="color: #E0218A;">small business website design</strong> 
-                    that generates leads from day one—without the agency price tag.
-                </p>
-
-                <!-- ROI Statistics -->
-                <div class="grid md:grid-cols-3 gap-4 mt-6 max-w-3xl mx-auto">
-                    <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg" style="font-family: 'Times New Roman', serif;">
-                        <div class="text-2xl font-bold mb-1" style="color: #E0218A;">$3,200</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Average Revenue Increase<br>First 3 Months</div>
-                    </div>
-                    <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg" style="font-family: 'Times New Roman', serif;">
-                        <div class="text-2xl font-bold mb-1" style="color: #E0218A;">75%</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Client Credibility Boost<br>vs. DIY Websites</div>
-                    </div>
-                    <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg" style="font-family: 'Times New Roman', serif;">
-                        <div class="text-2xl font-bold mb-1" style="color: #E0218A;">4x</div>
-                        <div class="text-sm" style="color: #D1D5DB;">More Leads Generated<br>Than Social Media Only</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Urgency Messaging -->
-            <div class="text-center mb-6">
-                <div class="bg-red-600 bg-opacity-20 border border-red-400 rounded-lg p-4 mb-4 max-w-2xl mx-auto">
-                    <p class="text-sm font-bold" style="font-family: 'Times New Roman', serif; color: #F87171;">
-                        ⚠️ <strong>Don't Wait Another Month:</strong> Every day without a professional website 
-                        is potential revenue lost to competitors. August 2025 is prime season for local business growth!
-                    </p>
-                </div>
-
-                <!-- Special Offer -->
-                <div class="bg-green-600 bg-opacity-20 border border-green-400 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
-                    <h3 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #10B981;">
-                        🎉 New Business Special - August 2025<span style="color: #e0218a;">*</span>
-                    </h3>
-                    <p class="text-sm" style="font-family: 'Times New Roman', serif; color: #D1FAE5;">
-                        <strong>$100 OFF</strong> your website package + FREE business email setup + FREE local SEO audit 
-                        for startups launching their first professional website this month.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Enhanced Primary CTAs -->
-            <div class="button-container">
-                <a href="{{ url_for('intake') }}" class="enhanced-cta-btn">
-                    🚀 Claim Your New Business Special
-                </a>
-                <a href="{{ url_for('packages') }}" class="enhanced-cta-btn secondary">
-                    View Startup Packages (From $800)
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Pain Points & Solutions Section -->
-    <section class="home-section">
-        <div class="section-content">
-            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                Your <span style="color: #E0218A;">Local Launchpad</span> to Online Success
-            </h2>
-
-            <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-                <p class="text-lg mb-6">
-                    Starting a local business is challenging enough without worrying about building a professional website. 
-                    You're juggling everything—from finding customers to managing operations—and need a web presence that 
-                    <strong style="color: #E0218A;">works for you, not against you</strong>.
-                </p>
-
-                <!-- Enhanced Problem/Solution Framework -->
-                <div class="grid md:grid-cols-2 gap-8 mt-8">
-                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-red-300">
-                        <h3 class="text-xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #DC2626;">Startup Website Struggles You're Facing:</h3>
-                        <ul class="space-y-3 text-sm" style="font-family: 'Times New Roman', serif;">
-                            <li>• <strong>"I'm losing credibility"</strong> - customers don't trust businesses without websites</li>
-                            <li>• <strong>"Agencies want $5,000+"</strong> - way beyond my startup budget</li>
-                            <li>• <strong>"I don't have time"</strong> - already working 60+ hour weeks</li>
-                            <li>• <strong>"DIY looks unprofessional"</strong> - templates scream "amateur hour"</li>
-                            <li>• <strong>"No one can find me"</strong> - relying only on word-of-mouth</li>
-                            <li>• <strong>"I'm tech-overwhelmed"</strong> - coding feels impossible</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-green-300">
-                        <h3 class="text-xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #10B981;">Your Local Launchpad Solution:</h3>
-                        <ul class="space-y-3 text-sm" style="font-family: 'Times New Roman', serif;">
-                            <li>• <strong style="color: #E0218A;">Instant professional credibility</strong> - customers trust you immediately</li>
-                            <li>• <strong style="color: #E0218A;">Startup-friendly pricing</strong> - packages from $800 (not $5,000)</li>
-                            <li>• <strong style="color: #E0218A;">Done-for-you service</strong> - minimal time investment required</li>
-                            <li>• <strong style="color: #E0218A;">Custom professional design</strong> - no generic templates</li>
-                            <li>• <strong style="color: #E0218A;">Local SEO included</strong> - customers find you on Google</li>
-                            <li>• <strong style="color: #E0218A;">Zero tech skills needed</strong> - I handle everything</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Industry Examples Section -->
-                <div class="mt-12 mb-8">
-                    <h3 class="text-2xl font-bold text-center mb-6" style="font-family: 'Playfair Display', serif; color: #E0218A;">Perfect for These DFW Startup Industries:</h3>
-                    <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">🏠</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Home Services</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">HVAC, Plumbing, Electrical, Landscaping, Cleaning</p>
-                        </div>
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">💅</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Beauty & Wellness</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">Salons, Spas, Personal Training, Therapy</p>
-                        </div>
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">🎨</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Creative & Artisan</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">Bakeries, Photography, Custom Crafts, Events</p>
-                        </div>
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">⚖️</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Professional Services</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">Legal, Accounting, Real Estate, Consulting</p>
-                        </div>
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">🛠️</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Skilled Trades</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">Construction, Auto Repair, Handyman Services</p>
-                        </div>
-                        <div class="bg-gray-800 bg-opacity-30 p-4 rounded-lg text-center">
-                            <div class="text-2xl mb-2">🏪</div>
-                            <h4 class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">Local Retail</h4>
-                            <p class="text-xs" style="font-family: 'Times New Roman', serif; color: #D1D5DB;">Boutiques, Specialty Shops, Pet Services</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Three-Step Process -->
-                <div class="mt-12">
-                    <h3 class="text-2xl font-bold text-center mb-8" style="font-family: 'Playfair Display', serif; color: #E0218A;">Your 2-Week Website Launch Process</h3>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
-                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">1</div>
-                            <h4 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif;">Discovery Call</h4>
-                            <p class="text-sm" style="font-family: 'Times New Roman', serif;">We discuss your business goals, target customers, and what you need to attract your first clients online.</p>
-                        </div>
-                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
-                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">2</div>
-                            <h4 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif;">Design & Build</h4>
-                            <p class="text-sm" style="font-family: 'Times New Roman', serif;">I create your professional website with interactive Figma prototypes first, so you see exactly what you're getting.</p>
-                        </div>
-                        <div class="text-center p-6 bg-gray-800 bg-opacity-30 rounded-lg">
-                            <div class="text-4xl font-bold mb-4" style="color: #E0218A;">3</div>
-                            <h4 class="text-lg font-bold mb-2" style="font-family: 'Playfair Display', serif;">Launch & Generate Leads</h4>
-                            <p class="text-sm" style="font-family: 'Times New Roman', serif;">Your site goes live with local SEO optimization to start attracting DFW customers immediately.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: The Gallery -->
-    <section class="home-section">
-        <div class="section-content">
-            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                The <strong><span style="color: #E0218A;">Gallery</span></strong>: <strong><span style="color: #7A7A7A;">Real</span> Texas <span style="color: #E0218A;">Business</span> <span style="color: #FFFFFF;">Results</span></strong>
-            </h2>
-            <div class="section-text" style="font-family: 'Times New Roman', serif; color: #FFFFFF;">
-                Your business needs a website that converts, not just a pretty template. As a <strong><span style="color: #E0218A;">DFW freelance developer</span></strong>, I build custom sites that actually work for <strong><span style="color: #7A7A7A;">Texas small businesses</span></strong>. Here are real projects that deliver <strong><span style="color: #E0218A;">measurable results</span></strong>:
-                <br><br>
-                Each project showcases my commitment to creating websites that don't just look professional—they drive business growth through strategic design, user experience optimization, and results-focused development.
-            </div>
-
-            <!-- Enhanced Portfolio Showcase with Stats -->
-            <div class="portfolio-showcase">
-                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
-                    <div class="portfolio-title">DFW Restaurant Chain</div>
-                    <div class="portfolio-description">Custom e-commerce platform with online ordering, location finder, and mobile-responsive design</div>
-                    <div class="result-stat">
-                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+180%</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Online Orders Increase</div>
-                    </div>
-                    <div class="portfolio-tech">WordPress • WooCommerce • Custom PHP</div>
-                </a>
-                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
-                    <div class="portfolio-title">Texas HVAC Company</div>
-                    <div class="portfolio-description">Lead-generating website with service scheduling, customer portal, and local SEO optimization</div>
-                    <div class="result-stat">
-                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">50+</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Qualified Leads Monthly</div>
-                    </div>
-                    <div class="portfolio-tech">Custom HTML/CSS • JavaScript • Local SEO</div>
-                </a>
-                <a href="{{ url_for('portfolio') }}" class="portfolio-card">
-                    <div class="portfolio-title">Plano Law Firm</div>
-                    <div class="portfolio-description">Professional website with client intake forms, case studies, and attorney bios</div>
-                    <div class="result-stat">
-                        <div class="stat-number text-2xl font-bold" style="color: #E0218A;">+120%</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Consultation Bookings</div>
-                    </div>
-                    <div class="portfolio-tech">Custom Design • Contact Forms • Analytics</div>
-                </a>
-            </div>
-
-            <!-- Gallery Call-to-Action -->
-            <div class="text-center mt-8">
-                <div class="button-container">
-                    <a href="{{ url_for('portfolio') }}" class="enhanced-cta-btn">
-                        <span style="color: #FFFFFF;">View Full Portfolio</span>
-                    </a>
-                    <a href="{{ url_for('intake') }}" class="enhanced-cta-btn secondary">
-                        <span style="color: #FFFFFF;">Start Your Project</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Local Business Success Stories -->
-    <section class="home-section">
-        <div class="section-content">
-            <h2 class="section-title" style="font-family: 'Playfair Display', serif; color: #FFFFFF;">
-                <span style="color: #E0218A;">Local Launchpad</span> Success Stories
-            </h2>
-
-            <div class="text-center mb-8">
-                <p class="text-lg" style="color: #D1D5DB;">See how new and emerging local businesses launched online and attracted their first customers</p>
-            </div>
-
-            <div class="testimonial-section">
-                <div class="testimonial-card">
-                    <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
-                        "I launched my personal training studio with zero online presence. Krysta built me a professional website for $900 that looks like I paid $5,000. Within 30 days, I had 12 new client inquiries and booked solid for 2 months. Best investment I made!"
-                    </div>
-                    <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Sarah Martinez</div>
-                    <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">FitLife Personal Training • Launched with $800 package • Now $8K/month revenue</div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
-                        "Transitioning from hobby baker to real business, I needed credibility fast. The Grey Canvas gave me a professional website in 2 weeks that makes customers trust me immediately. My online orders went from 5/month to 60/month!"
-                    </div>
-                    <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Maria Gonzalez</div>
-                    <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">Sweet Dreams Bakery • Started 10 months ago • 1200% order increase</div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
-                        "As a new HVAC contractor, I was losing jobs to companies with professional websites. Krysta's site makes me look established and trustworthy. I went from $2,000/month to $15,000/month in just 4 months!"
-                    </div>
-                    <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">Mike Rodriguez</div>
-                    <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">DFW Climate Solutions • Started 8 months ago • 650% revenue growth</div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-quote" style="font-family: 'Times New Roman', serif;">
-                        "Starting my landscaping business at 23, no one took me seriously. The professional website Krysta built changed everything. Customers now see me as an established business. I'm booked 3 weeks out and had to hire help!"
-                    </div>
-                    <div class="testimonial-author" style="font-family: 'Playfair Display', serif;">James Thompson</div>
-                    <div class="testimonial-business" style="font-family: 'Times New Roman', serif;">Green Thumb Landscaping • Age 23 startup • Now 2-person team</div>
-                </div>
-            </div>
-
-            <!-- Trust indicators for startups -->
-            <div class="trust-indicators mt-8 text-center">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">50+</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Local Startups Launched</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">2-3 weeks</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Average Launch Time</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2" style="color: #E0218A;">$800+</div>
-                        <div class="text-sm" style="color: #D1D5DB;">Starting Budget-Friendly</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Call to Action Section -->
-    <section class="home-section">
-        <div class="mt-12">
-            <div class="blog-card text-center">
-                <h3 class="text-3xl font-bold text-white mb-4 font-playfair">Ready to <span style="color: #E0218A;">Launch Your Business</span> Online?</h3>
-                <p class="text-lg text-gray-300 mb-6" style="font-family: 'Times New Roman', serif;">
-                    <strong style="color: #E0218A;">Every day you wait is money left on the table.</strong> 
-                    While you're thinking about it, competitors with professional websites are booking the customers that should be yours. 
-                    <strong style="color: #7A7A7A;">Don't let another month slip by—your business deserves better than social media pages and DIY disasters.</strong>
-                </p>
-
-                <!-- Enhanced Final Value Props -->
-                <div class="grid md:grid-cols-4 gap-4 mb-8 text-sm">
-                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                        <div class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">✓ Free Consultation</div>
-                        <div style="font-family: 'Times New Roman', serif;">No obligation, no pushy sales</div>
-                    </div>
-                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                        <div class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">✓ Startup Pricing</div>
-                        <div style="font-family: 'Times New Roman', serif;">From $800 (not $5,000+)</div>
-                    </div>
-                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                        <div class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">✓ Quick Launch</div>
-                        <div style="font-family: 'Times New Roman', serif;">Online in 2 weeks max</div>
-                    </div>
-                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                        <div class="font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #E0218A;">✓ Local SEO Included</div>
-                        <div style="font-family: 'Times New Roman', serif;">Get found by DFW customers</div>
-                    </div>
-                </div>
-
-                <!-- Mobile-Optimized CTAs -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ url_for('intake') }}" class="read-more-btn text-lg px-8 py-4 text-center">
-                        🚀 Start My Website Project (Free Consultation)
-                    </a>
-                    <a href="{{ url_for('packages') }}" class="read-more-btn text-lg px-8 py-4 text-center" style="background: rgba(122, 122, 122, 0.9); border-color: #7A7A7A;">
-                        💰 View Startup Packages ($800+)
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Discount Eligibility Disclosure Section -->
-    <section class="home-section">
-        <div class="section-content">
-            <h3 class="text-lg font-bold mb-4" style="font-family: 'Times New Roman', serif; color: #e0218a;">
-                * Discount Eligibility Disclosure
-            </h3>
-            <div class="text-gray-300 text-sm leading-relaxed" style="font-family: 'Times New Roman', serif;">
-                <p class="mb-4">
-                    To qualify for the New Business Special: Free Discovery Call + $100 Off, clients must provide two forms of verifiable proof that their business is newly established and has not previously had a professional website. Acceptable forms of proof include, but are not limited to:
-                </p>
-                <ul class="list-disc list-inside mb-4 space-y-2">
-                    <li>Business registration documents (e.g., LLC formation papers, DBA registration) dated within the last 12 months.</li>
-                    <li>Recent utility bills or lease agreements for the business premises (dated within the last 6 months).</li>
-                    <li>Official bank statements for the new business account (showing account opening within the last 12 months).</li>
-                    <li>Tax identification number (EIN) confirmation letter issued within the last 12 months.</li>
-                </ul>
-                <p>
-                    This offer is exclusively for businesses genuinely in their startup phase looking to establish their first official online presence.
-                </p>
-            </div>
-        </div>
-    </section>
-</div>
-{% endblock %}
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        // This script is for a mobile menu that I don't see in the base HTML, but keeping it in case it's needed.
+        const mobileMenu = document.getElementById('mobile-menu'); 
+        if(menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
